@@ -6,7 +6,7 @@ import {
 import { KitBuilder } from "@google-labs/breadboard/kits";
 
 const ListKit = new KitBuilder({
-	url: "npm:@exadev/breadboard-kits",
+	url: "npm:@exadev/breadboard-kits/list",
 }).build({
 	concat: async (
 		inputs: InputValues & { a: NodeValue[]; b: NodeValue[] }
