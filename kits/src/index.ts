@@ -6,7 +6,7 @@ import {
 import { KitBuilder } from "@google-labs/breadboard/kits";
 
 const kitBuilder: KitConstructor<any> = new KitBuilder({
-	url: "npm:@exadev/breadboard-kits",
+	url: "npm:@exadev/breadboard-kits/list",
 }).build({
 	concat: async (
 		inputs: InputValues & { a: NodeValue[]; b: NodeValue[] }
@@ -65,6 +65,8 @@ const kitBuilder: KitConstructor<any> = new KitBuilder({
 	},
 });
 
+export const list = kitBuilder;
+
 export default {
-	list: kitBuilder,
+	list,
 };
