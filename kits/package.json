@@ -10,7 +10,7 @@
     "typescript": "^5.2.2"
   },
   "files": [
-    "src"
+    "dist"
   ],
   "main": "./dist/index.js",
   "name": "@exadev/breadboard-kits",
