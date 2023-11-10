@@ -65,6 +65,4 @@ const kitBuilder: KitConstructor<any> = new KitBuilder({
 	},
 });
 
-export default {
-	list: kitBuilder,
-};
+export const ListKit = kitBuilder;
