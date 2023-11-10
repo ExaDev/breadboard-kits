@@ -8,22 +8,27 @@
     "@types/node": "^20.9.0",
     "typescript": "^5.2.2"
   },
-  "publishConfig": {
-    "access": "public"
-  },
+  "files": [
+    "src"
+  ],
+  "main": "dist/index.js",
   "name": "@exadev/breadboard-kits",
   "packageManager": "yarn@4.0.1",
   "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ExaDev-io/breadboard-kits.git"
   },
   "scripts": {
+    "build": "tsc --build --verbose",
+    "clean": "tsc --build --clean",
     "once": "npx -y tsx ./src/index.ts",
+    "prepublishOnly": "npm run build",
     "start": "chmod +x ./src/index.ts && ./src/index.ts"
   },
-  "version": "0.0.2",
-  "files": [
-    "src"
-  ]
+  "types": "dist/index.d.ts",
+  "version": "0.0.2"
 }
