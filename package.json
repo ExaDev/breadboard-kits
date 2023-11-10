@@ -1,0 +1,29 @@
+{
+  "dependencies": {
+    "@google-labs/breadboard": "^0.5.0",
+    "@google-labs/core-kit": "^0.0.1",
+    "@google-labs/llm-starter": "^0.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.9.0",
+    "typescript": "^5.2.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "name": "@exadev/breadboard-kits",
+  "packageManager": "yarn@4.0.1",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ExaDev-io/breadboard-kits.git"
+  },
+  "scripts": {
+    "once": "npx -y tsx ./src/index.ts",
+    "start": "chmod +x ./src/index.ts && ./src/index.ts"
+  },
+  "version": "0.0.2",
+  "files": [
+    "src"
+  ]
+}
