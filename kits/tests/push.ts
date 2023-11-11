@@ -1,6 +1,6 @@
 import { Board } from "@google-labs/breadboard";
 import test from "ava";
-import ListKit from "../src/kits/listKit.js";
+import ListKit from "kits/listKit.js";
 
 test("addKit", async (t) => {
 	const board = new Board({
