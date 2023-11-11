@@ -1,5 +1,5 @@
 import { Board } from "@google-labs/breadboard";
-import { ListKit } from "../src/index.js";
+import ListKit from "src/kits/listKit.js";
 import test from "ava";
 
 test("addKit", async (t) => {
