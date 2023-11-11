@@ -1,6 +1,6 @@
 import { Board } from "@google-labs/breadboard";
 import test from 'ava';
-import { Kits } from "src/index.js";
+import ListKit from "../src/kits/listKit.js";
 
 test('addKit', async (t) => {
 
@@ -10,7 +10,7 @@ test('addKit', async (t) => {
 		version: "0.0.1",
 	});
 
-	const kit = board.addKit(Kits.ListKit);
+	board.addKit(ListKit);
 
 	const query = board.input({
 		$id: "input",

@@ -5,7 +5,7 @@
   },
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "declaration": true,
     "declarationMap": true,
     "esModuleInterop": true,

@@ -1,4 +1,4 @@
-import ListKit from "src/kits/listKit.js";
+import ListKit from "kits/listKit.js";
 
 export {
 	ListKit,
