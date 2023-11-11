@@ -1,1 +1,1 @@
-export * as ListKit from "./listKit.js";
+export * from "./listKit.js";
