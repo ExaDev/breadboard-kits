@@ -1,9 +1,8 @@
 import { Board } from "@google-labs/breadboard";
-import test from 'ava';
-import ListKit from "kits/listKit.js";
+import test from "ava";
+import ListKit from "../src/kits/listKit.js";
 
-test('addKit', async (t) => {
-
+test("addKit", async (t) => {
 	const board = new Board({
 		title: "Exadev",
 		description: "Exadev Breadboard Kit",
@@ -26,6 +25,6 @@ test('addKit', async (t) => {
 		},
 	});
 
-	query.wire("text->text", board.output())
+	query.wire("text->text", board.output());
 	t.pass(); // Replies start with a space.
-})
+});
