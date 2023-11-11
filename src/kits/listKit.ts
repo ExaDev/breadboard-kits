@@ -10,7 +10,7 @@ import {
 	ListSpliceInput,
 	ListSpliceOutput,
 	SplitListOutput,
-} from "index.js";
+} from "types/list.js";
 
 const ListKit = new KitBuilder({
 	url: "npm:@exadev/breadboard-kits/list",
