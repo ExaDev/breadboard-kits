@@ -31,7 +31,7 @@
 	"files": [
 		"dist"
 	],
-	"main": "./dist/src/index.js",
+	"main": "./dist/index.js",
 	"name": "@exadev/breadboard-kits",
 	"packageManager": "yarn@4.0.1",
 	"private": false,
