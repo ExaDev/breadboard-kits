@@ -39,7 +39,7 @@ export type ListSpliceInput = InputValues & {
 	items?: NodeValue[];
 };
 
-export type ListSplicOutput = OutputValues & {
+export type ListSpliceOutput = OutputValues & {
 	extracted: NodeValue[];
 	list: NodeValue[];
 };
