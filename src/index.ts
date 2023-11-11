@@ -4,4 +4,4 @@ export { Kits };
 
 export default {
 	Kits,
-}
+};
