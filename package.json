@@ -38,6 +38,7 @@
     "url": "git+https://github.com/ExaDev-io/breadboard-kits.git"
   },
   "scripts": {
+    "prebuild": "npm run clean",
     "build": "tsc --build --verbose",
     "clean": "tsc --build --clean",
     "once": "npx -y tsx ./src/index.ts",
