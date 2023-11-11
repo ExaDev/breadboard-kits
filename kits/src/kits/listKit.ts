@@ -12,7 +12,7 @@ import {
 	SplitListOutput,
 } from "types/list.js";
 
-const ListKit = new KitBuilder({
+export const ListKit = new KitBuilder({
 	url: "npm:@exadev/breadboard-kits/list",
 }).build({
 	/* eslint-disable @typescript-eslint/require-await */
