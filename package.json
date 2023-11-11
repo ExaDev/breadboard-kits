@@ -52,6 +52,7 @@
 		"prebuild": "npm run clean && npm run lint",
 		"prepublishOnly": "npm run test && git push",
 		"pretest": "npm run build",
+		"preversion": "npm run test",
 		"start": "chmod +x ./src/index.ts && ./src/index.ts",
 		"test": "FORCE_COLOR=1 ava"
 	},
