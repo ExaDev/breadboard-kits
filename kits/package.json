@@ -41,7 +41,7 @@
     "build": "tsc --build --verbose",
     "clean": "tsc --build --clean",
     "once": "npx -y tsx ./src/index.ts",
-    "prepublishOnly": "npm run test",
+    "prepublishOnly": "npm run test && git push",
     "pretest": "npm run build",
     "start": "chmod +x ./src/index.ts && ./src/index.ts",
     "test": "FORCE_COLOR=1 ava"
