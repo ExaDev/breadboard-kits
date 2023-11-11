@@ -29,9 +29,6 @@
 		"rimraf": "^5.0.5",
 		"typescript": "^5.2.2"
 	},
-	"files": [
-		"dist"
-	],
 	"main": "./dist/src/index.js",
 	"name": "@exadev/breadboard-kits",
 	"packageManager": "yarn@4.0.1",
