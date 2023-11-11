@@ -1,7 +1,2 @@
-import Kits from "./kits/index.js";
-
-export { Kits };
-
-export default {
-	Kits,
-};
+export * from "./types/index.js";
+export * from "./kits/index.js";

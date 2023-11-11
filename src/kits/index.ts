@@ -1,7 +1,2 @@
-import ListKit from "kits/listKit.js";
-
-export { ListKit };
-
-export default {
-	ListKit,
-};
+export * from "types/index.js";
+export * from "kits/index.js";
