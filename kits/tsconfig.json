@@ -22,7 +22,8 @@
 		"dist"
 	],
 	"include": [
-		"src"
+		"src",
+		"tests"
 	],
 	"typeAcquisition": {
 		"enable": true
