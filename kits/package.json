@@ -44,7 +44,7 @@
 		"url": "git+https://github.com/ExaDev-io/breadboard-kits.git"
 	},
 	"scripts": {
-		"build": "tsc --build --verbose",
+		"build": "tsc --pretty --project ./tsconfig.build.json",
 		"clean": "rimraf ./dist",
 		"lint": "eslint ./src",
 		"lint:fix": "npm run lint -- --fix",
