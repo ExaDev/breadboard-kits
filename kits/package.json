@@ -34,6 +34,10 @@
 			"import": "./dist/index.js",
 			"require": "./dist/index.js"
 		},
+		"./*": {
+			"import": "./dist/*.js",
+			"require": "./dist/*.js"
+		},
 		"./src": {
 			"import": "./src/index.ts",
 			"require": "./src/index.js"
