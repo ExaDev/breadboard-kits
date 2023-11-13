@@ -10,6 +10,8 @@ import {
 	ListOutput,
 	ListSpliceInput,
 	ListSpliceOutput,
+	SplitInput,
+	SplitOutput,
 } from "types/list.js";
 
 export const ListKit = new KitBuilder({
@@ -55,6 +57,45 @@ export const ListKit = new KitBuilder({
 			...(items ?? [])
 		);
 		return { extracted, list };
+	},
+	split: async (inputs: SplitInput): Promise<SplitOutput> => {
+		const {
+			input,
+			delimiter,
+			trim,
+			split_by_each,
+			remove_empty_text,
+			trim_items,
+			keep_delimiters,
+			output_format = "string_array",
+		}: SplitInput = inputs;
+		const values: (string | { text: string; delimiter: string })[] = input
+			.split(delimiter)
+			.map((text: string) => {
+				if (trim) {
+					text = text.trim();
+				}
+				if (split_by_each) {
+					return text.split("");
+				}
+				return text;
+			})
+			.flat();
+		if (remove_empty_text) {
+			values.filter((text: string) => text.length > 0);
+		}
+		if (trim_items) {
+			values.map((text: string) => text.trim());
+		}
+		if (keep_delimiters) {
+			values.map((text: string) => {
+				return { text, delimiter };
+			});
+		}
+		if (output_format === "string_array") {
+			return { values: values as string[] };
+		}
+		return { values: values as { text: string; delimiter: string }[] };
 	},
 	/* eslint-enable @typescript-eslint/require-await */
 });
