@@ -1,4 +1,4 @@
-import { NodeValue } from "@google-labs/breadboard";
+import { InputValues, NodeValue, OutputValues } from "@google-labs/breadboard";
 import { KitBuilder } from "@google-labs/breadboard/kits";
 import {
 	BifurcatedList,
@@ -13,6 +13,8 @@ import {
 	SplitInput,
 	SplitOutput,
 } from "types/list.js";
+
+type EmptyObject = Record<string, never>;
 
 export const ListKit = new KitBuilder({
 	url: "npm:@exadev/breadboard-kits/list",
@@ -39,8 +41,28 @@ export const ListKit = new KitBuilder({
 		const item: NodeValue = list.shift();
 		return { item, list };
 	},
-	pop: async (inputs: ListInput): Promise<ListOperationOutput> => {
-		const { list }: ListInput = inputs;
+	pop: async (
+		inputs: InputValues &
+		(
+			| {
+				list: NodeValue[];
+			} | {
+				list: [];
+			}
+		)
+	): Promise<
+		| OutputValues &
+		(
+		| EmptyObject
+		| {
+			item: NodeValue;
+			list: NodeValue[];
+		})
+		> => {
+		if (!inputs.list || inputs.list == undefined || inputs.list.length == 0) {
+			return {};
+		}
+		const { list } = inputs;
 		const item: NodeValue = list.pop();
 		return { item, list };
 	},
@@ -69,7 +91,7 @@ export const ListKit = new KitBuilder({
 			keep_delimiters,
 			output_format = "string_array",
 		}: SplitInput = inputs;
-		const values: (string | { text: string; delimiter: string })[] = input
+		const values: (string | { text: string; delimiter: string; })[] = input
 			.split(delimiter)
 			.map((text: string) => {
 				if (trim) {
@@ -95,7 +117,7 @@ export const ListKit = new KitBuilder({
 		if (output_format === "string_array") {
 			return { values: values as string[] };
 		}
-		return { values: values as { text: string; delimiter: string }[] };
+		return { values: values as { text: string; delimiter: string; }[] };
 	},
 	/* eslint-enable @typescript-eslint/require-await */
 });
