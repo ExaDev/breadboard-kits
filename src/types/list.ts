@@ -43,3 +43,25 @@ export type ListSpliceOutput = OutputValues &
 	List & {
 		extracted: NodeValue[];
 	};
+
+export type SplitInput = InputValues & {
+	input: string;
+	delimiter: RegExp | string;
+	trim: boolean;
+	split_by_each: boolean; // split_by_each - [ OPTIONAL - TRUE by default ] - Whether or not to divide text around each character contained in delimiter.
+	remove_empty_text: boolean; // [ OPTIONAL - TRUE by default ] - Whether or not to remove empty text messages from the split results. The default behavior is to treat consecutive delimiters as one (if TRUE). If FALSE, empty cells values are added between consecutive delimiters.
+	trim_items: boolean; // [ OPTIONAL - FALSE by default ] - Whether or not to trim each item in the split results.
+	keep_delimiters: boolean; // [ OPTIONAL - FALSE by default ] - Whether or not to include the delimiter in the split results.
+	// output as either a list of strings or list of objects with text and delimiter
+	output_format?: "string_array" | "object_array";
+};
+
+export type SplitOutput = OutputValues & {
+	values: (
+		| {
+				text: string;
+				delimiter: string;
+		  }
+		| string
+	)[];
+};
