@@ -1,7 +1,7 @@
 {
 	"ava": {
 		"files": [
-			"tests/**/*.ts"
+			"tests/**/*.ava.ts"
 		],
 		"typescript": {
 			"compile": false,
