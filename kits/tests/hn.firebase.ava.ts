@@ -1,9 +1,9 @@
 import { Board, LogProbe } from "@google-labs/breadboard";
-import test from "ava";
+import test, { ExecutionContext } from "ava";
 import HackerNewsFirebaseKit, { HNFirebaseStoryData } from "../src/kits/hackerNews/hnFirebaseKit.js";
 import ListKit from "../src/kits/listKit.js";
 
-test("hnFirebaseKit.topStoryIds", async (t) => {
+test("hnFirebaseKit.topStoryIds", async (t: ExecutionContext) => {
 	const board = new Board();
 	const kit = board.addKit(HackerNewsFirebaseKit);
 
