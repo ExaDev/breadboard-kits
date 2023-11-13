@@ -29,6 +29,16 @@
 		"rimraf": "^5.0.5",
 		"typescript": "^5.2.2"
 	},
+	"exports": {
+		".": {
+			"import": "./dist/index.js",
+			"require": "./dist/index.js"
+		},
+		"./src": {
+			"import": "./src/index.ts",
+			"require": "./src/index.js"
+		}
+	},
 	"main": "./dist/index.js",
 	"name": "@exadev/breadboard-kits",
 	"packageManager": "yarn@4.0.1",
