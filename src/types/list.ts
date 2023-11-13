@@ -32,17 +32,15 @@ export type ListIndexInput = InputValues & List & Index;
 
 export type ListItemInput = InputValues & List & Item;
 
-export type ListSpliceInput = InputValues &
-	List & {
-		start: number;
-		count: number;
-		items?: NodeValue[];
-	};
+export type ListSpliceInput = InputValues & List & {
+	start: number;
+	count: number;
+	items?: NodeValue[];
+};
 
-export type ListSpliceOutput = OutputValues &
-	List & {
-		extracted: NodeValue[];
-	};
+export type ListSpliceOutput = OutputValues & List & {
+	extracted: NodeValue[];
+};
 
 export type SplitInput = InputValues & {
 	input: string;
@@ -59,9 +57,9 @@ export type SplitInput = InputValues & {
 export type SplitOutput = OutputValues & {
 	values: (
 		| {
-				text: string;
-				delimiter: string;
-		  }
+			text: string;
+			delimiter: string;
+		}
 		| string
 	)[];
 };
