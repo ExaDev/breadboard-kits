@@ -1,18 +1,24 @@
 import { InputValues, NodeValue, OutputValues } from "@google-labs/breadboard";
 
-export type ListOperationOutput = OutputValues & {
+export type List = {
+	list: NodeValue[];
+};
+
+export type Item = {
 	item: NodeValue;
-	list: NodeValue[];
 };
 
-export type ListInput = InputValues & {
-	list: NodeValue[];
-};
-export type ListOutput = OutputValues & {
-	list: NodeValue[];
+export type Index = {
+	index: number;
 };
 
-export type SplitListOutput = OutputValues & {
+export type ListOperationOutput = OutputValues & List & Item;
+
+export type ListInput = InputValues & List;
+
+export type ListOutput = OutputValues & List;
+
+export type BifurcatedList = OutputValues & {
 	before: NodeValue[];
 	after: NodeValue[];
 };
@@ -22,24 +28,18 @@ export type ListConcatInput = InputValues & {
 	b: NodeValue[];
 };
 
-export type ListIndexInput = InputValues & {
-	list: NodeValue[];
-	index: number;
-};
+export type ListIndexInput = InputValues & List & Index;
 
-export type ListItemInput = InputValues & {
-	list: NodeValue[];
-	item: NodeValue;
-};
+export type ListItemInput = InputValues & List & Item;
 
-export type ListSpliceInput = InputValues & {
-	list: NodeValue[];
-	start: number;
-	count: number;
-	items?: NodeValue[];
-};
+export type ListSpliceInput = InputValues &
+	List & {
+		start: number;
+		count: number;
+		items?: NodeValue[];
+	};
 
-export type ListSpliceOutput = OutputValues & {
-	extracted: NodeValue[];
-	list: NodeValue[];
-};
+export type ListSpliceOutput = OutputValues &
+	List & {
+		extracted: NodeValue[];
+	};

@@ -1,6 +1,7 @@
 import { NodeValue } from "@google-labs/breadboard";
 import { KitBuilder } from "@google-labs/breadboard/kits";
 import {
+	BifurcatedList,
 	ListConcatInput,
 	ListIndexInput,
 	ListInput,
@@ -9,7 +10,6 @@ import {
 	ListOutput,
 	ListSpliceInput,
 	ListSpliceOutput,
-	SplitListOutput,
 } from "types/list.js";
 
 export const ListKit = new KitBuilder({
@@ -20,7 +20,7 @@ export const ListKit = new KitBuilder({
 		const { a, b }: ListConcatInput = inputs;
 		return { list: a.concat(b) };
 	},
-	split: async (inputs: ListIndexInput): Promise<SplitListOutput> => {
+	bifurcate: async (inputs: ListIndexInput): Promise<BifurcatedList> => {
 		const { list, index }: ListIndexInput = inputs;
 		return {
 			before: list.slice(0, index),
