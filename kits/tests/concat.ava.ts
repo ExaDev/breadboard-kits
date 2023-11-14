@@ -39,7 +39,5 @@ test("listkit.concat", async (t) => {
 		b:"John"
 	});
 
-    console.log("RESULT", result)
-
 	t.is(result["list"], "helloJohn");
 });
