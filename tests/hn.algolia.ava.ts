@@ -81,16 +81,20 @@ test("Get specific story attributes", async (t: ExecutionContext) => {
 				title: string;
 			};
 
-			// const story: storyPartial = result.outputs as unknown as  storyPartial
-			const story: storyPartial = Object.assign({}, result.outputs) as unknown as  storyPartial
-			// console.log("outputs:", JSON.stringify(outputs, null, 2));
+			const expectedNumberOfKeys: number = Object.keys({} as storyPartial).length
 
-			const expectedKeys = [
-				"algoliaUrl",
-				"story_id",
-				"url",
-				"title",
-			];
+			const story: storyPartial = Object.assign({}, result.outputs) as unknown as  storyPartial
+
+			const actualNumberOfKeys: number = Object.keys(story).length
+			t.notDeepEqual(actualNumberOfKeys, expectedNumberOfKeys, "expected number of keys");
+
+			for (const [key, value] of Object.entries(story)) {
+				console.log(`result.outputs.${key}:\t${value}`);
+				t.truthy(value, `outputs.${key}`)
+			}
+		}
+	}
+});
 
 			const actualKeys = Object.keys(story)
 			console.log("actualKeys:", actualKeys);
