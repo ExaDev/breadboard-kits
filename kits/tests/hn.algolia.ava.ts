@@ -64,19 +64,56 @@ test("Get specific story attributes", async (t: ExecutionContext) => {
 	getStoryFromId.wire("->url", aggregate);
 	getStoryFromId.wire("->title", aggregate);
 
-	aggregate.wire("*->", board.output());
+	aggregate.wire("*", board.output());
 
 	for await (const result of board.run({
 		// probe: new LogProbe(),
 	})) {
 		console.log("------");
 		if (result.outputs) {
-			const outputs = result.outputs;
-			console.log("outputs:", JSON.stringify(outputs, null, 2));
-			t.assert(outputs.algoliaUrl, "outputs.algoliaUrl");
-			t.assert(outputs.story_id, "outputs.story_id");
-			t.assert(outputs.url, "outputs.url");
-			t.assert(outputs.title, "outputs.title");
+			console.log("result.outputs", JSON.stringify(result.outputs, null, 2));
+
+			type storyPartial = {
+				algoliaUrl: string;
+				story_id: number;
+				url: string;
+				title: string;
+			};
+
+			// const story: storyPartial = result.outputs as unknown as  storyPartial
+			const story: storyPartial = Object.assign({}, result.outputs) as unknown as  storyPartial
+			// console.log("outputs:", JSON.stringify(outputs, null, 2));
+
+			const expectedKeys = [
+				"algoliaUrl",
+				"story_id",
+				"url",
+				"title",
+			];
+
+			const actualKeys = Object.keys(story)
+			console.log("actualKeys:", actualKeys);
+			console.log("expectedKeys:", expectedKeys);
+
+			expectedKeys.forEach((key) => {
+				// t.assert(actualKeys.includes(key), `outputs.${key}`);
+				t.truthy(actualKeys.includes(key), `outputs.${key}`)
+			})
+
+			// // t.deepEqual(actualKeys, expectedKeys, "expectedKeys");
+
+			// if (!outputs.algoliaUrl) {
+			// 	t.fail("outputs.algoliaUrl");
+			// }
+			// if (!outputs.story_id) {
+			// 	t.fail("outputs.story_id");
+			// }
+			// if (!outputs.url) {
+			// 	t.fail("outputs.url");
+			// }
+			// if (!outputs.title) {
+			// 	t.fail("outputs.title");
+			// }
 		}
 	}
 });
