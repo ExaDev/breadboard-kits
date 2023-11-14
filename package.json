@@ -50,6 +50,13 @@
 			"import": "./src/index.ts"
 		}
 	},
+	"typesVersions": {
+		"*": {
+			"*": [
+				"./dist/*.d.ts"
+			]
+		}
+	},
 	"main": "./dist/index.js",
 	"name": "@exadev/breadboard-kits",
 	"packageManager": "yarn@4.0.1",
