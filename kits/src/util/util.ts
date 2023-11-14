@@ -70,3 +70,15 @@ export function generateCombinedMarkdown(board: Board, name: string = board.titl
 	const jsonCodeBlock = `\`\`\`json\n${json}\n\`\`\``;
 	return `# ${name}\n\n${markdown}\n\n${jsonCodeBlock}`;
 }
+
+export default {
+	generateAndWriteCombinedMarkdown,
+	generateAndWriteJson,
+	generateCombinedMarkdown,
+	generateJson,
+	generateMarkdown,
+	writeCombinedMarkdown,
+	writeFiles,
+	writeJson,
+	writeMarkdown,
+};
