@@ -1,11 +1,11 @@
-// export * from "./listKit.js";
+import { default as ListKit } from "./listKit.js";
 
-import * as ListKit from "./listKit.js";
+export * from "./listKit.js";
 
 export {
 	ListKit
-}
+};
 
 export default {
 	ListKit
-}
+};
