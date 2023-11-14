@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Board, LogProbe } from "@google-labs/breadboard";
 import test from "ava";
 import ListKit from "../src/kits/listKit.js";
