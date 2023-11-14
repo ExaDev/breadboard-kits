@@ -95,30 +95,3 @@ test("Get specific story attributes", async (t: ExecutionContext) => {
 		}
 	}
 });
-
-			const actualKeys = Object.keys(story)
-			console.log("actualKeys:", actualKeys);
-			console.log("expectedKeys:", expectedKeys);
-
-			expectedKeys.forEach((key) => {
-				// t.assert(actualKeys.includes(key), `outputs.${key}`);
-				t.truthy(actualKeys.includes(key), `outputs.${key}`)
-			})
-
-			// // t.deepEqual(actualKeys, expectedKeys, "expectedKeys");
-
-			// if (!outputs.algoliaUrl) {
-			// 	t.fail("outputs.algoliaUrl");
-			// }
-			// if (!outputs.story_id) {
-			// 	t.fail("outputs.story_id");
-			// }
-			// if (!outputs.url) {
-			// 	t.fail("outputs.url");
-			// }
-			// if (!outputs.title) {
-			// 	t.fail("outputs.title");
-			// }
-		}
-	}
-});
