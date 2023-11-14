@@ -1,1 +1,9 @@
-export * as list from "./list.js";
+import * as list from "./list.js";
+
+export {
+	list
+}
+
+export default {
+	list
+}
