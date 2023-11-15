@@ -27,7 +27,6 @@ export const ListKit = new KitBuilder({
 	 * This method returns a and b combined together as a new array
 	 * @param a a list to combine
 	 * @param b a list to combine to the first list 
-	 * @returns 
 	 */
 	concat: async (inputs: ListConcatInput): Promise<ListInput> => {
 		const { a, b }: ListConcatInput = inputs;
@@ -150,7 +149,7 @@ export const ListKit = new KitBuilder({
 			output_format = "string_array",
 		}: SplitInput = inputs;
 		let values: (string | { text: string; delimiter: string; })[]
-		
+
 		if(delimiter.regex != null) {
 			// if it's a regex string, convert back to RegEx
 			// have to do this because nodeValues does not support RegEx Type
