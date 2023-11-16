@@ -67,7 +67,7 @@
 		"postpublish": "git push",
 		"pretest": "npm run build:test",
 		"start": "chmod +x ./src/index.ts && ./src/index.ts",
-		"test": "FORCE_COLOR=1 ava"
+		"test": "npx -y madge --circular --warning src/ --extensions ts && FORCE_COLOR=1 ava"
 	},
 	"type": "module",
 	"types": "./dist/index.d.ts",
