@@ -33,16 +33,6 @@
 		"tsup": "^7.2.0",
 		"typescript": "^5.2.2"
 	},
-	"exports": {
-		".": {
-			"default": "./dist/index.js",
-			"types": "./dist/index.d.ts"
-		},
-		"./*": {
-			"default": "./dist/*.js",
-			"types": "./dist/*.d.ts"
-		}
-	},
 	"main": "./dist/index.js",
 	"name": "@exadev/breadboard-kits",
 	"packageManager": "yarn@4.0.1",
@@ -71,12 +61,5 @@
 	},
 	"type": "module",
 	"types": "./dist/index.d.ts",
-	"typesVersions": {
-		"*": {
-			"*": [
-				"./dist/*.d.ts"
-			]
-		}
-	},
 	"version": "0.3.17"
 }
