@@ -73,27 +73,20 @@ export const ListKit = new KitBuilder({
 	 * @param inputs.list list the list the last element will be removed from.
 	 */
 	pop: async (
-		inputs: InputValues &
-		(
-			| {
-				list: NodeValue[];
-			} | {
-				list: [];
-			}
-		)
+		inputs: InputValues
 	): Promise<
 		| OutputValues &
 		(
-		| EmptyObject
-		| {
-			item: NodeValue;
-			list: NodeValue[];
-		})
-		> => {
-		if (!inputs.list || inputs.list == undefined || inputs.list.length == 0) {
+			| EmptyObject
+			| {
+				item: NodeValue;
+				list: NodeValue[];
+			})
+	> => {
+		if (!inputs.list || !Array.isArray(inputs.list) && (Array.isArray(inputs.list) && inputs.list.length == 0)) {
 			return {};
 		}
-		const { list } = inputs;
+		const list: NodeValue[] = inputs.list as NodeValue[];
 		const item: NodeValue = list.pop();
 		return { item, list };
 	},
