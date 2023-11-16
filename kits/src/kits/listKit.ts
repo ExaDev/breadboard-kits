@@ -24,20 +24,20 @@ export const ListKit = new KitBuilder({
 	/* eslint-disable @typescript-eslint/require-await */
 	/**
 	 * Combines lists together
-	 * This method returns a and b combined together as a new array
-	 * @param a a list to combine
-	 * @param b a list to combine to the first list 
+	 * This method returns a and b combined as a new array
+	 * @param inputs.a a list to combine
+	 * @param inputs.b a list to combine to the first list
 	 */
 	concat: async (inputs: ListConcatInput): Promise<ListInput> => {
 		const { a, b }: ListConcatInput = inputs;
 		return { list: a.concat(b) };
 	},
 	/**
-     * Slices an list into two sections.
-     * This method returns two list.
-     * @param list the list to be split
-	 * @param index the beginning index of the specified portion of the list
-     */
+	 * Slices a list into two sections.
+	 * This method returns two list.
+	 * @param inputs.list the list to be split
+	 * @param inputs.index the beginning index of the specified portion of the list
+	 */
 	bifurcate: async (inputs: ListIndexInput): Promise<BifurcatedList> => {
 		const { list, index }: ListIndexInput = inputs;
 		return {
@@ -48,9 +48,9 @@ export const ListKit = new KitBuilder({
 	/**
 	 * Appends a new element to the end of a list.
 	 * This method returns the modified list with the new element.
-	 * @param list the list to append a new element to
-	 * @param item the element to be appended to the list 
-	 * 
+	 * @param inputs.list the list to append a new element to
+	 * @param inputs.item the element to be appended to the list
+	 *
 	 */
 	push: async (inputs: ListItemInput): Promise<ListInput> => {
 		const { list, item }: ListItemInput = inputs;
@@ -60,7 +60,7 @@ export const ListKit = new KitBuilder({
 	/**
 	 * Removes the first element in the list.
 	 * This method returns the modified list and the removed element.
-	 * @param list the list the last element will be removed from.
+	 * @param inputs.list the list the last element will be removed from.
 	 */
 	shift: async (inputs: ListInput): Promise<ListOperationOutput> => {
 		const { list }: ListInput = inputs;
@@ -70,7 +70,7 @@ export const ListKit = new KitBuilder({
 	/**
 	 * Removes the last element in a list.
 	 * This method returns the modified list and the removed element.
-	 * @param list the list the last element will be removed from.
+	 * @param inputs.list list the list the last element will be removed from.
 	 */
 	pop: async (
 		inputs: InputValues &
@@ -100,8 +100,8 @@ export const ListKit = new KitBuilder({
 	/**
 	 * Appends a new element at the start of the list
 	 * This method returns the modified list with the new element.
-	 * @param list the list the new element will be added to.
-	 * @param item the element to appended to the list.
+	 * @param inputs.list the list the new element will be added to.
+	 * @param inputs.item the element to appended to the list.
 	 */
 	unshift: async (inputs: ListItemInput): Promise<ListOutput> => {
 		const { list, item }: ListItemInput = inputs;
@@ -111,11 +111,11 @@ export const ListKit = new KitBuilder({
 	/**
 	 * Removes elements from a list. If provided, replaces removed elements with new elements in their place.
 	 * This method returns a list with the rmodified list which has removed or replaced elements.
-	 * @param list the list to be modified
-	 * @param start the index of array from which to start removing elements.
-	 * @param count the number of elements to remove.
-	 * @param items the elements to replace the removed elements.
-	 * 
+	 * @param inputs.list the list to be modified
+	 * @param inputs.start the index of array from which to start removing elements.
+	 * @param inputs.count the number of elements to remove.
+	 * @param inputs.items the elements to replace the removed elements.
+	 *
 	 */
 	splice: async (inputs: ListSpliceInput): Promise<ListSpliceOutput> => {
 		const { list, start, count, items }: ListSpliceInput = inputs;
@@ -129,14 +129,14 @@ export const ListKit = new KitBuilder({
 	/**
 	 * Splits a string into substrings using the specified delimiter.
 	 * This method returns a list containing substrings of the original string.
-	 * @param input the string to split
-	 * @param delimiter the separator to split a string by
-	 * @param split_by_each flag which splits substrings into their individual characters
-	 * @param remove_empty_text flag whichs removes empty strings 
-	 * @param trim_items flag which removes leading and trailing whitespace and line terminator characters
-	 * @param keep_delimiters flag which returns the substrings including the separator
-	 * @param output_format the format of the result
-	 * @returns 
+	 * @param inputs.input the string to split
+	 * @param inputs.delimiter the separator to split a string by
+	 * @param inputs.split_by_each flag which splits substrings into their individual characters
+	 * @param inputs.remove_empty_text flag whichs removes empty strings
+	 * @param inputs.trim_items flag which removes leading and trailing whitespace and line terminator characters
+	 * @param inputs.keep_delimiters flag which returns the substrings including the separator
+	 * @param inputs.output_format the format of the result
+	 * @returns
 	 */
 	split: async (inputs: SplitInput): Promise<SplitOutput> => {
 		const {
