@@ -52,12 +52,13 @@
 		"url": "git+https://github.com/ExaDev-io/breadboard-kits.git"
 	},
 	"scripts": {
-		"build": "npm run clean && tsup --config ./tsup.config.ts",
+		"brebuild": "npm run clean",
+		"build": "tsup --config ./tsup.config.ts",
 		"clean": "rimraf ./dist",
 		"lint": "eslint ./src",
 		"lint:fix": "npm run lint -- --fix",
 		"once": "npx -y tsx ./src/index.ts",
-		"posttest": "npm run build",
+		"pretest": "npm run clean && tsc --pretty --project ./tsconfig.json",
 		"prepack": "npm run build",
 		"prepublishOnly": "git push",
 		"start": "chmod +x ./src/index.ts && ./src/index.ts",
