@@ -1,7 +1,6 @@
 import { InputValues, NodeValue, OutputValues } from "@google-labs/breadboard";
 import { KitBuilder } from "@google-labs/breadboard/kits";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { basename } from "path/posix";
 import {
 	BifurcatedList,
 	ListConcatInput,
@@ -12,9 +11,7 @@ import {
 	ListOutput,
 	ListSpliceInput,
 	ListSpliceOutput,
-	SplitInput,
-	SplitOutput,
-} from "types/list.js";
+} from "../types/list.js";
 
 type EmptyObject = Record<string, never>;
 
