@@ -1,5 +1,5 @@
 import { Board } from "@google-labs/breadboard";
-import { generateCombinedMarkdown, writeCombinedMarkdown } from "util/files/index.js";
+import { generateCombinedMarkdown, writeCombinedMarkdown } from "./index.js";
 
 export default function generateAndWriteCombinedMarkdown(board: Board, name = board.title, dir = "./output") {
 	if (!name) {
