@@ -1,6 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+
 import { InputValues, NodeValue, OutputValues } from "@google-labs/breadboard";
 import { KitBuilder } from "@google-labs/breadboard/kits";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import {
 	BifurcatedList,
 	ListConcatInput,
@@ -18,7 +22,6 @@ type EmptyObject = Record<string, never>;
 export const ListKit = new KitBuilder({
 	url: "npm:@exadev/breadboard-kits/list",
 }).build({
-	/* eslint-disable @typescript-eslint/require-await */
 	/**
 	 * Combines lists together
 	 * This method returns a and b combined as a new array
