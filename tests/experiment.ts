@@ -65,6 +65,29 @@ const popChildren = listKit.pop({
 	$id: "popChildren",
 });
 getStoryFromId.wire("children->list", popChildren);
+
+const story = core.passthrough({
+	$id: "story",
+});
+
+getStoryFromId.wire("*", story);
+const storyData = core.passthrough();
+// story.wire("*", storyData);
+story.wire("->story_id", storyData);
+story.wire("->title", storyData);
+story.wire("->url", storyData);
+story.wire("->points", storyData);
+story.wire("->author", storyData);
+story.wire("->created_at", storyData);
+
+const storyOutput = board.output({
+	$id: "storyOutput",
+});
+
+storyData.wire("*", storyOutput);
+
+////////////////////////////////////////////////////////////////////////////////
+
 popChildren.wire("->list", popChildren);
 popChildren.wire("children->list", popChildren);
 const comment = core.passthrough({
@@ -77,7 +100,9 @@ const spread = objectKit.spread({
 });
 comment.wire("comment->object", spread);
 spread.wire("children->list", popChildren);
-spread.wire("*", board.output());
+spread.wire("*", board.output({
+	$id: "commentOutput"
+}));
 //////////////////////////////////////////////////
 generateAndWriteCombinedMarkdown(board, "hackernews", "hackernews.md");
 const mermaidGraphConent = ["```mermaid", "graph LR"];
