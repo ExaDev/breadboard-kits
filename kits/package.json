@@ -34,12 +34,18 @@
 		"typescript": "^5.2.2"
 	},
 	"exports": {
-		"*": {
+		".": {
 			"import": "./dist/index.js",
 			"require": "./dist/index.js",
 			"types": "./dist/index.d.ts"
 		},
-		"src/*": "./src/*"
+		"./*": {
+			"import": "./dist/*.js",
+			"require": "./dist/*.js",
+			"types": "./dist/*.d.ts"
+		},
+		"./src": "./src/index.ts",
+		"./src/*": "./src/*"
 	},
 	"main": "./dist/index.js",
 	"name": "@exadev/breadboard-kits",
@@ -58,9 +64,9 @@
 		"lint": "eslint ./src",
 		"lint:fix": "npm run lint -- --fix",
 		"once": "npx -y tsx ./src/index.ts",
-		"pretest": "npm run clean && tsc --pretty --project ./tsconfig.json",
 		"prepack": "npm run build",
 		"prepublishOnly": "git push",
+		"pretest": "npm run clean && tsc --pretty --project ./tsconfig.json",
 		"start": "chmod +x ./src/index.ts && ./src/index.ts",
 		"test": "FORCE_COLOR=1 ava"
 	},
