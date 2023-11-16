@@ -1,5 +1,5 @@
 import { Board } from "@google-labs/breadboard";
-import { generateJson, generateMarkdown } from "util/files/index.js";
+import { generateJson, generateMarkdown } from "./index.js";
 
 export default function generateCombinedMarkdown(board: Board, name: string = board.title) {
 	if (!name) {

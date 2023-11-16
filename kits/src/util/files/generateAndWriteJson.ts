@@ -1,5 +1,5 @@
 import { Board } from "@google-labs/breadboard";
-import { generateJson, writeJson } from "util/files/index.js";
+import { generateJson, writeJson } from "./index.js";
 
 export default function generateAndWriteJson(dir: string, name: string, board: Board) {
 	const jsonContent = generateJson(board);
