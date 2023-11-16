@@ -130,59 +130,58 @@ export const ListKit = new KitBuilder({
 	 * @param inputs.output_format the format of the result
 	 * @returns
 	 */
-	split: async (inputs: SplitInput): Promise<SplitOutput> => {
-		const {
-			input,
-			delimiter,
-			split_by_each,
-			remove_empty_text,
-			trim_items,
-			keep_delimiters,
-			output_format = "string_array",
-		}: SplitInput = inputs;
-		let values: (string | { text: string; delimiter: string; })[]
-
-		if(delimiter.regex != null) {
-			// if it's a regex string, convert back to RegEx
-			// have to do this because nodeValues does not support RegEx Type
-			const myRegex = new RegExp(delimiter.regex)
-			values = input.split(myRegex)
-		} else {
-			values = input.split(delimiter.delimiter)
-		}
-
-		values = values.map((text: string) => {
-			if (split_by_each) {
-				return text.split("");
-			}
-			return text;
-		}).flat();
-
-		if (remove_empty_text) {
-			// have to re-assign the new list
-			values = values.filter((text: string) => text.length > 0);
-		}
-		if (trim_items) {
-			values = values.map((text: string) => text.trim());
-		}
-		// TODO add logic for when it is regular expression
-		// it's probabably going to be easier and neater to do this BEFORE the split occurs
-		// so we would convert into a special RegEx so we don't have to concat
-		// anything back on. Can't concat with RegEx because it can match many things
-		if (keep_delimiters && delimiter.delimiter != null) {
-			// remove last element, because it wouldn't have had a delimiter
-			const tmp = values.slice(0,-1)
-			const removed = values[values.length-1]
-			// for all other elements, append the original delimiter back 
-			values = tmp.map((text: string) => text.concat(delimiter.delimiter))
-			values.push(removed)
-		}
-		if (output_format === "string_array") {
-			return { values: values as string[] };
-		}
-		return { values: values as { text: string; delimiter: string; }[] };
-	},
-	/* eslint-enable @typescript-eslint/require-await */
+	// async split(inputs: SplitInput): Promise<SplitOutput> {
+	// 	const {
+	// 		input,
+	// 		delimiter,
+	// 		split_by_each,
+	// 		remove_empty_text,
+	// 		trim_items,
+	// 		keep_delimiters,
+	// 		output_format = "string_array",
+	// 	}: SplitInput = inputs;
+	// 	let values: (string | { text: string; delimiter: string; })[]
+	//
+	// 	if (delimiter.regex != null) {
+	// 		// if it's a regex string, convert back to RegEx
+	// 		// have to do this because nodeValues does not support RegEx Type
+	// 		const myRegex = new RegExp(delimiter.regex)
+	// 		values = input.split(myRegex)
+	// 	} else {
+	// 		values = input.split(delimiter.delimiter)
+	// 	}
+	//
+	// 	values = values.map((text: string) => {
+	// 		if (split_by_each) {
+	// 			return text.split("");
+	// 		}
+	// 		return text;
+	// 	}).flat();
+	//
+	// 	if (remove_empty_text) {
+	// 		// have to re-assign the new list
+	// 		values = values.filter((text: string) => text.length > 0);
+	// 	}
+	// 	if (trim_items) {
+	// 		values = values.map((text: string) => text.trim());
+	// 	}
+	// 	// TODO add logic for when it is regular expression
+	// 	// it's probabably going to be easier and neater to do this BEFORE the split occurs
+	// 	// so we would convert into a special RegEx so we don't have to concat
+	// 	// anything back on. Can't concat with RegEx because it can match many things
+	// 	if (keep_delimiters && delimiter.delimiter != null) {
+	// 		// remove last element, because it wouldn't have had a delimiter
+	// 		const tmp = values.slice(0, -1)
+	// 		const removed = values[values.length - 1]
+	// 		// for all other elements, append the original delimiter back
+	// 		values = tmp.map((text: string) => text.concat(delimiter.delimiter))
+	// 		values.push(removed)
+	// 	}
+	// 	if (output_format === "string_array") {
+	// 		return {values: values as string[]};
+	// 	}
+	// 	return Promise.resolve({values: values as { text: string; delimiter: string; }[]});
+	// },
 });
 
 export type ListKit = InstanceType<typeof ListKit>;
