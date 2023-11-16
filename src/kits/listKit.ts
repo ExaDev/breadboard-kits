@@ -30,7 +30,7 @@ export const ListKit = new KitBuilder({
 	 */
 	concat: async (inputs: ListConcatInput): Promise<ListInput> => {
 		const { a, b }: ListConcatInput = inputs;
-		return { list: a.concat(b) };
+		return Promise.resolve({ list: a.concat(b) });
 	},
 	/**
 	 * Slices a list into two sections.
@@ -40,10 +40,10 @@ export const ListKit = new KitBuilder({
 	 */
 	bifurcate: async (inputs: ListIndexInput): Promise<BifurcatedList> => {
 		const { list, index }: ListIndexInput = inputs;
-		return {
+		return Promise.resolve({
 			before: list.slice(0, index),
 			after: list.slice(index),
-		};
+		});
 	},
 	/**
 	 * Appends a new element to the end of a list.
@@ -55,7 +55,7 @@ export const ListKit = new KitBuilder({
 	push: async (inputs: ListItemInput): Promise<ListInput> => {
 		const { list, item }: ListItemInput = inputs;
 		list.push(item);
-		return { list };
+		return Promise.resolve({ list });
 	},
 	/**
 	 * Removes the first element in the list.
@@ -65,7 +65,7 @@ export const ListKit = new KitBuilder({
 	shift: async (inputs: ListInput): Promise<ListOperationOutput> => {
 		const { list }: ListInput = inputs;
 		const item: NodeValue = list.shift();
-		return { item, list };
+		return Promise.resolve({ item, list });
 	},
 	/**
 	 * Removes the last element in a list.
@@ -88,7 +88,7 @@ export const ListKit = new KitBuilder({
 		}
 		const list: NodeValue[] = inputs.list as NodeValue[];
 		const item: NodeValue = list.pop();
-		return { item, list };
+		return Promise.resolve({ item, list });
 	},
 	/**
 	 * Appends a new element at the start of the list
@@ -99,7 +99,7 @@ export const ListKit = new KitBuilder({
 	unshift: async (inputs: ListItemInput): Promise<ListOutput> => {
 		const { list, item }: ListItemInput = inputs;
 		list.unshift(item);
-		return { list };
+		return Promise.resolve({ list });
 	},
 	/**
 	 * Removes elements from a list. If provided, replaces removed elements with new elements in their place.
@@ -117,7 +117,7 @@ export const ListKit = new KitBuilder({
 			count,
 			...(items ?? [])
 		);
-		return { extracted, list };
+		return Promise.resolve({ extracted, list });
 	},
 	/**
 	 * Splits a string into substrings using the specified delimiter.
