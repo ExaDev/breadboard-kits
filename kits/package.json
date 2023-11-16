@@ -70,7 +70,7 @@
 		"url": "git+https://github.com/ExaDev-io/breadboard-kits.git"
 	},
 	"scripts": {
-		"brebuild": "npm run clean",
+		"prebuild": "npm run clean",
 		"build": "tsc --pretty",
 		"build:publishable": "npm run build -- --project tsconfig.publish.json",
 		"build:test": "npm run build -- --project tsconfig.json",
