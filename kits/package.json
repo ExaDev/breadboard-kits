@@ -63,7 +63,8 @@
 		"lint:fix": "npm run lint -- --fix",
 		"once": "npx -y tsx ./src/index.ts",
 		"prepack": "npm run build:publishable",
-		"prepublishOnly": "npm run test && npm run build:publishable && git push",
+		"prepublishOnly": "npm run test && npm run build:publishable",
+		"postpublish": "git push",
 		"pretest": "npm run build:test",
 		"start": "chmod +x ./src/index.ts && ./src/index.ts",
 		"test": "FORCE_COLOR=1 ava"
