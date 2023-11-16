@@ -36,26 +36,10 @@
 	"exports": {
 		".": {
 			"default": "./dist/index.js",
-			"import": "./dist/index.js",
-			"node": "./dist/index.js",
-			"require": "./dist/index.js",
 			"types": "./dist/index.d.ts"
 		},
-		"./index": {
-			"default": "./dist/index.js",
-			"import": "./dist/index.js",
-			"node": "./dist/index.js",
-			"require": "./dist/index.js",
-			"types": "./dist/index.d.ts"
-		},
-		"./package.json": "./package.json",
-		"./src": "./src/index.ts",
-		"./src/*": "./src/*",
 		"./*": {
 			"default": "./dist/*.js",
-			"import": "./dist/*.js",
-			"node": "./dist/*.js",
-			"require": "./dist/*.js",
 			"types": "./dist/*.d.ts"
 		}
 	},
