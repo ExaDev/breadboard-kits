@@ -41,13 +41,6 @@
 			"require": "./dist/index.js",
 			"types": "./dist/index.d.ts"
 		},
-		"./*": {
-			"default": "./dist/*.js",
-			"import": "./dist/*.js",
-			"node": "./dist/*.js",
-			"require": "./dist/*.js",
-			"types": "./dist/*.d.ts"
-		},
 		"./index": {
 			"default": "./dist/index.js",
 			"import": "./dist/index.js",
@@ -57,7 +50,14 @@
 		},
 		"./package.json": "./package.json",
 		"./src": "./src/index.ts",
-		"./src/*": "./src/*"
+		"./src/*": "./src/*",
+		"./*": {
+			"default": "./dist/*.js",
+			"import": "./dist/*.js",
+			"node": "./dist/*.js",
+			"require": "./dist/*.js",
+			"types": "./dist/*.d.ts"
+		}
 	},
 	"main": "./dist/index.js",
 	"name": "@exadev/breadboard-kits",
