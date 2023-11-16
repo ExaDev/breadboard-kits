@@ -23,23 +23,21 @@ export type Story = Item & {
 	url: string
 };
 
-
 export const HackerNewsAlgoliaKit = new KitBuilder({
 	url: "npm:@exadev/breadboard-kits/kits/hackerNews/hnAlgoliaKit",
 }).build({
-	/* eslint-disable @typescript-eslint/require-await */
 	getStory: async (
-		inputs: InputValues & { id: number }
+		inputs: InputValues
 	): Promise<OutputValues & Story> => {
 		const id = inputs.id;
 		const url = `https://hn.algolia.com/api/v1/items/${id}`;
 		// return {url}
 		const response = await fetch(url);
 		const story: Story = await response.json() as unknown as Story;
-		return {
+		return Promise.resolve({
 			algoliaUrl: url,
 			...story
-		}
+		})
 	}
 });
 
