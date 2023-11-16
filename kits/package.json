@@ -33,11 +33,11 @@
 		"tsup": "^7.2.0",
 		"typescript": "^5.2.2"
 	},
-	"exports": "./dist/src/index.js",
+	"exports": "./dist/index.js",
 	"files": [
-		"dist/src"
+		"dist"
 	],
-	"main": "./dist/src/index.js",
+	"main": "./dist/index.js",
 	"name": "@exadev/breadboard-kits",
 	"packageManager": "yarn@4.0.1",
 	"publishConfig": {
@@ -48,19 +48,19 @@
 		"url": "git+https://github.com/ExaDev-io/breadboard-kits.git"
 	},
 	"scripts": {
-		"build": "tsc --b --pretty",
+		"build": "tsc --pretty",
 		"clean": "rimraf ./dist",
 		"lint": "eslint ./src",
 		"lint:fix": "npm run lint -- --fix",
 		"postpublish": "git push",
 		"prebuild": "npm run clean",
-		"prepack": "npm run build",
+		"prepack": "npm run build --  --project tsconfig.publish.json",
 		"prepublishOnly": "npm run test",
 		"pretest": "npm run build",
 		"start": "chmod +x ./src/index.ts && ./src/index.ts",
 		"test": "npx -y madge --circular --warning src/ --extensions ts && ava"
 	},
 	"type": "module",
-	"types": "dist/src/index.d.ts",
+	"types": "dist/index.d.ts",
 	"version": "0.3.18"
 }
