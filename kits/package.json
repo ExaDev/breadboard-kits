@@ -1,4 +1,5 @@
 {
+	"$schema": "https://json.schemastore.org/package",
 	"ava": {
 		"files": [
 			"tests/**/*.ava.ts"
@@ -29,27 +30,20 @@
 		"rimraf": "^5.0.5",
 		"ts-node": "^10.9.1",
 		"tslib": "^2.6.2",
+		"tsup": "^7.2.0",
 		"typescript": "^5.2.2"
 	},
 	"exports": {
-		".": {
+		"*": {
 			"import": "./dist/index.js",
 			"require": "./dist/index.js",
 			"types": "./dist/index.d.ts"
 		},
-		"./*": {
-			"import": "./dist/*.js",
-			"require": "./dist/*.js",
-			"types": "./dist/*.d.ts"
-		},
-		"./src": {
-			"import": "./src/index.ts"
-		}
+		"src/*": "./src/*"
 	},
 	"main": "./dist/index.js",
 	"name": "@exadev/breadboard-kits",
 	"packageManager": "yarn@4.0.1",
-	"private": false,
 	"publishConfig": {
 		"access": "public"
 	},
@@ -58,21 +52,25 @@
 		"url": "git+https://github.com/ExaDev-io/breadboard-kits.git"
 	},
 	"scripts": {
-		"build": "tsc --pretty --project ./tsconfig.publish.json",
+		"build": "npm run clean && tsup --config ./tsup.config.ts",
 		"clean": "rimraf ./dist",
 		"lint": "eslint ./src",
 		"lint:fix": "npm run lint -- --fix",
 		"once": "npx -y tsx ./src/index.ts",
 		"posttest": "npm run build",
-		"prebuild": "npm run clean && npm run lint",
-		"prepublishOnly": "npm run test && git push",
-		"pretest": "npm run build -- --project ./tsconfig.json",
-		"preversion": "npm run test",
+		"prepack": "npm run build",
+		"prepublishOnly": "git push",
 		"start": "chmod +x ./src/index.ts && ./src/index.ts",
 		"test": "FORCE_COLOR=1 ava"
 	},
 	"type": "module",
 	"types": "./dist/index.d.ts",
-	"esModuleInterop": true,
-	"version": "0.2.11"
+	"typesVersions": {
+		"*": {
+			"*": [
+				"./dist/*.d.ts"
+			]
+		}
+	},
+	"version": "0.3.7"
 }
