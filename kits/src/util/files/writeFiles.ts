@@ -1,5 +1,6 @@
 import { Board } from "@google-labs/breadboard";
-import { generateAndWriteJson, generateAndWriteMarkdown } from "./index.js";
+import generateAndWriteJson from "./generateAndWriteJson.js";
+import generateAndWriteMarkdown from "./generateAndWriteMarkdown.js";
 
 export default function writeFiles(board: Board, name = board.title, dir = "./output") {
 	if (!name) {
