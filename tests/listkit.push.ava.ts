@@ -2,24 +2,23 @@ import { Board } from "@google-labs/breadboard";
 import test from "ava";
 import ListKit from "../src/kits/listKit.js";
 
-test("addKit", async (t) => {
+test("listkit.push", async (t) => {
 	const board = new Board({
 		title: "Exadev",
 		description: "Exadev Breadboard Kit",
 		version: "0.0.1",
 	});
-
 	const listKit = board.addKit(ListKit);
 
-	const query = board.input({
+	const item = board.input({
 		$id: "input",
 		schema: {
 			type: "object",
 			properties: {
 				text: {
 					type: "string",
-					title: "push",
-					description: "What are you going to push",
+					title: "item",
+					description: "item",
 				},
 			},
 		},
@@ -40,15 +39,16 @@ test("addKit", async (t) => {
 	});
 
 	const push = listKit.push();
-
-	query.wire("->item", push);
+	item.wire("->item", push);
 	list.wire("->list", push);
-	push.wire("list->", board.output());
 
-	const output = await board.runOnce({
+	const output = board.output()
+	push.wire("list->", output);
+
+	const result = await board.runOnce({
 		list: ["a", "b", "c"],
 		item: "d",
 	});
 
-	t.is((<string[]>output["list"]).length, 4);
+	t.is((<string[]>result["list"]).length, 4);
 });

@@ -16,7 +16,8 @@ test("hnFirebaseKit.topStoryIds", async (t: ExecutionContext) => {
 		if (result.outputs && result.outputs.storyIds) {
 			const storyIds = result.outputs.storyIds as number[];
 			t.is(Array.isArray(storyIds), true);
-			t.is(storyIds.length, 500);
+			// the number of stories varies, so we can't assert it against a certain number
+			t.is(true, storyIds.length > 1);
 		}
 	}
 })

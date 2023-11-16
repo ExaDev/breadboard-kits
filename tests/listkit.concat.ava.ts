@@ -9,8 +9,7 @@ test("listkit.concat", async (t) => {
 		version: "0.0.1",
 	});
 	const listKit = board.addKit(ListKit);
-
-
+	
 	const input = board.input({
 		$id: "input",
 		schema: {
@@ -26,18 +25,23 @@ test("listkit.concat", async (t) => {
 	});
 
 	const concat = listKit.concat();
-	
 	input.wire("->a", concat)
 	input.wire("->b", concat)
 
 	const output = board.output();
-
 	concat.wire("list->", output)
 	
 	const result = await board.runOnce({
+		a:["hello"],
+		b:["John"]
+	});
+
+	// this should work for strings because it's just a sequence of characters
+	const result2 = await board.runOnce({
 		a:"hello",
 		b:"John"
 	});
 
-	t.is(result["list"], "helloJohn");
+	t.deepEqual(result["list"], ["hello","John"]);
+	t.is(result2["list"], "helloJohn");
 });
