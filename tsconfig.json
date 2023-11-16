@@ -1,31 +1,38 @@
 {
 	"$schema": "https://json.schemastore.org/tsconfig",
 	"compilerOptions": {
-		"allowSyntheticDefaultImports": true,
-		"baseUrl": "./src",
+		"outDir": "./dist",
+		"composite": true,
+		"rootDirs": [
+			"src",
+			"tests"
+		],
 		"declaration": true,
 		"declarationMap": true,
+		"incremental": true,
 		"esModuleInterop": true,
-		"isolatedModules": true,
+		"forceConsistentCasingInFileNames": true,
+		"inlineSources": false,
+		"lib": [
+			"ES2022",
+			"DOM"
+		],
 		"module": "NodeNext",
-		"moduleResolution": "NodeNext",
-		"noEmitOnError": true,
-		"noImplicitAny": true,
-		"outDir": "dist",
-		"removeComments": true,
+		"target": "ES2022",
+		"isolatedModules": true,
+		"allowJs": true,
+		"noUnusedLocals": false,
+		"noUnusedParameters": false,
+		"preserveWatchOutput": true,
+		"skipLibCheck": true,
 		"sourceMap": true,
-		"sourceRoot": "./src",
-		"target": "ES2022"
+		"strict": true
 	},
-	"exclude": [
-		"node_modules",
-		"dist"
-	],
 	"include": [
-		"src",
-		"tests"
+		"src/**/*",
+		"tests/**/*"
 	],
-	"typeAcquisition": {
-		"enable": true
-	}
+	"exclude": [
+		"dist"
+	]
 }
