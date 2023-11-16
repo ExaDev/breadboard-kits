@@ -28,8 +28,8 @@ export const ListKit = new KitBuilder({
 	 * @param inputs.a a list to combine
 	 * @param inputs.b a list to combine to the first list
 	 */
-	async concat(inputs: ListConcatInput): Promise<ListInput> {
-		const { a, b }: ListConcatInput = inputs;
+	async concat(inputs: InputValues): Promise<ListInput> {
+		const { a, b }: ListConcatInput = inputs as ListConcatInput;
 		return Promise.resolve({ list: a.concat(b) });
 	},
 	/**
@@ -38,8 +38,8 @@ export const ListKit = new KitBuilder({
 	 * @param inputs.list the list to be split
 	 * @param inputs.index the beginning index of the specified portion of the list
 	 */
-	async bifurcate(inputs: ListIndexInput): Promise<BifurcatedList> {
-		const { list, index }: ListIndexInput = inputs;
+	async bifurcate(inputs: InputValues): Promise<BifurcatedList> {
+		const { list, index }: ListIndexInput = inputs as ListIndexInput;
 		return Promise.resolve({
 			before: list.slice(0, index),
 			after: list.slice(index),
@@ -52,8 +52,8 @@ export const ListKit = new KitBuilder({
 	 * @param inputs.item the element to be appended to the list
 	 *
 	 */
-	async push(inputs: ListItemInput): Promise<ListInput> {
-		const { list, item }: ListItemInput = inputs;
+	async push(inputs: InputValues): Promise<ListInput> {
+		const { list, item }: ListItemInput = inputs as ListItemInput;
 		list.push(item);
 		return Promise.resolve({ list });
 	},
@@ -62,8 +62,8 @@ export const ListKit = new KitBuilder({
 	 * This method returns the modified list and the removed element.
 	 * @param inputs.list the list the last element will be removed from.
 	 */
-	async shift(inputs: ListInput): Promise<ListOperationOutput> {
-		const { list }: ListInput = inputs;
+	async shift(inputs: InputValues): Promise<ListOperationOutput> {
+		const { list }: ListInput = inputs as ListInput;
 		const item: NodeValue = list.shift();
 		return Promise.resolve({ item, list });
 	},
@@ -95,8 +95,8 @@ export const ListKit = new KitBuilder({
 	 * @param inputs.list the list the new element will be added to.
 	 * @param inputs.item the element to appended to the list.
 	 */
-	async unshift(inputs: ListItemInput): Promise<ListOutput> {
-		const { list, item }: ListItemInput = inputs;
+	async unshift(inputs: InputValues): Promise<ListOutput> {
+		const { list, item }: ListItemInput = inputs as ListItemInput;
 		list.unshift(item);
 		return Promise.resolve({ list });
 	},
@@ -109,8 +109,8 @@ export const ListKit = new KitBuilder({
 	 * @param inputs.items the elements to replace the removed elements.
 	 *
 	 */
-	async splice(inputs: ListSpliceInput): Promise<ListSpliceOutput> {
-		const { list, start, count, items }: ListSpliceInput = inputs;
+	async splice(inputs: InputValues): Promise<ListSpliceOutput> {
+		const { list, start, count, items }: ListSpliceInput = inputs as ListSpliceInput;
 		const extracted: NodeValue[] = list.splice(
 			start,
 			count,
