@@ -189,7 +189,6 @@ const ListKit = new KitBuilder({
 	// },
 });
 
-export type ListKit = InstanceType<typeof ListKit>;
+type ListKit = InstanceType<typeof ListKit>;
 
-export { ListKit };
 export default ListKit;

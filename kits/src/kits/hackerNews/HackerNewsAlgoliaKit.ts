@@ -39,7 +39,6 @@ const HackerNewsAlgoliaKit = new KitBuilder({
 	},
 });
 
-export type HackerNewsAlgoliaKit = InstanceType<typeof HackerNewsAlgoliaKit>;
+type HackerNewsAlgoliaKit = InstanceType<typeof HackerNewsAlgoliaKit>;
 
-export { HackerNewsAlgoliaKit };
 export default HackerNewsAlgoliaKit;
