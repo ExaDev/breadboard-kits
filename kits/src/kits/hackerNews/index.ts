@@ -1,2 +1,2 @@
-export * as HackerNewFireBase from "./HackerNewsFirebaseKit.js";
-export * as HackerNewsAlgolia from "./HackerNewsAlgoliaKit.js";
+export { HackerNewsFirebaseKit } from "./HackerNewsFirebaseKit.js";
+export { HackerNewsAlgoliaKit } from "./HackerNewsAlgoliaKit.js";

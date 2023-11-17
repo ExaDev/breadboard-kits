@@ -1,2 +1,5 @@
-export * as ListKit from "./ListKit.js";
-export * as HackerNews from "./hackerNews/index.js";
+export { ListKit } from "./ListKit.js";
+export {
+	HackerNewsAlgoliaKit,
+	HackerNewsFirebaseKit
+} from "./hackerNews/index.js"
