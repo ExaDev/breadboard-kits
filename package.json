@@ -34,25 +34,10 @@
 		"typescript": "^5.2.2"
 	},
 	"exports": {
-		".": {
-			"default": "./dist/index.js",
-			"import": "./dist/index.js",
-			"node": "./dist/index.js",
-			"require": "./dist/index.js",
-			"types": "./dist/index.d.ts"
-		},
-		"./*": {
-			"default": "./dist/*.js",
-			"import": "./dist/*.js",
-			"node": "./dist/*.js",
-			"require": "./dist/*.js",
-			"types": "./dist/*.d.ts"
-		}
+		".": "./src",
+		"./*":"./src/*"
 	},
-	"files": [
-		"dist"
-	],
-	"main": "./dist/index.js",
+	"main": "./src/index.js",
 	"name": "@exadev/breadboard-kits",
 	"packageManager": "yarn@4.0.1",
 	"publishConfig": {
