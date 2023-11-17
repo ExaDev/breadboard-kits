@@ -1,4 +1,3 @@
 *
-!dist/**/*.{js,js.map,d.ts,d.ts.map}
-!src/**/*.{js,js.map,d.ts,d.ts.map}
+!dist/**/*
 !src/**/*.ts
