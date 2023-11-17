@@ -1,8 +1,8 @@
-import { Board, LogProbe } from "@google-labs/breadboard";
+import { Board } from "@google-labs/breadboard";
 import test, { ExecutionContext } from "ava";
-import HackerNewsAlgoliaKit, { Story } from "../src/kits/hackerNews/hnAlgoliaKit.js";
-import HnFirebaseKit from "../src/kits/hackerNews/hnFirebaseKit.js";
-import ListKit from "../src/kits/listKit.js";
+import HackerNewsAlgoliaKit, { Story } from "../src/kits/hackerNews/HackerNewsAlgoliaKit.js";
+import HnFirebaseKit from "../src/kits/hackerNews/HackerNewsFirebaseKit.js";
+import ListKit from "../src/kits/ListKit.js";
 import { Core } from "@google-labs/core-kit";
 
 test("hackernews algolia get story by id", async (t: ExecutionContext) => {
