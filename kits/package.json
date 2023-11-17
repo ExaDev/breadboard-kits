@@ -33,9 +33,12 @@
 		"tsup": "^7.2.0",
 		"typescript": "^5.2.2"
 	},
-	"name": "@exadev/breadboard-kits",
+	"exports": {
+		".": "./dist/index.js",
+		"./*": "./dist/*.js"
+	},
 	"main": "./dist/main.js",
-	"types": "./src/main.ts",
+	"name": "@exadev/breadboard-kits",
 	"packageManager": "yarn@4.0.1",
 	"publishConfig": {
 		"access": "public"
@@ -60,5 +63,6 @@
 		"test": "npx -y madge --circular --warning src/ --extensions ts && ava"
 	},
 	"type": "module",
+	"types": "dist/index.d.ts",
 	"version": "0.3.27"
 }
