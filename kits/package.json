@@ -37,20 +37,8 @@
 		"node": ">=19"
 	},
 	"engineStrict": true,
-	"exports": {
-		".": {
-			"default": "./dist/index.js",
-			"import": "./dist/index.esm.js",
-			"require": "./dist/index.cjs.js",
-			"types": "./dist/index.d.ts"
-		},
-		"./package.json": "./package.json"
-	},
-	"files": [
-		"dist/*",
-		"package.json"
-	],
 	"main": "dist/index.js",
+	"module": "dist/index.esm.js",
 	"name": "@exadev/breadboard-kits",
 	"packageManager": "yarn@4.0.1",
 	"publishConfig": {
