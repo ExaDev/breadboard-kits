@@ -38,7 +38,8 @@
 	},
 	"engineStrict": true,
 	"files": [
-		"dist/*"
+		"dist/*",
+		"package.json"
 	],
 	"main": "./dist/main.js",
 	"name": "@exadev/breadboard-kits",
