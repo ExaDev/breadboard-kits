@@ -20,14 +20,14 @@ test("hnFirebaseKit.topStoryIds", async (t: ExecutionContext) => {
 			t.is(true, storyIds.length > 1);
 		}
 	}
-})
+});
 //
 test("hnFirebaseKit.topStoryIds limited", async (t) => {
 	const board = new Board();
 	const kit = board.addKit(HackerNewsFirebaseKit);
 
 	const output = board.output();
-	kit.topStoryIds({limit: 10}).wire("storyIds->", output);
+	kit.topStoryIds({ limit: 10 }).wire("storyIds->", output);
 	for await (const result of board.run({
 		probe: new LogProbe(),
 	})) {
@@ -38,7 +38,7 @@ test("hnFirebaseKit.topStoryIds limited", async (t) => {
 			t.is(stories.length, 10);
 		}
 	}
-})
+});
 
 test("hnFirebaseKit.getStoryFromId", async (t) => {
 	const board = new Board();
@@ -51,29 +51,29 @@ test("hnFirebaseKit.getStoryFromId", async (t) => {
 	const input = board.input();
 	const topStoryIdNode = hnKit.topStoryIds();
 
-	input.wire("limit", topStoryIdNode)
+	input.wire("limit", topStoryIdNode);
 	topStoryIdNode.wire("storyIds->list", pop);
 	pop.wire("->list", pop);
 	pop.wire("item->id", getStoryFromId.wire("*", output));
 
-	const limit = 10
+	const limit = 10;
 	const accumulatedResult = [];
 
 	for await (const result of board.run({
 		probe: new LogProbe(),
 	})) {
-		console.log("\n----------\n")
+		console.log("\n----------\n");
 		console.log(result);
 
 		// console.log("result.type", result.type)
 		if (result.type === "input") {
 			result.inputs = {
 				limit,
-			}
+			};
 		} else if (result.type === "output") {
-			const item: HNFirebaseStoryData = result.outputs.output as HNFirebaseStoryData
-			accumulatedResult.push({item});
+			const item: HNFirebaseStoryData = result.outputs.output as HNFirebaseStoryData;
+			accumulatedResult.push({ item });
 		}
 	}
 	t.is(accumulatedResult.length, limit);
-})
+});

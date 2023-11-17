@@ -18,9 +18,9 @@ export type Comment = Item & {
 };
 
 export type Story = Item & {
-	title: string
-	points: number
-	url: string
+	title: string;
+	points: number;
+	url: string;
 };
 
 export const HackerNewsAlgoliaKit = new KitBuilder({
@@ -37,9 +37,9 @@ export const HackerNewsAlgoliaKit = new KitBuilder({
 		return Promise.resolve({
 			algoliaUrl: url,
 			...story
-		})
+		});
 	}
 });
 
 export type HackerNewsAlgoliaKit = InstanceType<typeof HackerNewsAlgoliaKit>;
-export default HackerNewsAlgoliaKit
+export default HackerNewsAlgoliaKit;

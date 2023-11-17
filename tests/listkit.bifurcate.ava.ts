@@ -9,7 +9,7 @@ test("listkit.bifurcate", async (t) => {
 		version: "0.0.1",
 	});
 	const listKit = board.addKit(ListKit);
-	
+
 	const index = board.input({
 		$id: "input",
 		schema: {
@@ -46,12 +46,12 @@ test("listkit.bifurcate", async (t) => {
 	bifurcate.wire("before->", output);
 	bifurcate.wire("after->", output);
 
-	const outputList: Array<string> = ["a","b"];
-	const outputList2: Array<string> = ["c","d"];
-	
+	const outputList: Array<string> = ["a", "b"];
+	const outputList2: Array<string> = ["c", "d"];
+
 	const result = await board.runOnce({
 		list: ["a", "b", "c", "d"],
-		index:2
+		index: 2
 	});
 
 	t.deepEqual(result["before"], outputList);

@@ -8,8 +8,8 @@ test("litkit.split", async (t) => {
 		title: "Exadev",
 		description: "Exadev Breadboard Kit",
 		version: "0.0.1",
-	});
-	const listKit = board.addKit(ListKit);
+	})                                     ;
+	const listKit = board.addKit(ListKit)  ;
 
 	const string = board.input({
 		$id: "input",
@@ -23,7 +23,7 @@ test("litkit.split", async (t) => {
 				},
 			},
 		},
-	});
+	})                           ;
 
 	const bool = board.input({
 		$id: "input",
@@ -37,7 +37,7 @@ test("litkit.split", async (t) => {
 				},
 			},
 		},
-	});
+	})                         ;
 
 	const split = listKit.split()
 	string.wire("->input", split)
@@ -68,69 +68,68 @@ test("litkit.split", async (t) => {
 		input: inputString,
 		delimiter: myDelim,
 		trim: false,
-		split_by_each: false, 
+		split_by_each: false,
 		remove_empty_text: false,
-		trim_items: false, 
+		trim_items: false,
 		keep_delimiters: false,
 		output_format:"string_array"
-	});
+	})                                              ;
 
 	// split each word into characters
 	// essentially recursively calls string.Split("") on substrings
 	const result3 = await board.runOnce({
 		input: inputString,
 		delimiter: myDelim,
-		split_by_each: true, 
+		split_by_each: true,
 		remove_empty_text: false,
-		trim_items: false, 
+		trim_items: false,
 		keep_delimiters: false,
 		output_format:"string_array"
-	});
+	})                                                              ;
 
 	// remove empty words (text.lenth == 0)
 	const result4 = await board.runOnce({
 		input: inputString2,
 		delimiter: myDelim,
-		split_by_each: false, 
+		split_by_each: false,
 		remove_empty_text: true,
-		trim_items: false, 
+		trim_items: false,
 		keep_delimiters: false,
 		output_format:"string_array"
-	});
+	})                                      ;
 
 	// trim trailing and leading whitespace characters
 	const result5 = await board.runOnce({
 		input: inputString,
 		delimiter: myDelim,
-		split_by_each: false, 
+		split_by_each: false,
 		remove_empty_text: false,
-		trim_items: true, 
+		trim_items: true,
 		keep_delimiters: false,
 		output_format:"string_array"
-	});
+	})                                                 ;
 
 	// split string, but keep delimiters
 	const results6 = await board.runOnce({
 		input: inputString,
 		delimiter: myDelim,
-		split_by_each: false, 
+		split_by_each: false,
 		remove_empty_text: false,
-		trim_items: false, 
+		trim_items: false,
 		keep_delimiters: true,
 		output_format:"string_array"
-	});
-
+	})                                     ;
 
 	// return as object array
 	const results7 = await board.runOnce({
 		input: inputString,
 		delimiter: myDelim,
-		split_by_each: false, 
+		split_by_each: false,
 		remove_empty_text: false,
-		trim_items: false, 
+		trim_items: false,
 		keep_delimiters: false,
 		output_format:"object_array"
-	});
+	})                                     ;
 
 	// regex equivalent to "," delimeter
 	const myDelim2: splitDelimiter = {
@@ -140,12 +139,12 @@ test("litkit.split", async (t) => {
 	const results8 = await board.runOnce({
 		input: inputString,
 		delimiter: myDelim2,
-		split_by_each: false, 
+		split_by_each: false,
 		remove_empty_text: false,
-		trim_items: false, 
+		trim_items: false,
 		keep_delimiters: false,
 		output_format:"string_array"
-	});
+	})                                     ;
 
 	t.deepEqual(result.values, expectedOut)
 	t.deepEqual(result3.values, expectedOut3)
@@ -154,4 +153,4 @@ test("litkit.split", async (t) => {
 	t.deepEqual(results6.values, expectedOut5)
 	t.deepEqual(results7.values, expectedOut)
 	t.deepEqual(results8.values, expectedOut)
-});
+})                                          ;

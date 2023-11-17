@@ -17,7 +17,7 @@ test("hackernews algolia get story by id", async (t: ExecutionContext) => {
 		limit: 2,
 	});
 
-	const getStoryFromId = algolia.getStory()
+	const getStoryFromId = algolia.getStory();
 	topStoryIdNode.wire("storyIds->list", pop);
 	pop.wire("->list", pop);
 	pop.wire("item->id", getStoryFromId);
@@ -27,16 +27,16 @@ test("hackernews algolia get story by id", async (t: ExecutionContext) => {
 		// probe: new LogProbe(),
 	})) {
 		if (result.outputs && result.outputs.story_id) {
-			const story = result.outputs as unknown as Story
+			const story = result.outputs as unknown as Story;
 			// console.log("result.outputs:",result.outputs);
-			t.assert(story, `story ${story.url}`)
+			t.assert(story, `story ${story.url}`);
 			t.assert(story.title, "story.title");
 		}
 		if (result.outputs.error) {
 			console.error(result.outputs.error);
 		}
 	}
-})
+});
 
 test("Get specific story attributes", async (t: ExecutionContext) => {
 	const board = new Board();
@@ -81,16 +81,16 @@ test("Get specific story attributes", async (t: ExecutionContext) => {
 				title: string;
 			};
 
-			const expectedNumberOfKeys: number = Object.keys({} as storyPartial).length
+			const expectedNumberOfKeys: number = Object.keys({} as storyPartial).length;
 
-			const story: storyPartial = Object.assign({}, result.outputs) as unknown as  storyPartial
+			const story: storyPartial = Object.assign({}, result.outputs) as unknown as storyPartial;
 
-			const actualNumberOfKeys: number = Object.keys(story).length
+			const actualNumberOfKeys: number = Object.keys(story).length;
 			t.notDeepEqual(actualNumberOfKeys, expectedNumberOfKeys, "expected number of keys");
 
 			for (const [key, value] of Object.entries(story)) {
 				console.log(`result.outputs.${key}:\t${value}`);
-				t.truthy(value, `outputs.${key}`)
+				t.truthy(value, `outputs.${key}`);
 			}
 		}
 	}

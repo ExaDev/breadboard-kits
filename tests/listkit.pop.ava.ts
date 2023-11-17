@@ -34,6 +34,6 @@ test("listKit.pop", async (t) => {
 		list: ["a", "b", "c"],
 	});
 
-	
+
 	t.is(result["item"], "c");
 });

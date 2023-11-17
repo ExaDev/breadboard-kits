@@ -2,18 +2,18 @@ import { InputValues, NodeValue, OutputValues } from "@google-labs/breadboard";
 import { KitBuilder } from "@google-labs/breadboard/kits";
 
 export type HNFirebaseStoryData = OutputValues & {
-	id: number
-	apiUrl: string
-	hnUrl: string
-	by: string
-	descendants?: number
-	kids?: number[]
-	score: number
-	time: number
-	title: string
-	type: string
-	url: string
-}
+	id: number;
+	apiUrl: string;
+	hnUrl: string;
+	by: string;
+	descendants?: number;
+	kids?: number[];
+	score: number;
+	time: number;
+	title: string;
+	type: string;
+	url: string;
+};
 
 export const HackerNewsFirebaseKit = new KitBuilder({
 	url: "npm:@exadev/breadboard-kits/kits/hackerNews/hnFirebaseKit",
