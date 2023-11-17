@@ -1,2 +1,2 @@
-export * from "./listKit.js";
-export * from "./hackerNews/index.js";
+export * as ListKit from "./ListKit.js";
+export * as HackerNews from "./hackerNews/index.js";
