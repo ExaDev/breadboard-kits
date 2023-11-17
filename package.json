@@ -60,5 +60,5 @@
 		"test": "npx -y madge --circular --warning src/ --extensions ts && ava"
 	},
 	"type": "module",
-	"version": "0.3.26"
+	"version": "0.3.27"
 }
