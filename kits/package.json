@@ -7,7 +7,7 @@
 		"typescript": {
 			"compile": false,
 			"rewritePaths": {
-				"./": "dist/"
+				"./": "/"
 			}
 		},
 		"workerThreads": false
