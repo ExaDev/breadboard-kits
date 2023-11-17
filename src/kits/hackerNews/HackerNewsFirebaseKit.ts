@@ -48,7 +48,6 @@ const HackerNewsFirebaseKit = new KitBuilder({
 	},
 });
 
-export type HackerNewsFirebaseKit = InstanceType<typeof HackerNewsFirebaseKit>;
+type HackerNewsFirebaseKit = InstanceType<typeof HackerNewsFirebaseKit>;
 
-export { HackerNewsFirebaseKit };
 export default HackerNewsFirebaseKit;
