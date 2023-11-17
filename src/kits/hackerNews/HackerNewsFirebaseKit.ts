@@ -15,7 +15,7 @@ export type HNFirebaseStoryData = OutputValues & {
 	url: string;
 };
 
-export const HackerNewsFirebaseKit = new KitBuilder({
+const HackerNewsFirebaseKit = new KitBuilder({
 	url: "npm:@exadev/breadboard-kits/kits/hackerNews/hnFirebaseKit",
 }).build({
 	topStoryIds: async (
@@ -44,8 +44,10 @@ export const HackerNewsFirebaseKit = new KitBuilder({
 			...(await response.json()),
 		};
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
-		return { ...story };
+		return {...story};
 	},
 });
 
-export type HackerNewsFirebaseKit = InstanceType<typeof HackerNewsFirebaseKit>;
+type HackerNewsFirebaseKit = InstanceType<typeof HackerNewsFirebaseKit>;
+
+export default HackerNewsFirebaseKit;

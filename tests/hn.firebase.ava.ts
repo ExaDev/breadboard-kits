@@ -1,10 +1,9 @@
 import { Board, LogProbe } from "@google-labs/breadboard";
 import test, { ExecutionContext } from "ava";
-import {
-	HackerNewsFirebaseKit,
+import ListKit from "../src/kits/ListKit.js";
+import HackerNewsFirebaseKit, {
 	HNFirebaseStoryData,
 } from "../src/kits/hackerNews/HackerNewsFirebaseKit.js";
-import { ListKit } from "../src/kits/ListKit.js";
 
 test("hnFirebaseKit.topStoryIds", async (t: ExecutionContext) => {
 	const board = new Board();

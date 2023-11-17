@@ -32,20 +32,22 @@ export type ListIndexInput = InputValues & List & Index;
 
 export type ListItemInput = InputValues & List & Item;
 
-export type ListSpliceInput = InputValues & List & {
+export type ListSpliceInput = InputValues &
+List & {
 	start: number;
 	count: number;
 	items?: NodeValue[];
 };
 
-export type ListSpliceOutput = OutputValues & List & {
+export type ListSpliceOutput = OutputValues &
+List & {
 	extracted: NodeValue[];
 };
 
 // only allow a delimeter OR a regex (has to be string) because nodeValue doesn't allow RegEx types
 export type splitDelimiter =
-	({ delimiter: string, regex?: never; } | { regex: string, delimiter?: never; });
-
+	| { delimiter: string; regex?: never }
+	| { regex: string; delimiter?: never };
 
 export type SplitInput = InputValues & {
 	input: string;
