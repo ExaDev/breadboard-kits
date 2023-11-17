@@ -24,7 +24,7 @@ export type Story = PostItem & {
 };
 
 const HackerNewsAlgoliaKit = new KitBuilder({
-	url: "npm:@exadev/breadboard-kits/kits/hackerNews/hnAlgoliaKit",
+	url: "npm:@exadev/breadboard-kits/HackerNewsAlgoliaKit",
 }).build({
 	getStory: async (inputs: InputValues): Promise<OutputValues & Story> => {
 		const id = inputs.id;
@@ -39,6 +39,6 @@ const HackerNewsAlgoliaKit = new KitBuilder({
 	},
 });
 
-type HackerNewsAlgoliaKit = InstanceType<typeof HackerNewsAlgoliaKit>;
-
+export type HackerNewsAlgoliaKit = InstanceType<typeof HackerNewsAlgoliaKit>;
+export { HackerNewsAlgoliaKit };
 export default HackerNewsAlgoliaKit;

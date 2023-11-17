@@ -73,14 +73,14 @@ const ListKit = new KitBuilder({
 	 * @param inputs.list list the list the last element will be removed from.
 	 */
 	async pop(inputs: InputValues): Promise<
-		OutputValues &
-			(
-				| EmptyObject
-				| {
-						item: NodeValue;
-						list: NodeValue[];
-				  }
-			)
+	OutputValues &
+	(
+		| EmptyObject
+		| {
+			item: NodeValue;
+			list: NodeValue[];
+		}
+	)
 	> {
 		if (
 			!inputs.list ||
@@ -190,5 +190,5 @@ const ListKit = new KitBuilder({
 });
 
 export type ListKit = InstanceType<typeof ListKit>;
-
+export { ListKit };
 export default ListKit;
