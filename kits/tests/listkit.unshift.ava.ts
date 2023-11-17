@@ -1,6 +1,6 @@
 import { Board } from "@google-labs/breadboard";
 import test from "ava";
-import ListKit from "../src/kits/ListKit.js";
+import { ListKit } from "../src/kits/ListKit.js";
 
 test("listkit.unshift", async (t) => {
 	const board = new Board({
@@ -49,7 +49,7 @@ test("listkit.unshift", async (t) => {
 
 	const result = await board.runOnce({
 		list: ["b", "c"],
-		item: "a"
+		item: "a",
 	});
 
 	t.deepEqual(result["list"], outputList);

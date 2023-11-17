@@ -1,6 +1,6 @@
 import { Board } from "@google-labs/breadboard";
 import test from "ava";
-import ListKit from "../src/kits/ListKit.js";
+import { ListKit } from "../src/kits/ListKit.js";
 
 test("listKit.pop", async (t) => {
 	const board: Board = new Board();
@@ -33,7 +33,6 @@ test("listKit.pop", async (t) => {
 	const result = await board.runOnce({
 		list: ["a", "b", "c"],
 	});
-
 
 	t.is(result["item"], "c");
 });

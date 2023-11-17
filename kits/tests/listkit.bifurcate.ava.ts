@@ -1,6 +1,6 @@
 import { Board } from "@google-labs/breadboard";
 import test from "ava";
-import ListKit from "../src/kits/ListKit.js";
+import { ListKit } from "../src/kits/ListKit.js";
 
 test("listkit.bifurcate", async (t) => {
 	const board = new Board({
@@ -51,7 +51,7 @@ test("listkit.bifurcate", async (t) => {
 
 	const result = await board.runOnce({
 		list: ["a", "b", "c", "d"],
-		index: 2
+		index: 2,
 	});
 
 	t.deepEqual(result["before"], outputList);

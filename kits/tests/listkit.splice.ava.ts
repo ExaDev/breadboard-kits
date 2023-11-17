@@ -1,6 +1,6 @@
 import { Board } from "@google-labs/breadboard";
 import test from "ava";
-import ListKit from "../src/kits/ListKit.js";
+import { ListKit } from "../src/kits/ListKit.js";
 
 test("listkit.splice", async (t) => {
 	const board = new Board({
@@ -60,7 +60,7 @@ test("listkit.splice", async (t) => {
 		list: originalList,
 		start: 1,
 		count: 2,
-		items: ["e", "f"]
+		items: ["e", "f"],
 	});
 
 	// remove but don't add new elements
@@ -68,7 +68,7 @@ test("listkit.splice", async (t) => {
 		list: originalList2,
 		start: 1,
 		count: 2,
-		items: []
+		items: [],
 	});
 
 	t.deepEqual(result["extracted"], deleted);
