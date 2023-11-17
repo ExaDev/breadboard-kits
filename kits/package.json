@@ -49,7 +49,7 @@
 	},
 	"scripts": {
 		"build": "tsc --pretty",
-		"clean": "rimraf --glob './{src,tests}/*.{js,d.ts,d.ts.map}'",
+		"clean": "rimraf dist ; rimraf --glob './{src,tests}/**/*.{js,d.ts,d.ts.map}'",
 		"deploy": "npm version patch && npm publish",
 		"lint": "eslint ./src",
 		"lint:fix": "npm run lint -- --fix",
