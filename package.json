@@ -33,25 +33,9 @@
 		"tsup": "^7.2.0",
 		"typescript": "^5.2.2"
 	},
-	"exports": {
-		".": {
-			"default": "./dist/index.js",
-			"types": "./dist/index.d.ts"
-		},
-		"./*": {
-			"default": [
-				"./dist/*",
-				"./dist/*.js"
-			],
-			"types": [
-				"./dist/*",
-				"./dist/*.d.ts"
-			]
-		}
-	},
+	"exports": "./dist/*",
 	"files": [
-		"dist",
-		"src"
+		"dist/*"
 	],
 	"main": "./dist/main.js",
 	"name": "@exadev/breadboard-kits",
@@ -79,5 +63,7 @@
 		"test": "npx -y madge --circular --warning src/ --extensions ts && ava"
 	},
 	"type": "module",
+	"types": "./dist/index.d.ts",
+	"typings": "./dist/index.d.ts",
 	"version": "0.3.30"
 }
