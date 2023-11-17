@@ -1,7 +1,6 @@
 {
 	"$schema": "https://json.schemastore.org/tsconfig",
 	"compilerOptions": {
-		"outDir": "./dist",
 		"rootDirs": [
 			"src",
 			"tests"
@@ -18,8 +17,8 @@
 		"module": "NodeNext",
 		"target": "ES2022",
 		"isolatedModules": true,
-		"sourceMap": true,
-		"strict": true
+		"strict": true,
+		"inlineSourceMap": true
 	},
 	"include": [
 		"src/**/*",
