@@ -1,12 +1,10 @@
 import { Board } from "@google-labs/breadboard";
 import test, { ExecutionContext } from "ava";
-import {
-	HackerNewsAlgoliaKit,
-	Story,
-} from "../src/kits/hackerNews/HackerNewsAlgoliaKit.js";
-import { HackerNewsFirebaseKit } from "../src/kits/hackerNews/HackerNewsFirebaseKit.js";
-import { ListKit } from "../src/kits/ListKit.js";
 import { Core } from "@google-labs/core-kit";
+import HackerNewsFirebaseKit from "../src/kits/hackerNews/HackerNewsFirebaseKit.js";
+import HackerNewsAlgoliaKit from "../src/kits/hackerNews/HackerNewsAlgoliaKit.js";
+import ListKit from "../src/kits/ListKit.js";
+import { Story } from "../src/kits/hackerNews/HackerNewsAlgoliaKit.js";
 
 test("hackernews algolia get story by id", async (t: ExecutionContext) => {
 	const board = new Board();

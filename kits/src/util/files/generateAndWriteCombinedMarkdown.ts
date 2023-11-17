@@ -2,7 +2,11 @@ import { Board } from "@google-labs/breadboard";
 import generateCombinedMarkdown from "./generateCombinedMarkdown.js";
 import writeCombinedMarkdown from "./writeCombinedMarkdown.js";
 
-export default function generateAndWriteCombinedMarkdown(board: Board, name = board.title, dir = "./output") {
+export default function generateAndWriteCombinedMarkdown(
+	board: Board,
+	name = board.title,
+	dir = "./output"
+) {
 	if (!name) {
 		throw new Error("Board must have a title or a name must be suplied");
 	}
