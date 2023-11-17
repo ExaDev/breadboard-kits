@@ -9,7 +9,7 @@ test("listkit.shift", async (t) => {
 		version: "0.0.1",
 	});
 	const listKit = board.addKit(ListKit);
-	
+
 	const list = board.input({
 		$id: "input",
 		schema: {
@@ -24,19 +24,19 @@ test("listkit.shift", async (t) => {
 		},
 	});
 
-	const shift = listKit.shift()
+	const shift = listKit.shift();
 	list.wire("->list", shift);
 
-	const output = board.output()
-	shift.wire("list->", output)
-	shift.wire("item->", output)
+	const output = board.output();
+	shift.wire("list->", output);
+	shift.wire("item->", output);
 
-	const outputList: Array<string> = ["b","c"];
+	const outputList: Array<string> = ["b", "c"];
 
-	const result = await board.runOnce ({
+	const result = await board.runOnce({
 		list: ["a", "b", "c"],
 	});
 
-	t.deepEqual(result["list"], outputList)
-	t.is(result["item"], "a")
+	t.deepEqual(result["list"], outputList);
+	t.is(result["item"], "a");
 });

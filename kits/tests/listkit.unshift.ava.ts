@@ -45,12 +45,12 @@ test("listkit.unshift", async (t) => {
 	const output = board.output();
 	unshift.wire("->list", output);
 
-	const outputList: Array<string> = ["a","b","c"]
+	const outputList: Array<string> = ["a", "b", "c"];
 
-	const result = await board.runOnce ({
-		list:["b","c"],
+	const result = await board.runOnce({
+		list: ["b", "c"],
 		item: "a"
-	})
-	
-	t.deepEqual(result["list"], outputList)
+	});
+
+	t.deepEqual(result["list"], outputList);
 });

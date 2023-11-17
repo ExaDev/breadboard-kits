@@ -42,7 +42,7 @@ test("listkit.push", async (t) => {
 	item.wire("->item", push);
 	list.wire("->list", push);
 
-	const output = board.output()
+	const output = board.output();
 	push.wire("list->", output);
 
 	const result = await board.runOnce({

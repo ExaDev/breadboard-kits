@@ -43,8 +43,8 @@ export type ListSpliceOutput = OutputValues & List & {
 };
 
 // only allow a delimeter OR a regex (has to be string) because nodeValue doesn't allow RegEx types
-export type splitDelimiter = 
- ({ delimiter: string, regex?: never } | { regex: string, delimiter?: never}) ;
+export type splitDelimiter =
+	({ delimiter: string, regex?: never; } | { regex: string, delimiter?: never; });
 
 
 export type SplitInput = InputValues & {
