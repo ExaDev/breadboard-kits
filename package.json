@@ -37,6 +37,10 @@
 		"node": ">=19"
 	},
 	"engineStrict": true,
+	"exports": {
+		".": "./dist/",
+		"./package.json": "./package.json"
+	},
 	"files": [
 		"dist/*",
 		"package.json"
