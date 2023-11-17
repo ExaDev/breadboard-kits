@@ -1,7 +1,10 @@
 import { Board, LogProbe } from "@google-labs/breadboard";
 import test, { ExecutionContext } from "ava";
-import HackerNewsFirebaseKit, { HNFirebaseStoryData } from "../src/kits/hackerNews/HackerNewsFirebaseKit.js";
-import ListKit from "../src/kits/ListKit.js";
+import {
+	HackerNewsFirebaseKit,
+	HNFirebaseStoryData,
+} from "../src/kits/hackerNews/HackerNewsFirebaseKit.js";
+import { ListKit } from "../src/kits/ListKit.js";
 
 test("hnFirebaseKit.topStoryIds", async (t: ExecutionContext) => {
 	const board = new Board();
@@ -71,7 +74,8 @@ test("hnFirebaseKit.getStoryFromId", async (t) => {
 				limit,
 			};
 		} else if (result.type === "output") {
-			const item: HNFirebaseStoryData = result.outputs.output as HNFirebaseStoryData;
+			const item: HNFirebaseStoryData = result.outputs
+				.output as HNFirebaseStoryData;
 			accumulatedResult.push({ item });
 		}
 	}

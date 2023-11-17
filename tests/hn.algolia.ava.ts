@@ -1,13 +1,16 @@
 import { Board } from "@google-labs/breadboard";
 import test, { ExecutionContext } from "ava";
-import HackerNewsAlgoliaKit, { Story } from "../src/kits/hackerNews/HackerNewsAlgoliaKit.js";
-import HnFirebaseKit from "../src/kits/hackerNews/HackerNewsFirebaseKit.js";
-import ListKit from "../src/kits/ListKit.js";
+import {
+	HackerNewsAlgoliaKit,
+	Story,
+} from "../src/kits/hackerNews/HackerNewsAlgoliaKit.js";
+import { HackerNewsFirebaseKit } from "../src/kits/hackerNews/HackerNewsFirebaseKit.js";
+import { ListKit } from "../src/kits/ListKit.js";
 import { Core } from "@google-labs/core-kit";
 
 test("hackernews algolia get story by id", async (t: ExecutionContext) => {
 	const board = new Board();
-	const firebase = board.addKit(HnFirebaseKit);
+	const firebase = board.addKit(HackerNewsFirebaseKit);
 	const algolia = board.addKit(HackerNewsAlgoliaKit);
 	const output = board.output();
 	const listKit = board.addKit(ListKit);
@@ -40,7 +43,7 @@ test("hackernews algolia get story by id", async (t: ExecutionContext) => {
 
 test("Get specific story attributes", async (t: ExecutionContext) => {
 	const board = new Board();
-	const firebase = board.addKit(HnFirebaseKit);
+	const firebase = board.addKit(HackerNewsFirebaseKit);
 	const algolia = board.addKit(HackerNewsAlgoliaKit);
 	// const output = board.output();
 	const listKit = board.addKit(ListKit);
@@ -72,7 +75,10 @@ test("Get specific story attributes", async (t: ExecutionContext) => {
 	})) {
 		console.log("------");
 		if (result.outputs) {
-			console.log("result.outputs", JSON.stringify(result.outputs, null, 2));
+			console.log(
+				"result.outputs",
+				JSON.stringify(result.outputs, null, 2)
+			);
 
 			type storyPartial = {
 				algoliaUrl: string;
@@ -81,12 +87,21 @@ test("Get specific story attributes", async (t: ExecutionContext) => {
 				title: string;
 			};
 
-			const expectedNumberOfKeys: number = Object.keys({} as storyPartial).length;
+			const expectedNumberOfKeys: number = Object.keys(
+				{} as storyPartial
+			).length;
 
-			const story: storyPartial = Object.assign({}, result.outputs) as unknown as storyPartial;
+			const story: storyPartial = Object.assign(
+				{},
+				result.outputs
+			) as unknown as storyPartial;
 
 			const actualNumberOfKeys: number = Object.keys(story).length;
-			t.notDeepEqual(actualNumberOfKeys, expectedNumberOfKeys, "expected number of keys");
+			t.notDeepEqual(
+				actualNumberOfKeys,
+				expectedNumberOfKeys,
+				"expected number of keys"
+			);
 
 			for (const [key, value] of Object.entries(story)) {
 				console.log(`result.outputs.${key}:\t${value}`);

@@ -1,6 +1,6 @@
 import { Board } from "@google-labs/breadboard";
 import test from "ava";
-import ListKit from "../src/kits/ListKit.js";
+import { ListKit } from "../src/kits/ListKit.js";
 
 test("listkit.concat", async (t) => {
 	const board = new Board({
@@ -33,13 +33,13 @@ test("listkit.concat", async (t) => {
 
 	const result = await board.runOnce({
 		a: ["hello"],
-		b: ["John"]
+		b: ["John"],
 	});
 
 	// this should work for strings because it's just a sequence of characters
 	const result2 = await board.runOnce({
 		a: "hello",
-		b: "John"
+		b: "John",
 	});
 
 	t.deepEqual(result["list"], ["hello", "John"]);
