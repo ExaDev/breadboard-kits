@@ -7,7 +7,7 @@
 		"typescript": {
 			"compile": false,
 			"rewritePaths": {
-				"./": "/"
+				"./": "dist/"
 			}
 		},
 		"workerThreads": false
@@ -33,12 +33,9 @@
 		"tsup": "^7.2.0",
 		"typescript": "^5.2.2"
 	},
-	"exports": {
-		".": "./src",
-		"./*": "./src/*"
-	},
-	"main": "./src/index.js",
 	"name": "@exadev/breadboard-kits",
+	"main": "./dist/main.js",
+	"types": "./src/main.ts",
 	"packageManager": "yarn@4.0.1",
 	"publishConfig": {
 		"access": "public"
@@ -63,6 +60,5 @@
 		"test": "npx -y madge --circular --warning src/ --extensions ts && ava"
 	},
 	"type": "module",
-	"types": "./src/index.d.ts",
 	"version": "0.3.26"
 }
