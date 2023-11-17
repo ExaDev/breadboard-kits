@@ -33,7 +33,10 @@
 		"tsup": "^7.2.0",
 		"typescript": "^5.2.2"
 	},
-	"exports": "./dist/index.js",
+	"exports": {
+		".": "./dist/index.js",
+		"./*": "./dist/*.js"
+	},
 	"files": [
 		"dist"
 	],
