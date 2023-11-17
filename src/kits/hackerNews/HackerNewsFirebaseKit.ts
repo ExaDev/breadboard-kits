@@ -44,10 +44,11 @@ const HackerNewsFirebaseKit = new KitBuilder({
 			...(await response.json()),
 		};
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
-		return {...story};
+		return { ...story };
 	},
 });
 
-type HackerNewsFirebaseKit = InstanceType<typeof HackerNewsFirebaseKit>;
+export type HackerNewsFirebaseKit = InstanceType<typeof HackerNewsFirebaseKit>;
 
+export { HackerNewsFirebaseKit };
 export default HackerNewsFirebaseKit;
