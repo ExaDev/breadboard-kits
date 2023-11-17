@@ -63,6 +63,6 @@
 		"test": "npx -y madge --circular --warning src/ --extensions ts && ava"
 	},
 	"type": "module",
-	"types": "dist/index.d.ts",
+	"types": "./src/index.d.ts",
 	"version": "0.3.25"
 }
