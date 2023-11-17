@@ -1,13 +1,17 @@
 import { defineConfig } from "tsup";
 
 export default defineConfig({
-	entry: ["src/index.ts"],
 	cjsInterop: true,
-	tsconfig: "tsconfig.json",
-	splitting: true,
-	sourcemap: true,
 	clean: true,
 	dts: true,
+	entry: ["src/**/*.ts"],
+	external: [/^@google-labs\/.*/],
 	format: ["cjs", "esm", "iife"],
+	metafile: true,
 	shims: true,
+	skipNodeModulesBundle: true,
+	sourcemap: true,
+	splitting: true,
+	treeshake: true,
+	tsconfig: "tsconfig.publish.json",
 });
