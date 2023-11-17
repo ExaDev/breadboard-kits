@@ -34,8 +34,20 @@
 		"typescript": "^5.2.2"
 	},
 	"exports": {
-		".": "./dist/index.js",
-		"./*": "./dist/*.js"
+		".": {
+			"default": "./dist/index.js",
+			"import": "./dist/index.js",
+			"node": "./dist/index.js",
+			"require": "./dist/index.js",
+			"types": "./dist/index.d.ts"
+		},
+		"./*": {
+			"default": "./dist/*.js",
+			"import": "./dist/*.js",
+			"node": "./dist/*.js",
+			"require": "./dist/*.js",
+			"types": "./dist/*.d.ts"
+		}
 	},
 	"files": [
 		"dist"
