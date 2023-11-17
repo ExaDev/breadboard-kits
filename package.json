@@ -34,9 +34,19 @@
 		"typescript": "^5.2.2"
 	},
 	"exports": {
-		".": "./dist/index.js",
-		"./*": "./dist/*.js"
+		".": {
+			"default": "./dist/index.js",
+			"types": "./dist/index.d.ts"
+		},
+		"./*": {
+			"default": "./dist/*.js",
+			"types": "./dist/*.d.ts"
+		}
 	},
+	"files": [
+		"dist",
+		"src"
+	],
 	"main": "./dist/main.js",
 	"name": "@exadev/breadboard-kits",
 	"packageManager": "yarn@4.0.1",
@@ -63,6 +73,5 @@
 		"test": "npx -y madge --circular --warning src/ --extensions ts && ava"
 	},
 	"type": "module",
-	"types": "dist/index.d.ts",
 	"version": "0.3.28"
 }
