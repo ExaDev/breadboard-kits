@@ -72,6 +72,7 @@
 		"prepack": "npm run build --  --project tsconfig.publish.json",
 		"prepublishOnly": "npm run test",
 		"pretest": "npm run build",
+		"preversion": "npm run build && npm run test",
 		"start": "chmod +x ./src/index.ts && ./src/index.ts",
 		"test": "npx -y madge --circular --warning src/ --extensions ts && ava"
 	},
