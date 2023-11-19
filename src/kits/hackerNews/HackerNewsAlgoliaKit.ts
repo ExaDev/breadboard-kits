@@ -27,7 +27,7 @@ const HackerNewsAlgoliaKit = new KitBuilder({
 	url: "npm:@exadev/breadboard-kits/HackerNewsAlgoliaKit",
 }).build({
 	getStory: async (inputs: InputValues): Promise<OutputValues & Story> => {
-		const id = inputs.id;
+		const id: string = inputs.id as string;
 		const url = `https://hn.algolia.com/api/v1/items/${id}`;
 		// return {url}
 		const response = await fetch(url);
