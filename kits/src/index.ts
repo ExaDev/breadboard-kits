@@ -4,6 +4,7 @@ import kits from "./kits/index.js";
 import { JsonKit } from "./kits/JsonKit.js";
 import { ListKit } from "./kits/ListKit.js";
 import { ObjectKit } from "./kits/ObjectKit.js";
+import { StringKit } from "./kits/StringKit.js";
 import * as list from "./types/list.js";
 import * as files from "./util/files/index.js";
 
@@ -28,6 +29,7 @@ export default {
 	HackerNewsFirebaseKit,
 	ObjectKit,
 	JsonKit,
+	StringKit,
 	util,
 	types,
 	kits,
