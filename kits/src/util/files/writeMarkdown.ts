@@ -2,11 +2,9 @@ import fs from "fs";
 import path from "path";
 
 export default function writeMarkdown(
-	dir: string,
-	name: string,
-	markdown: string
+	{ dir, filename, markdown }: { dir: string, filename: string, markdown: string; }
 ) {
-	const mdFilepath = path.resolve(path.join(dir, "markdown", `${name}.md`));
+	const mdFilepath = path.resolve(path.join(dir, "markdown", `${filename}.md`));
 	fs.mkdirSync(path.dirname(mdFilepath), { recursive: true });
 	fs.writeFileSync(mdFilepath, markdown);
 	console.log("wrote", `"${mdFilepath}"`);
