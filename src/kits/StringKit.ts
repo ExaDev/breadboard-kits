@@ -47,9 +47,9 @@ const StringKit = new KitBuilder({
 			return {...acc, [parameter]: inputs[parameter]};
 		}, {});
 
-		const prompt = substitute(template, substitutes);
-		// log.info(`Prompt: ${prompt}`);
-		return Promise.resolve({prompt});
+		const string = substitute(template, substitutes);
+		// log.info(`Prompt: ${string}`);
+		return Promise.resolve({string});
 	}
 });
 
