@@ -66,5 +66,5 @@
 	},
 	"type": "module",
 	"types": "dist/index.d.ts",
-	"version": "0.3.41"
+	"version": "0.3.42"
 }
