@@ -5,7 +5,7 @@ import writeCombinedMarkdown from "./writeCombinedMarkdown.js";
 export default function generateAndWriteCombinedMarkdown(
 	board: Board,
 	name = board.title,
-	dir = "./output"
+	dir = ""
 ) {
 	if (!name) {
 		throw new Error("Board must have a title or a name must be suplied");
