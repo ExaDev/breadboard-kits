@@ -1,18 +1,18 @@
 import { Board } from "@google-labs/breadboard";
 import generateAndWriteJson from "./generateAndWriteJson.js";
-import generateAndWriteMarkdown from "./generateAndWriteMarkdown.js";
+import generateAndWriteMermaidMarkdown from "./generateAndWriteMermaidMarkdown.js";
 
 export default function writeFiles(
 	board: Board,
-	name = board.title,
+	filename = board.title,
 	dir = "./output"
 ) {
-	if (!name) {
-		throw new Error("Board must have a title or a name must be suplied");
+	if (!filename) {
+		throw new Error("Board must have a title or a filename must be supplied");
 	}
 
-	generateAndWriteMarkdown(dir, name, board);
-	generateAndWriteJson(dir, name, board);
+	generateAndWriteMermaidMarkdown({ dir, filename, board });
+	generateAndWriteJson({ dir, filename, board });
 }
 
 export { writeFiles };
