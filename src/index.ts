@@ -17,20 +17,26 @@ const types = {
 };
 
 export {
+	HackerNewsAlgoliaKit,
+	HackerNewsFirebaseKit,
+	JsonKit,
+	ListKit,
+	ObjectKit,
+	StringKit,
 	kits,
+	types,
 	util,
-	types
 };
 
 
 export default {
-	ListKit,
 	HackerNewsAlgoliaKit,
 	HackerNewsFirebaseKit,
-	ObjectKit,
 	JsonKit,
+	ListKit,
+	ObjectKit,
 	StringKit,
-	util,
-	types,
 	kits,
+	types,
+	util,
 };
