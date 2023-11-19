@@ -29,27 +29,27 @@ const StringKit = new KitBuilder({
 	async concat(inputs: {
 		strings: string[];
 	}): Promise<{ string: string; }> {
-		const {strings} = inputs;
+		const { strings } = inputs;
 		return Promise.resolve({
 			string: strings.join(""),
 		});
 	},
 	async template(
-		inputs: InputValues & { template: string }
+		inputs: InputValues & { template: string; }
 	) {
 		const template = inputs.template;
 		const parameters = parametersFromTemplate(template);
-		if (!parameters.length) return {string: template};
+		if (!parameters.length) return { string: template };
 
 		const substitutes = parameters.reduce((acc, parameter) => {
 			if (inputs[parameter] === undefined)
 				throw new Error(`Input is missing parameter "${parameter}"`);
-			return {...acc, [parameter]: inputs[parameter]};
+			return { ...acc, [parameter]: inputs[parameter] };
 		}, {});
 
 		const string = substitute(template, substitutes);
 		// log.info(`Prompt: ${string}`);
-		return Promise.resolve({string});
+		return Promise.resolve({ string });
 	}
 });
 
