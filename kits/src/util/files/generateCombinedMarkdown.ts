@@ -15,3 +15,4 @@ export default function generateCombinedMarkdown(
 	const jsonCodeBlock = `\`\`\`json\n${json}\n\`\`\``;
 	return `# ${name}\n\n${markdown}\n\n${jsonCodeBlock}`;
 }
+export { generateCombinedMarkdown };

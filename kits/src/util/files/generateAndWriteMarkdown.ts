@@ -10,3 +10,4 @@ export default function generateAndWriteMarkdown(
 	const markdown = generateMarkdown(board);
 	writeMarkdown(dir, name, markdown);
 }
+export { generateAndWriteMarkdown };

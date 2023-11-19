@@ -7,7 +7,9 @@ export default function writeMarkdown(
 	markdown: string
 ) {
 	const mdFilepath = path.resolve(path.join(dir, "markdown", `${name}.md`));
-	fs.mkdirSync(path.dirname(mdFilepath), {recursive: true});
+	fs.mkdirSync(path.dirname(mdFilepath), { recursive: true });
 	fs.writeFileSync(mdFilepath, markdown);
 	console.log("wrote", `"${mdFilepath}"`);
 }
+
+export { writeMarkdown };
