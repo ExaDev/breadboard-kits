@@ -5,18 +5,19 @@ const JsonKit = new KitBuilder({
 	url: "npm:@exadev/breadboard-kits/kits/JsonKit",
 }).build({
 	stringify: async (
-		inputs: InputValues & { object: string }
+		inputs: InputValues & { object: string; }
 	): Promise<OutputValues> => {
+		// TODO: refactor to spread all params similar to StringKit template
 		const { object } = inputs;
 		return Promise.resolve({
-			json: JSON.stringify(object),
+			string: JSON.stringify(object),
 		});
 	},
 	parse: async (
-		inputs: InputValues & { json: string }
+		inputs: InputValues & { string: string; }
 	): Promise<OutputValues> => {
-		const { json } = inputs;
-		return Promise.resolve(JSON.parse(json) as Record<string, NodeValue>);
+		const { string } = inputs;
+		return Promise.resolve(JSON.parse(string) as Record<string, NodeValue>);
 	},
 });
 
