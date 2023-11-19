@@ -14,3 +14,5 @@ export default function generateAndWriteCombinedMarkdown(
 	const markdownTemplate = generateCombinedMarkdown(board, name);
 	writeCombinedMarkdown(dir, name, markdownTemplate);
 }
+
+export { generateAndWriteCombinedMarkdown };

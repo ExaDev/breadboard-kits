@@ -10,3 +10,5 @@ export default function generateAndWriteJson(
 	const jsonContent = generateJson(board);
 	writeJson(dir, name, jsonContent);
 }
+
+export { generateAndWriteJson };

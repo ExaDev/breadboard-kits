@@ -14,3 +14,5 @@ export default function writeFiles(
 	generateAndWriteMarkdown(dir, name, board);
 	generateAndWriteJson(dir, name, board);
 }
+
+export { writeFiles };
