@@ -25,33 +25,32 @@ export function substitute(template: string, values: InputValues) {
 const StringKit = new KitBuilder({
 	url: "npm:@exadev/breadboard-kits/kits/StringKit",
 }).build({
-	concat: async (inputs: {
+	// replicated from https://github.com/google/labs-prototypes/blob/82e3061d26a69f1557b21e7a7f40dd7f56f1bdb6/seeds/llm-starter/src/nodes/prompt-template.ts#L45-L61
+	async concat(inputs: {
 		strings: string[];
-	}): Promise<{ string: string; }> => {
-		const { strings } = inputs;
+	}): Promise<{ string: string; }> {
+		const {strings} = inputs;
 		return Promise.resolve({
 			string: strings.join(""),
 		});
 	},
-	template: async (inputs: {
-		template: string;
-		values: Record<string, string>;
-	}): Promise<{ string: string; }> => {
+	async template(
+		inputs: InputValues & { template: string }
+	) {
 		const template = inputs.template;
 		const parameters = parametersFromTemplate(template);
-
-		if (!parameters.length) return { string: template };
+		if (!parameters.length) return {string: template};
 
 		const substitutes = parameters.reduce((acc, parameter) => {
 			if (inputs[parameter] === undefined)
 				throw new Error(`Input is missing parameter "${parameter}"`);
-			return { ...acc, [parameter]: inputs[parameter] };
+			return {...acc, [parameter]: inputs[parameter]};
 		}, {});
 
-		const string = substitute(template, substitutes);
+		const prompt = substitute(template, substitutes);
 		// log.info(`Prompt: ${prompt}`);
-		return Promise.resolve({ string });
-	},
+		return Promise.resolve({prompt});
+	}
 });
 
 type StringKit = InstanceType<typeof StringKit>;
