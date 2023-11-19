@@ -19,8 +19,8 @@ const HackerNewsFirebaseKit = new KitBuilder({
 	url: "npm:@exadev/breadboard-kits/HackerNewsFirebaseKit",
 }).build({
 	topStoryIds: async (
-		inputs: InputValues & { limit?: number }
-	): Promise<OutputValues & { storyIds: NodeValue & number[] }> => {
+		inputs: InputValues & { limit?: number; }
+	): Promise<OutputValues & { storyIds: NodeValue & number[]; }> => {
 		const url = "https://hacker-news.firebaseio.com/v0/topstories.json";
 		const response = await fetch(url);
 		const storyIds = (await response.json()) as number[];
