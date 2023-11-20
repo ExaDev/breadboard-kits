@@ -12,19 +12,15 @@ function getAbsoluteFilePath(envPath: string = ".env"): string {
 }
 
 async function readEnv(inputs: InputValues & { path?: string; }): Promise<OutputValues>{
-	let envPath: string = inputs.path || ".env";
-
-	if (inputs.path) {
-		// Throw an error if the explicitly provided path does not exist
-		if (!fs.existsSync(envPath)) {
-			throw new Error(`Path ${envPath} does not exist`);
-		}
+	if (inputs.path && !fs.existsSync(inputs.path)) {
+		throw new Error(`Path "${inputs.path}" was explicitly specified but does not exist`);
 	}
-	envPath = getAbsoluteFilePath(envPath);
 
-	dotenv.config({ path: envPath });
-
-	return Promise.resolve({ ...process.env });
+	const envPath = getAbsoluteFilePath(inputs.path || ".env");
+	if (fs.existsSync(envPath)) {
+		dotenv.config({path: envPath});
+	}
+	return Promise.resolve(process.env);
 }
 
 const ConfigKit = new KitBuilder({
@@ -39,7 +35,7 @@ const ConfigKit = new KitBuilder({
 		const value = env[key];
 		if (value === undefined) {
 			const absolutePath = getAbsoluteFilePath(inputs.path);
-			throw new Error(`Key "${key}" not found in "${absolutePath}"`);
+			throw new Error(`"${key}" not found in environment or "${absolutePath}"`);
 		}
 		return Promise.resolve({ [key]: env[key] });
 	},
