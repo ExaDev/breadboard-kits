@@ -29,12 +29,10 @@ test("iterator", async (t) => {
 
 	const testArray = ["a", "b", "c", "d", "e"];
 	const arrayLength = testArray.length;
-	// console.log("testArray:", testArray);
+
 	const accumulatedResults = [];
 	for await (const result of board.run({
-		// probe: new LogProbe(),
 	})) {
-		// console.log("\n------------------------------\n");
 		if (result.type === "input") {
 			result.inputs = {
 				list: testArray,
@@ -44,7 +42,6 @@ test("iterator", async (t) => {
 			accumulatedResults.push(item);
 		}
 	}
-	// console.log("RESULT:", accumulatedResults);
 	t.is(accumulatedResults.length, arrayLength);
 	t.is(testArray.length, 0);
 });
