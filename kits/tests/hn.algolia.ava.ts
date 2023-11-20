@@ -25,11 +25,9 @@ test("hackernews algolia get story by id", async (t: ExecutionContext) => {
 	getStoryFromId.wire("*", output);
 
 	for await (const result of board.run({
-		// probe: new LogProbe(),
 	})) {
 		if (result.outputs && result.outputs.story_id) {
 			const story = result.outputs as unknown as Story;
-			// console.log("result.outputs:",result.outputs);
 			t.assert(story, `story ${story.url}`);
 			t.assert(story.title, "story.title");
 		}
@@ -43,7 +41,6 @@ test("Get specific story attributes", async (t: ExecutionContext) => {
 	const board = new Board();
 	const firebase = board.addKit(HackerNewsFirebaseKit);
 	const algolia = board.addKit(HackerNewsAlgoliaKit);
-	// const output = board.output();
 	const listKit = board.addKit(ListKit);
 
 	const pop = listKit.pop();
@@ -69,15 +66,8 @@ test("Get specific story attributes", async (t: ExecutionContext) => {
 	aggregate.wire("*", board.output());
 
 	for await (const result of board.run({
-		// probe: new LogProbe(),
 	})) {
-		console.log("------");
 		if (result.outputs) {
-			console.log(
-				"result.outputs",
-				JSON.stringify(result.outputs, null, 2)
-			);
-
 			type storyPartial = {
 				algoliaUrl: string;
 				story_id: number;
@@ -102,7 +92,6 @@ test("Get specific story attributes", async (t: ExecutionContext) => {
 			);
 
 			for (const [key, value] of Object.entries(story)) {
-				console.log(`result.outputs.${key}:\t${value}`);
 				t.truthy(value, `outputs.${key}`);
 			}
 		}
