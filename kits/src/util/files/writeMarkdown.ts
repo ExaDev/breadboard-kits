@@ -3,7 +3,7 @@ import path from "path";
 
 export default function writeMarkdown(
 	{
-		dir = "",
+		dir,
 		filename,
 		markdown
 	}: { dir?: string, filename: string, markdown: string; }
