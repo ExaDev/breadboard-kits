@@ -4,8 +4,8 @@ import writeMarkdown from "./writeMarkdown.js";
 
 export default function generateAndWriteMermaidMarkdown(
 	{
-		dir = "", filename, board, title = board.title
-	}: { dir: string, filename: string, board: Board; title?: string; }
+		dir, filename, board, title = board.title
+	}: { dir?: string, filename: string, board: Board; title?: string; }
 ) {
 	writeMarkdown({
 		dir,
