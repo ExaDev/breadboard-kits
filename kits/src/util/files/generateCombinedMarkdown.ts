@@ -9,7 +9,7 @@ export default function generateCombinedMarkdown(
 		throw new Error("Board must have a title or a name must be suplied");
 	}
 
-	const markdown = generateMermaidMarkdown({ board });
+	const markdown = generateMermaidMarkdown(board);
 	const json = generateJson(board);
 	const jsonCodeBlock = `\`\`\`json\n${json}\n\`\`\``;
 	return `# ${title}\n\n${markdown}\n\n${jsonCodeBlock}`;
