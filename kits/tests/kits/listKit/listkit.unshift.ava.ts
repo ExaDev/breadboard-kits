@@ -1,8 +1,8 @@
 import { Board } from "@google-labs/breadboard";
 import test from "ava";
-import ListKit from "../src/kits/ListKit.js";
+import ListKit from "../../../src/kits/ListKit.js";
 
-test("listkit.shift", async (t) => {
+test("listkit.unshift", async (t) => {
 	const board = new Board({
 		title: "Exadev",
 		description: "Exadev Breadboard Kit",
@@ -24,19 +24,33 @@ test("listkit.shift", async (t) => {
 		},
 	});
 
-	const shift = listKit.shift();
-	list.wire("->list", shift);
+	const input = board.input({
+		$id: "input",
+		schema: {
+			type: "object",
+			properties: {
+				text: {
+					type: "text",
+					title: "text",
+					description: "text",
+				},
+			},
+		},
+	});
+
+	const unshift = listKit.unshift();
+	list.wire("->list", unshift);
+	input.wire("->item", unshift);
 
 	const output = board.output();
-	shift.wire("list->", output);
-	shift.wire("item->", output);
+	unshift.wire("->list", output);
 
-	const outputList: Array<string> = ["b", "c"];
+	const outputList: Array<string> = ["a", "b", "c"];
 
 	const result = await board.runOnce({
-		list: ["a", "b", "c"],
+		list: ["b", "c"],
+		item: "a",
 	});
 
 	t.deepEqual(result["list"], outputList);
-	t.is(result["item"], "a");
 });
