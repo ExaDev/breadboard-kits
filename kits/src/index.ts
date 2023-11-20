@@ -1,3 +1,4 @@
+import { ConfigKit } from "./kits/ConfigKit.js";
 import { HackerNewsAlgoliaKit } from "./kits/hackerNews/HackerNewsAlgoliaKit.js";
 import { HackerNewsFirebaseKit } from "./kits/hackerNews/HackerNewsFirebaseKit.js";
 import kits from "./kits/index.js";
@@ -17,6 +18,7 @@ const types = {
 };
 
 export {
+	ConfigKit,
 	HackerNewsAlgoliaKit,
 	HackerNewsFirebaseKit,
 	JsonKit,
@@ -30,6 +32,7 @@ export {
 
 
 export default {
+	ConfigKit,
 	HackerNewsAlgoliaKit,
 	HackerNewsFirebaseKit,
 	JsonKit,
