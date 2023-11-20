@@ -1,9 +1,9 @@
-import { Board } from "@google-labs/breadboard";
+import BoardMarkdownConfig from "./boardMarkdownConfig.js";
 import generateJson from "./generateJson.js";
 import writeJson from "./writeJson.js";
 
 export default function generateAndWriteJson(
-	{ dir, filename, board }: { dir: string, filename: string, board: Board; }
+	{ dir, filename, board }: BoardMarkdownConfig
 ) {
 	const jsonContent = generateJson(board);
 	writeJson({ dir: dir, filename: filename, jsonContent: jsonContent });

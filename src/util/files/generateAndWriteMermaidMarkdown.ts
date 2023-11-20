@@ -1,19 +1,18 @@
-import { Board } from "@google-labs/breadboard";
+import { BoardMarkdownConfig } from "../files/boardMarkdownConfig.js";
 import generateMermaidMarkdown from "./generateMermaidMarkdown.js";
 import writeMarkdown from "./writeMarkdown.js";
 
 export default function generateAndWriteMermaidMarkdown(
 	{
-		dir, filename, board, title = board.title
-	}: { dir?: string, filename: string, board: Board; title?: string; }
+		dir, filename, board
+	}: BoardMarkdownConfig
 ) {
 	writeMarkdown({
 		dir,
 		filename,
-		markdown: generateMermaidMarkdown({
+		markdown: generateMermaidMarkdown(
 			board,
-			title
-		})
+		)
 	});
 }
 export { generateAndWriteMermaidMarkdown };

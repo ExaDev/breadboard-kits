@@ -1,3 +1,4 @@
+import makeMarkdown from "./makeMarkdown.js";
 import generateAndWriteCombinedMarkdown from "./generateAndWriteCombinedMarkdown.js";
 import generateAndWriteJson from "./generateAndWriteJson.js";
 import generateAndWriteMermaidMarkdown from "./generateAndWriteMermaidMarkdown.js";
@@ -20,6 +21,7 @@ export {
 	writeFiles,
 	writeJson,
 	writeMarkdown,
+	makeMarkdown
 };
 
 export default {
@@ -33,4 +35,5 @@ export default {
 	writeFiles,
 	writeJson,
 	writeMarkdown,
+	makeMarkdown
 };
