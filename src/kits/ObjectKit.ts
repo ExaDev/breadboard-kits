@@ -94,8 +94,10 @@ function reduceDepth(obj: AnyObject, maxDepth: number): AnyObject {
 
 		for (const key in obj) {
 			if (typeof obj[key] === "object" && obj[key] !== null) {
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 				result[key] = reduce(obj[key], currentDepth + 1);
 			} else {
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 				result[key] = obj[key];
 			}
 		}
@@ -114,6 +116,7 @@ function calculateDepth(obj: AnyObject, currentDepth: number = 0): number {
 	let maxDepth = currentDepth;
 	for (const key in obj) {
 		if (typeof obj[key] === "object" && obj[key] !== null) {
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 			const depth = calculateDepth(obj[key], currentDepth + 1);
 			if (depth > maxDepth) {
 				maxDepth = depth;
@@ -125,6 +128,7 @@ function calculateDepth(obj: AnyObject, currentDepth: number = 0): number {
 }
 //////////////////////////////////////////////////
 interface AnyObject {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	[key: string]: any;
 }
 

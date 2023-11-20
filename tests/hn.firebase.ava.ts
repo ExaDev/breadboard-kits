@@ -14,7 +14,6 @@ test("hnFirebaseKit.topStoryIds", async (t: ExecutionContext) => {
 	for await (const result of board.run({
 		probe: new LogProbe(),
 	})) {
-		console.log(result.outputs);
 		if (result.outputs && result.outputs.storyIds) {
 			const storyIds = result.outputs.storyIds as number[];
 			t.is(Array.isArray(storyIds), true);
@@ -33,7 +32,6 @@ test("hnFirebaseKit.topStoryIds limited", async (t) => {
 	for await (const result of board.run({
 		probe: new LogProbe(),
 	})) {
-		console.log(result.outputs);
 		if (result.outputs && result.outputs.storyIds) {
 			const stories = result.outputs.storyIds as number[];
 			t.is(Array.isArray(stories), true);
@@ -64,10 +62,6 @@ test("hnFirebaseKit.getStoryFromId", async (t) => {
 	for await (const result of board.run({
 		probe: new LogProbe(),
 	})) {
-		console.log("\n----------\n");
-		console.log(result);
-
-		// console.log("result.type", result.type)
 		if (result.type === "input") {
 			result.inputs = {
 				limit,
