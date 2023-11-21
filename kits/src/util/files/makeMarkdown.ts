@@ -5,19 +5,19 @@ import generateJson from "./generateJson.js";
 import generateMermaidMarkdown from "./generateMermaidMarkdown.js";
 import { MarkdownContentList, MarkdownContentType } from "../../types/markdown.js";
 
-const MarkdownContentTypeMap: Map<MarkdownContentType, (board: Board) => string> = new Map([
+export const MarkdownContentTypeMap: Map<MarkdownContentType, (board: Board) => string> = new Map([
 	[MarkdownContentType.mermaid, generateMermaidMarkdown],
 	[MarkdownContentType.json, generateJson],
 	[MarkdownContentType.typescript, notImplemented()],
 ]);
 
-const HeadingMap: Map<MarkdownContentType, string> = new Map([
+export const HeadingMap: Map<MarkdownContentType, string> = new Map([
 	[MarkdownContentType.mermaid, "Mermaid"],
 	[MarkdownContentType.json, "JSON"],
 	[MarkdownContentType.typescript, "Typescript"],
 ]);
 
-const codeBlockMap: Map<MarkdownContentType, string> = new Map([
+export const codeBlockMap: Map<MarkdownContentType, string> = new Map([
 	[MarkdownContentType.mermaid, "mermaid"],
 	[MarkdownContentType.json, "json"],
 	[MarkdownContentType.typescript, "typescript"],
@@ -77,4 +77,6 @@ function makeMarkdown(
 }
 
 type makeMarkdown = typeof makeMarkdown;
+
+export default makeMarkdown;
 export { makeMarkdown };
