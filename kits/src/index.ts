@@ -8,6 +8,7 @@ import { ObjectKit } from "./kits/ObjectKit.js";
 import { StringKit } from "./kits/StringKit.js";
 import * as list from "./types/list.js";
 import * as files from "./util/files/index.js";
+import * as config from "./types/markdown.js"
 
 const util = {
 	files,
@@ -15,6 +16,10 @@ const util = {
 
 const types = {
 	list,
+};
+
+const markdownTypes = {
+	config
 };
 
 export {
@@ -27,6 +32,7 @@ export {
 	StringKit,
 	kits,
 	types,
+	markdownTypes,
 	util,
 };
 
@@ -41,5 +47,6 @@ export default {
 	StringKit,
 	kits,
 	types,
+	markdownTypes,
 	util,
 };
