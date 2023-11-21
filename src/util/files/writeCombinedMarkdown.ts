@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 
-export default function writeCombinedMarkdown(
+export function writeCombinedMarkdown(
 	{
 		dir,
 		filename,
@@ -18,4 +18,5 @@ export default function writeCombinedMarkdown(
 	console.log("wrote", `"${mdFilepath}"`);
 }
 
-export { writeCombinedMarkdown };
+export type writeCombinedMarkdown = typeof writeCombinedMarkdown;
+export default writeCombinedMarkdown;

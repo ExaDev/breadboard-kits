@@ -1,6 +1,8 @@
 import { Board } from "@google-labs/breadboard";
 
-export default function generateMermaidMarkdown(board: Board): string {
+export function generateMermaidMarkdown(board: Board): string {
 	return board.mermaid();
 }
-export { generateMermaidMarkdown };
+
+export type generateMermaidMarkdown = typeof generateMermaidMarkdown;
+export default generateMermaidMarkdown;

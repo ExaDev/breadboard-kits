@@ -2,7 +2,7 @@ import { Board } from "@google-labs/breadboard";
 import generateJson from "./generateJson.js";
 import generateMermaidMarkdown from "./generateMermaidMarkdown.js";
 
-export default function generateCombinedMarkdown(
+export function generateCombinedMarkdown(
 	{ board, title = board.title }: { board: Board, title?: string; }
 ) {
 	if (!title) {
@@ -14,4 +14,5 @@ export default function generateCombinedMarkdown(
 	const jsonCodeBlock = `\`\`\`json\n${json}\n\`\`\``;
 	return `# ${title}\n\n${markdown}\n\n${jsonCodeBlock}`;
 }
-export { generateCombinedMarkdown };
+export type generateCombinedMarkdown = typeof generateCombinedMarkdown;
+export default generateCombinedMarkdown;

@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 
-export default function writeJson(
+export function writeJson(
 	{ dir = "", filename, jsonContent }: { dir: string, filename: string, jsonContent: string; }
 ) {
 	const jsonFilePath = path.resolve(path.join(dir, "json", `${filename}.json`));
@@ -10,4 +10,5 @@ export default function writeJson(
 	console.log("wrote", `"${jsonFilePath}"`);
 }
 
-export { writeJson };
+export type writeJson = typeof writeJson;
+export default writeJson;

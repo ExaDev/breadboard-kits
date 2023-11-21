@@ -1,7 +1,7 @@
 import { InputValues, NodeValue, OutputValues } from "@google-labs/breadboard";
 import { KitBuilder } from "@google-labs/breadboard/kits";
 
-const JsonKit = new KitBuilder({
+export const JsonKit = new KitBuilder({
 	url: "npm:@exadev/breadboard-kits/kits/JsonKit",
 }).build({
 	stringify: async (
@@ -21,6 +21,5 @@ const JsonKit = new KitBuilder({
 	},
 });
 
-type JsonKit = InstanceType<typeof JsonKit>;
-export { JsonKit };
+export type JsonKit = InstanceType<typeof JsonKit>;
 export default JsonKit;
