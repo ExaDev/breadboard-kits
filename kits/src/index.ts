@@ -1,5 +1,5 @@
 import * as types from "./types/index.js";
-import * as util from "./types/index.js";
+import * as util from "./util/index.js";
 import { default as kits } from "./kits/index.js";
 export default {
 	types,
