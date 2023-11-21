@@ -38,6 +38,15 @@
 		"node": ">=19"
 	},
 	"engineStrict": true,
+	"exports": {
+		".": {
+			"import": "./dist/index.esm.js",
+			"node": "./index.cjs",
+			"require": "./index.js",
+			"types": "./dist/index.d.ts"
+		},
+		"./*": "./dist/*"
+	},
 	"main": "dist/index.js",
 	"module": "dist/index.esm.js",
 	"name": "@exadev/breadboard-kits",
