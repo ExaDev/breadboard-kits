@@ -4,26 +4,27 @@ import dotenv from "dotenv";
 import fs from "fs";
 import path from "path";
 
-function getAbsoluteFilePath(envPath: string = ".env"): string {
+export function getAbsoluteFilePath(envPath: string = ".env"): string {
 	if (!path.isAbsolute(envPath)) {
 		envPath = path.join(process.cwd(), envPath);
 	}
 	return envPath;
 }
-
-async function readEnv(inputs: InputValues & { path?: string; }): Promise<OutputValues>{
+export type getAbsoluteFilePath = typeof getAbsoluteFilePath;
+export async function readEnv(inputs: InputValues & { path?: string; }): Promise<OutputValues> {
 	if (inputs.path && !fs.existsSync(inputs.path)) {
 		throw new Error(`Path "${inputs.path}" was explicitly specified but does not exist`);
 	}
 
 	const envPath = getAbsoluteFilePath(inputs.path || ".env");
 	if (fs.existsSync(envPath)) {
-		dotenv.config({path: envPath});
+		dotenv.config({ path: envPath });
 	}
 	return Promise.resolve(process.env);
 }
+export type readEnv = typeof readEnv;
 
-const ConfigKit = new KitBuilder({
+export const ConfigKit = new KitBuilder({
 	url: "npm:@exadev/breadboard-kits/kits/ConfigKit",
 }).build({
 	readEnv,
@@ -40,7 +41,5 @@ const ConfigKit = new KitBuilder({
 		return Promise.resolve({ [key]: env[key] });
 	},
 });
-
-type ConfigKit = InstanceType<typeof ConfigKit>;
-export { ConfigKit };
+export type ConfigKit = InstanceType<typeof ConfigKit>;
 export default ConfigKit;

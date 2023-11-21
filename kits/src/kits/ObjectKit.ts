@@ -1,7 +1,7 @@
 import { InputValues, NodeValue, OutputValues } from "@google-labs/breadboard";
 import { KitBuilder } from "@google-labs/breadboard/kits";
 
-const ObjectKit = new KitBuilder({
+export const ObjectKit = new KitBuilder({
 	url: "npm:@exadev/breadboard-kits/kits/ObjectKit",
 }).build({
 	pick: async (
@@ -127,11 +127,10 @@ function calculateDepth(obj: AnyObject, currentDepth: number = 0): number {
 	return maxDepth;
 }
 //////////////////////////////////////////////////
-interface AnyObject {
+export interface AnyObject {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	[key: string]: any;
 }
 
-type ObjectKit = InstanceType<typeof ObjectKit>;
-export { ObjectKit };
+export type ObjectKit = InstanceType<typeof ObjectKit>;
 export default ObjectKit;

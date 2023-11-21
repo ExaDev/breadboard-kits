@@ -2,7 +2,7 @@ import { Board } from "@google-labs/breadboard";
 import generateAndWriteJson from "./generateAndWriteJson.js";
 import generateAndWriteMermaidMarkdown from "./generateAndWriteMermaidMarkdown.js";
 
-export default function writeFiles(
+export function writeFiles(
 	board: Board,
 	filename = board.title,
 	dir = "./output"
@@ -14,5 +14,5 @@ export default function writeFiles(
 	generateAndWriteMermaidMarkdown({ dir, filename, board });
 	generateAndWriteJson({ dir, filename, board });
 }
-
-export { writeFiles };
+export type writeFiles = typeof writeFiles;
+export default writeFiles;
