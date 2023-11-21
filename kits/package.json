@@ -46,10 +46,12 @@
 		"./*": {
 			"default": [
 				"./dist/*",
+				"./dist/*.js",
 				"./dist/*/index.js"
 			],
 			"types": [
 				"./dist/*",
+				"./dist/*.js",
 				"./dist/*/index.d.ts"
 			]
 		}
