@@ -8,17 +8,26 @@ import { MarkdownContentList, MarkdownContentType } from "../../types/markdown.j
 const MarkdownContentTypeMap: Map<MarkdownContentType, (board: Board) => string> = new Map([
 	[MarkdownContentType.mermaid, generateMermaidMarkdown],
 	[MarkdownContentType.json, generateJson],
+	[MarkdownContentType.typescript, notImplemented()],
 ]);
 
 const HeadingMap: Map<MarkdownContentType, string> = new Map([
 	[MarkdownContentType.mermaid, "Mermaid"],
 	[MarkdownContentType.json, "JSON"],
+	[MarkdownContentType.typescript, "Typescript"],
 ]);
 
 const codeBlockMap: Map<MarkdownContentType, string> = new Map([
 	[MarkdownContentType.mermaid, "mermaid"],
-	[MarkdownContentType.json, "json"]
+	[MarkdownContentType.json, "json"],
+	[MarkdownContentType.typescript, "typescript"],
 ]);
+
+function notImplemented(): (board: Board) => string {
+	return () => {
+		throw new Error("Not implemented");
+	};
+}
 
 function makeMarkdown(
 	{

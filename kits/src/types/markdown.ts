@@ -7,7 +7,7 @@ export type MarkdownConfig = {
 export enum MarkdownContentType {
 	mermaid,
 	json,
-	combined
+	typescript
 }
 
 export type MarkdownContentList = MarkdownContentType[];
