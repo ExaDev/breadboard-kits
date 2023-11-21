@@ -40,9 +40,10 @@
 	"engineStrict": true,
 	"exports": {
 		".": {
+			"default": "./dist/index.js",
 			"import": "./dist/index.esm.js",
-			"node": "./index.cjs",
-			"require": "./index.js",
+			"node": "./dist/index.cjs",
+			"require": "./dist/index.js",
 			"types": "./dist/index.d.ts"
 		},
 		"./*": "./dist/*"
