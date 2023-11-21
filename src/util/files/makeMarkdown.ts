@@ -20,7 +20,7 @@ const codeBlockMap: Map<MarkdownContentType, string> = new Map([
 	[MarkdownContentType.json, "json"]
 ]);
 
-export default function makeMarkdown(
+function makeMarkdown(
 	{
 		board,
 		title = board.title,
@@ -67,4 +67,5 @@ export default function makeMarkdown(
 	fs.writeFileSync(path.join(dir, `${filename}.md`), combined);
 }
 
+type makeMarkdown = typeof makeMarkdown;
 export { makeMarkdown };
