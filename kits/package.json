@@ -21,25 +21,46 @@
 	},
 	"devDependencies": {
 		"@ava/typescript": "^4.1.0",
-		"@types/node": "^20.9.0",
-		"@typescript-eslint/eslint-plugin": "^6.10.0",
-		"@typescript-eslint/parser": "^6.10.0",
+		"@types/node": "^20.9.3",
+		"@typescript-eslint/eslint-plugin": "^6.12.0",
+		"@typescript-eslint/parser": "^6.12.0",
 		"ava": "^5.3.1",
-		"eslint": "^8.53.0",
+		"eslint": "^8.54.0",
 		"eslint-plugin-editorconfig": "^4.0.3",
 		"eslint-plugin-promise": "^6.1.1",
 		"rimraf": "^5.0.5",
 		"ts-node": "^10.9.1",
 		"tslib": "^2.6.2",
-		"tsup": "^7.2.0",
-		"typescript": "^5.2.2"
+		"tsup": "^8.0.1",
+		"typescript": "^5.3.2"
 	},
 	"engines": {
 		"node": ">=19"
 	},
 	"engineStrict": true,
-	"main": "dist/index.js",
-	"module": "dist/index.esm.js",
+	"exports": {
+		".": {
+			"default": "./dist/index.js",
+			"types": "./dist/index.d.ts"
+		},
+		"./*": {
+			"default": [
+				"./dist/*",
+				"./dist/*.js",
+				"./dist/*/index.js"
+			],
+			"types": [
+				"./dist/*",
+				"./dist/*.js",
+				"./dist/*/index.d.ts"
+			]
+		}
+	},
+	"files": [
+		"dist"
+	],
+	"main": "./dist/index.js",
+	"module": "./dist/index.js",
 	"name": "@exadev/breadboard-kits",
 	"packageManager": "yarn@4.0.1",
 	"publishConfig": {
@@ -51,7 +72,7 @@
 	},
 	"scripts": {
 		"build": "tsc --pretty",
-		"build:publish": "npm run prebuild && tsup --config ./tsup.config.ts",
+		"build:publish": "npm run prebuild && npm run build -- --project tsconfig.publish.json",
 		"clean": "rimraf dist ; rimraf --glob './{src,tests}/**/*.{js,d.ts,d.ts.map}'",
 		"deploy": "npm version patch && npm publish",
 		"lint": "eslint ./src",
@@ -66,6 +87,6 @@
 		"test": "npx -y madge --circular --warning src/ --extensions ts && ava"
 	},
 	"type": "module",
-	"types": "dist/index.d.ts",
-	"version": "0.4.8"
+	"types": "./dist/index.d.ts",
+	"version": "0.6.2"
 }

@@ -11,3 +11,5 @@ export enum MarkdownContentType {
 }
 
 export type MarkdownContentList = MarkdownContentType[];
+
+export * as BoardMarkdownConfig from "./boardMarkdownConfig.js";
