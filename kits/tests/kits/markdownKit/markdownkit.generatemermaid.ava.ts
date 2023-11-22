@@ -70,18 +70,18 @@ test("markdownkit.generateMermaid", async (t) => {
 	});
 
 	const generateMermaid = markdownKit.generateMermaid();
-	input.wire("->a", generateMermaid);
-	input2.wire("->b", generateMermaid);
-	input3.wire("->c", generateMermaid);
-	input4.wire("->d", generateMermaid);
+	input.wire("->boardjson", generateMermaid);
+	input2.wire("->filename", generateMermaid);
+	input3.wire("->title", generateMermaid);
+	input4.wire("->dir", generateMermaid);
 
 	const myBoard = JSON.stringify(board, null, "\t");
 	// doesn't return anything, just writes to disk
 	await board.runOnce({
-		a: myBoard,
-		b: board.title,
-		c: board.title,
-		d: "./tests/kits/markdownKit"
+		boardjson: myBoard,
+		filename: board.title,
+		title: board.title,
+		dir: "./tests/kits/markdownKit"
 	});
 
 	// TODO add a check that file has been created and then delete it ??
