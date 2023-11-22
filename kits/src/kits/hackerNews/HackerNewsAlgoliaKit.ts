@@ -46,6 +46,38 @@ export type HackerNewAlgoliaSearchParameters = {
 	page?: number;
 };
 
+export async function search(
+	inputs: InputValues & HackerNewAlgoliaSearchParameters
+): Promise<OutputValues & { hits: PostItem[]; }> {
+	const { query, tags, numericFilters, page } = inputs;
+	const url = new URL("https://hn.algolia.com/api/v1/search");
+	url.searchParams.set("query", query);
+	if (tags) {
+		url.searchParams.set("tags", tags.join(","));
+	}
+	if (numericFilters) {
+		url.searchParams.set(
+			"numericFilters",
+			numericFilters
+				.map((filter) => {
+					return `${filter.field}${filter.operator}${filter.value}`;
+				})
+				.join(",")
+		);
+	}
+	if (page) {
+		url.searchParams.set("page", page.toString());
+	}
+	const response = await fetch(url.toString());
+	const { hits } = (await response.json()) as unknown as {
+		hits: PostItem[];
+	};
+	return Promise.resolve({
+		algoliaUrl: url.toString(),
+		hits,
+	});
+}
+
 export const HackerNewsAlgoliaKit = new KitBuilder({
 	url: "npm:@exadev/breadboard-kits/HackerNewsAlgoliaKit",
 }).build({
@@ -60,37 +92,7 @@ export const HackerNewsAlgoliaKit = new KitBuilder({
 			...story,
 		});
 	},
-	async search(
-		inputs: InputValues & HackerNewAlgoliaSearchParameters
-	): Promise<OutputValues & { hits: PostItem[]; }> {
-		const {query, tags, numericFilters, page} = inputs;
-		const url = new URL("https://hn.algolia.com/api/v1/search");
-		url.searchParams.set("query", query);
-		if (tags) {
-			url.searchParams.set("tags", tags.join(","));
-		}
-		if (numericFilters) {
-			url.searchParams.set(
-				"numericFilters",
-				numericFilters
-					.map((filter) => {
-						return `${filter.field}${filter.operator}${filter.value}`;
-					})
-					.join(",")
-			);
-		}
-		if (page) {
-			url.searchParams.set("page", page.toString());
-		}
-		const response = await fetch(url.toString());
-		const {hits} = (await response.json()) as unknown as {
-			hits: PostItem[];
-		};
-		return Promise.resolve({
-			algoliaUrl: url.toString(),
-			hits,
-		});
-	},
+	search,
 });
 
 export type HackerNewsAlgoliaKit = InstanceType<typeof HackerNewsAlgoliaKit>;
