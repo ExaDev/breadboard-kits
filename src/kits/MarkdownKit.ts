@@ -12,38 +12,43 @@ const MarkdownKit = new KitBuilder({
 	url: "npm:@exadev/breadboard-kits/markdownKit",
 }).build({
 	//TODO change to meaningful variable names
-	async generateCombinedMarkdown(inputs: InputValues): Promise<void> {
-		const { a, b, c, d }: InputValues = inputs
-		const board = jsonStringToBoard(a as string);
+	async generateCombinedMarkdown(inputs: InputValues & {
+		boardjson: string
+		filename: string,
+		title: string,
+		dir: string
+	}): Promise<void> {
+		const { boardjson, filename, title, dir }: InputValues = inputs
+		const board = jsonStringToBoard(boardjson);
 
 		const markdownConfig: MarkdownContentList = [MarkdownContentType.mermaid, MarkdownContentType.json];
-		const filename = b as string
-		const title = c as string
-		const dir = d as string
 
 		makeMarkdown({ board, filename, title, dir, markdownConfig });
 	},
 
-	async generateJson(inputs: InputValues): Promise<void> {
-		const { a, b, c, d }: InputValues = inputs
-		const board = jsonStringToBoard(a as string)
+	async generateJson(inputs: InputValues & {
+		boardjson: string
+		filename: string,
+		title: string,
+		dir: string
+	}): Promise<void> {
+		const { boardjson, filename, title, dir }: InputValues = inputs
+		const board = jsonStringToBoard(boardjson);
 
 		const markdownConfig: MarkdownContentList = [MarkdownContentType.json];
-		const filename = b as string
-		const title = c as string
-		const dir = d as string
 
 		makeMarkdown({ board, filename, title, dir, markdownConfig });
 	},
-	async generateMermaid(inputs: InputValues): Promise<void> {
-		const { a, b, c, d }: InputValues = inputs
-		const board = jsonStringToBoard(a as string);
-
+	async generateMermaid(inputs: InputValues & {
+		boardjson: string
+		filename: string,
+		title: string,
+		dir: string
+	}): Promise<void> {
+		const { boardjson, filename, title, dir }: InputValues = inputs
+		const board = jsonStringToBoard(boardjson);
 		const markdownConfig: MarkdownContentList = [MarkdownContentType.mermaid];
-		const filename = b as string
-		const title = c as string
-		const dir = d as string
-
+		
 		makeMarkdown({ board, filename, title, dir, markdownConfig });
 	},
 });

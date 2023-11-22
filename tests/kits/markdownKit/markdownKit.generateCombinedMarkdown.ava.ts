@@ -70,22 +70,19 @@ test("markdownkit.generateCombinedMarkdown", async (t) => {
 	});
 
 	const generateCombinedMarkdown = markdownKit.generateCombinedMarkdown();
-	input.wire("->a", generateCombinedMarkdown);
-	input2.wire("->b", generateCombinedMarkdown);
-	input3.wire("->c", generateCombinedMarkdown);
-	input4.wire("->d", generateCombinedMarkdown);
+	input.wire("->boardjson", generateCombinedMarkdown);
+	input2.wire("->filename", generateCombinedMarkdown);
+	input3.wire("->title", generateCombinedMarkdown);
+	input4.wire("->dir", generateCombinedMarkdown);
 
-	// NodeValue can't accept Board type, so pass in json string instead
 	const myBoard = JSON.stringify(board, null, "\t");
 	// doesn't return anything, just writes to disk
 	await board.runOnce({
-		a: myBoard,
-		b: board.title,
-		c: board.title,
-		d: "./tests/kits/markdownKit"
+		boardjson: myBoard,
+		filename: board.title,
+		title: board.title,
+		dir: "./tests/kits/markdownKit"
 	});
 
-	// TODO add a check that file has been created and then delete it ??
-	// void function, placeholder for now
 	t.is(true, true);
 });

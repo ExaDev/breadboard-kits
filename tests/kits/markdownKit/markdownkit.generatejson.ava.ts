@@ -70,18 +70,18 @@ test("markdownkit.generateJson", async (t) => {
 	});
 
 	const generateJson = markdownKit.generateJson();
-	input.wire("->a", generateJson);
-	input2.wire("->b", generateJson);
-	input3.wire("->c", generateJson);
-	input4.wire("->d", generateJson);
+	input.wire("->boardjson", generateJson);
+	input2.wire("->filename", generateJson);
+	input3.wire("->title", generateJson);
+	input4.wire("->dir", generateJson);
 
 	const myBoard = JSON.stringify(board, null, "\t");
 	// doesn't return anything, just writes to disk
 	await board.runOnce({
-		a: myBoard,
-		b: board.title,
-		c: board.title,
-		d: "./tests/kits/markdownKit"
+		boardjson: myBoard,
+		filename: board.title,
+		title: board.title,
+		dir: "./tests/kits/markdownKit"
 	});
 
 	// TODO add a check that file has been created and then delete it ??
