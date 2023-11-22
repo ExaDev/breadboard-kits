@@ -79,7 +79,7 @@ export async function search(
 	};
 	return Promise.resolve({
 		algoliaUrl: url.toString(),
-		hits: inputs.imit ? hits.slice(0, inputs.limit) : hits,
+		hits: inputs.limit ? hits.slice(0, inputs.limit) : hits,
 	});
 }
 
