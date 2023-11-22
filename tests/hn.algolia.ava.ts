@@ -2,7 +2,9 @@ import { Board } from "@google-labs/breadboard";
 import test, { ExecutionContext } from "ava";
 import { Core } from "@google-labs/core-kit";
 import HackerNewsFirebaseKit from "../src/kits/hackerNews/HackerNewsFirebaseKit.js";
-import HackerNewsAlgoliaKit from "../src/kits/hackerNews/HackerNewsAlgoliaKit.js";
+import HackerNewsAlgoliaKit, {
+	search,
+} from "../src/kits/hackerNews/HackerNewsAlgoliaKit.js";
 import ListKit from "../src/kits/ListKit.js";
 import { Story } from "../src/kits/hackerNews/HackerNewsAlgoliaKit.js";
 
@@ -24,8 +26,7 @@ test("hackernews algolia get story by id", async (t: ExecutionContext) => {
 	pop.wire("item->id", getStoryFromId);
 	getStoryFromId.wire("*", output);
 
-	for await (const result of board.run({
-	})) {
+	for await (const result of board.run({})) {
 		if (result.outputs && result.outputs.story_id) {
 			const story = result.outputs as unknown as Story;
 			t.assert(story, `story ${story.url}`);
@@ -65,8 +66,7 @@ test("Get specific story attributes", async (t: ExecutionContext) => {
 
 	aggregate.wire("*", board.output());
 
-	for await (const result of board.run({
-	})) {
+	for await (const result of board.run({})) {
 		if (result.outputs) {
 			type storyPartial = {
 				algoliaUrl: string;
@@ -96,4 +96,95 @@ test("Get specific story attributes", async (t: ExecutionContext) => {
 			}
 		}
 	}
+});
+
+test("search function forms correct URL with all parameters", async (t) => {
+	const result = await search({
+		query: "JavaScript",
+	});
+
+	const algoliaUrl = result.algoliaUrl;
+	const expectedUrl = "https://hn.algolia.com/api/v1/search?query=JavaScript";
+	t.is(algoliaUrl, expectedUrl);
+
+	const hits = result.hits;
+	t.assert(hits, "hits");
+	t.assert(hits.length > 0, "hits.length");
+	console.log(result);
+});
+
+test("search function handles absence of optional parameters gracefully", async (t) => {
+	const params = { query: "Python" };
+	const result = await search(params);
+
+	const expectedUrl = "https://hn.algolia.com/api/v1/search?query=Python";
+	t.is(result.algoliaUrl, expectedUrl);
+});
+
+test("search function handles tags parameter", async (t) => {
+	const result = await search({
+		query: "JavaScript",
+		tags: ["story"],
+	});
+
+	const expectedUrl =
+		"https://hn.algolia.com/api/v1/search?query=JavaScript&tags=story";
+	t.is(result.algoliaUrl, expectedUrl);
+});
+
+test("search function handles numericFilters parameter", async (t) => {
+	const result = await search({
+		query: "JavaScript",
+		numericFilters: [
+			{
+				field: "points",
+				operator: ">",
+				value: 100,
+			},
+		],
+	});
+
+	const expectedUrl =
+		"https://hn.algolia.com/api/v1/search?query=JavaScript&numericFilters=points%3E100";
+	t.is(result.algoliaUrl, expectedUrl);
+});
+
+test("search function handles page parameter", async (t) => {
+	const result = await search({
+		query: "JavaScript",
+		page: 2,
+	});
+
+	const expectedUrl =
+		"https://hn.algolia.com/api/v1/search?query=JavaScript&page=2";
+	t.is(result.algoliaUrl, expectedUrl);
+});
+
+test("search function handles all parameters", async (t) => {
+	const result = await search({
+		query: "JavaScript",
+		tags: ["story"],
+		numericFilters: [
+			{
+				field: "points",
+				operator: ">",
+				value: 100,
+			},
+		],
+		page: 2,
+	});
+
+	const expectedUrl =
+		"https://hn.algolia.com/api/v1/search?query=JavaScript&tags=story&numericFilters=points%3E100&page=2";
+	t.is(result.algoliaUrl, expectedUrl);
+});
+
+test("search function returns hits", async (t) => {
+	const result = await search({
+		query: "JavaScript",
+	});
+
+	const hits = result.hits;
+	t.assert(hits, "hits");
+	t.assert(hits.length > 0, "hits.length");
 });

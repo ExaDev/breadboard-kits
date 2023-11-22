@@ -15,7 +15,7 @@ export type HNFirebaseStoryData = OutputValues & {
 	url: string;
 };
 
-const HackerNewsFirebaseKit = new KitBuilder({
+export const HackerNewsFirebaseKit = new KitBuilder({
 	url: "npm:@exadev/breadboard-kits/HackerNewsFirebaseKit",
 }).build({
 	topStoryIds: async (
@@ -49,5 +49,4 @@ const HackerNewsFirebaseKit = new KitBuilder({
 });
 
 export type HackerNewsFirebaseKit = InstanceType<typeof HackerNewsFirebaseKit>;
-export { HackerNewsFirebaseKit };
 export default HackerNewsFirebaseKit;

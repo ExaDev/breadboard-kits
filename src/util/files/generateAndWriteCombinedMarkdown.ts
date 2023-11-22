@@ -1,8 +1,8 @@
-import BoardMarkdownConfig from "./boardMarkdownConfig.js";
+import BoardMarkdownConfig from "../../types/boardMarkdownConfig.js";
 import generateCombinedMarkdown from "./generateCombinedMarkdown.js";
 import writeCombinedMarkdown from "./writeCombinedMarkdown.js";
 
-export default function generateAndWriteCombinedMarkdown(
+export function generateAndWriteCombinedMarkdown(
 	{ board, filename, title, dir }: BoardMarkdownConfig
 ) {
 	if (!filename) {
@@ -13,4 +13,5 @@ export default function generateAndWriteCombinedMarkdown(
 	writeCombinedMarkdown({ dir, filename, markdown });
 }
 
-export { generateAndWriteCombinedMarkdown };
+export type generateAndWriteCombinedMarkdown = typeof generateAndWriteCombinedMarkdown;
+export default generateAndWriteCombinedMarkdown;

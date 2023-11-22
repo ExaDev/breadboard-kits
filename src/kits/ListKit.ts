@@ -14,9 +14,9 @@ import {
 	SplitOutput
 } from "../types/list.js";
 
-type EmptyObject = Record<string, never>;
+export type EmptyObject = Record<string, never>;
 
-const ListKit = new KitBuilder({
+export const ListKit = new KitBuilder({
 	url: "npm:@exadev/breadboard-kits/list",
 }).build({
 	/**
@@ -70,14 +70,14 @@ const ListKit = new KitBuilder({
 	 * @param inputs.list list the list the last element will be removed from.
 	 */
 	async pop(inputs: InputValues): Promise<
-	OutputValues &
-	(
-		| EmptyObject
-		| {
-			item: NodeValue;
-			list: NodeValue[];
-		}
-	)
+		OutputValues &
+		(
+			| EmptyObject
+			| {
+				item: NodeValue;
+				list: NodeValue[];
+			}
+		)
 	> {
 		if (
 			!inputs.list ||
@@ -142,28 +142,27 @@ const ListKit = new KitBuilder({
 			keep_delimiters,
 			output_format = "string_array",
 		}: SplitInput = inputs;
-		let values: (string | { text: string; delimiter: string; })[]
+		let values: (string | { text: string; delimiter: string; })[];
 
 		if (delimiter.regex != null) {
 			// if it's a regex string, convert back to RegEx
 			// have to do this because nodeValues does not support RegEx Type
-			const myRegex = new RegExp(delimiter.regex)
-			values = input.split(myRegex)
+			const myRegex = new RegExp(delimiter.regex);
+			values = input.split(myRegex);
 
-			if(keep_delimiters) {
+			if (keep_delimiters) {
 				// original regex might have kept delimiters, so just check if that's the case
-				if (input != values.join(""))
-				{
+				if (input != values.join("")) {
 					// if delimiters have been removed, positive lookbehind can be used to keep them when splitting
-					const new_regex = new RegExp(`(?<=${delimiter.regex})`)
-					values = input.split(new_regex)
-				} 
+					const new_regex = new RegExp(`(?<=${delimiter.regex})`);
+					values = input.split(new_regex);
+				}
 			}
 		} else {
-			values = input.split(delimiter.delimiter)
+			values = input.split(delimiter.delimiter);
 		}
 
-		if(split_by_each) {
+		if (split_by_each) {
 			values = values.map((text: string) => text.split("")).flat();
 		}
 
@@ -176,11 +175,11 @@ const ListKit = new KitBuilder({
 
 		if (keep_delimiters && delimiter.delimiter != null) {
 			// remove last element, because it wouldn't have had a delimiter
-			const tmp = values.slice(0, -1)
-			const removed = values[values.length - 1]
+			const tmp = values.slice(0, -1);
+			const removed = values[values.length - 1];
 			// for all other elements, append the original delimiter back
-			values = tmp.map((text: string) => text.concat(delimiter.delimiter))
-			values.push(removed)
+			values = tmp.map((text: string) => text.concat(delimiter.delimiter));
+			values.push(removed);
 		}
 
 		if (output_format === "string_array") {
@@ -191,5 +190,4 @@ const ListKit = new KitBuilder({
 });
 
 export type ListKit = InstanceType<typeof ListKit>;
-export { ListKit };
 export default ListKit;

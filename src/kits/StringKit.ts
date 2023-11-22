@@ -22,7 +22,7 @@ export function substitute(template: string, values: InputValues) {
 	);
 }
 
-const StringKit = new KitBuilder({
+export const StringKit = new KitBuilder({
 	url: "npm:@exadev/breadboard-kits/kits/StringKit",
 }).build({
 	// replicated from https://github.com/google/labs-prototypes/blob/82e3061d26a69f1557b21e7a7f40dd7f56f1bdb6/seeds/llm-starter/src/nodes/prompt-template.ts#L45-L61
@@ -53,6 +53,5 @@ const StringKit = new KitBuilder({
 	}
 });
 
-type StringKit = InstanceType<typeof StringKit>;
-export { StringKit };
+export type StringKit = InstanceType<typeof StringKit>;
 export default StringKit;

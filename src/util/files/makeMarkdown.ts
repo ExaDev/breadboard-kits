@@ -23,13 +23,13 @@ export const codeBlockMap: Map<MarkdownContentType, string> = new Map([
 	[MarkdownContentType.typescript, "typescript"],
 ]);
 
-function notImplemented(): (board: Board) => string {
+export function notImplemented(): (board: Board) => string {
 	return () => {
 		throw new Error("Not implemented");
 	};
 }
 
-function makeMarkdown(
+export function makeMarkdown(
 	{
 		board,
 		title = board.title,
@@ -76,7 +76,5 @@ function makeMarkdown(
 	fs.writeFileSync(path.join(dir, `${filename}.md`), combined);
 }
 
-type makeMarkdown = typeof makeMarkdown;
-
+export type makeMarkdown = typeof makeMarkdown;
 export default makeMarkdown;
-export { makeMarkdown };
