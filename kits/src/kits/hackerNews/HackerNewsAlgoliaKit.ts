@@ -46,9 +46,13 @@ export type HackerNewAlgoliaSearchParameters = {
 	page?: number;
 };
 
+export type SearchHits = OutputValues & {
+	hits: PostItem[];
+};
+
 export async function search(
 	inputs: InputValues & HackerNewAlgoliaSearchParameters
-): Promise<OutputValues & { hits: PostItem[]; }> {
+): Promise<SearchHits> {
 	const { query, tags, numericFilters, page } = inputs;
 	const url = new URL("https://hn.algolia.com/api/v1/search");
 	url.searchParams.set("query", query);
