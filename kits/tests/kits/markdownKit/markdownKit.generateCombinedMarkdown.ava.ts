@@ -75,14 +75,15 @@ test("markdownkit.generateCombinedMarkdown", async (t) => {
 	input3.wire("->title", generateCombinedMarkdown);
 	input4.wire("->dir", generateCombinedMarkdown);
 
-	const myBoard = JSON.stringify(board, null, "\t");
+	const boardjson = JSON.stringify(board, null, "\t");
 	// doesn't return anything, just writes to disk
 	await board.runOnce({
-		boardjson: myBoard,
+		boardjson: boardjson,
 		filename: board.title,
 		title: board.title,
 		dir: "./tests/kits/markdownKit"
 	});
 
+	// void function
 	t.is(true, true);
 });
