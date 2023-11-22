@@ -44,6 +44,7 @@ export type HackerNewAlgoliaSearchParameters = {
 	tags?: HackerNewsAlgoliaSearchTags[];
 	numericFilters?: HackerNewsSearchNumericFilters[];
 	page?: number;
+	limit?: number;
 };
 
 export type SearchHits = OutputValues & {
@@ -78,7 +79,7 @@ export async function search(
 	};
 	return Promise.resolve({
 		algoliaUrl: url.toString(),
-		hits,
+		hits: inputs.imit ? hits.slice(0, inputs.limit) : hits,
 	});
 }
 
