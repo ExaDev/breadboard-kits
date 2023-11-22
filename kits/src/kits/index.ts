@@ -5,7 +5,7 @@ import JsonKit from "./JsonKit.js";
 import ListKit from "./ListKit.js";
 import ObjectKit from "./ObjectKit.js";
 import StringKit from "./StringKit.js";
-
+import MarkdownKit from "./MarkdownKit.js";
 export default {
 	ConfigKit,
 	HackerNewsAlgoliaKit,
@@ -14,4 +14,5 @@ export default {
 	ListKit,
 	ObjectKit,
 	StringKit,
+	MarkdownKit
 };
