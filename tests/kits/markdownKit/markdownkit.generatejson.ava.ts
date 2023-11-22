@@ -75,15 +75,15 @@ test("markdownkit.generateJson", async (t) => {
 	input3.wire("->title", generateJson);
 	input4.wire("->dir", generateJson);
 
-	const myBoard = JSON.stringify(board, null, "\t");
+	const boardjson = JSON.stringify(board, null, "\t");
 	// doesn't return anything, just writes to disk
 	await board.runOnce({
-		boardjson: myBoard,
+		boardjson: boardjson,
 		filename: board.title,
 		title: board.title,
 		dir: "./tests/kits/markdownKit"
 	});
 
-	// TODO add a check that file has been created and then delete it ??
+	// void function
 	t.is(true, true);
 });

@@ -11,44 +11,44 @@ import { MarkdownContentList } from "../types/markdown.js";
 const MarkdownKit = new KitBuilder({
 	url: "npm:@exadev/breadboard-kits/markdownKit",
 }).build({
-	//TODO change to meaningful variable names
 	async generateCombinedMarkdown(inputs: InputValues & {
-		boardjson: string
+		boardjson: string,
 		filename: string,
 		title: string,
 		dir: string
 	}): Promise<void> {
 		const { boardjson, filename, title, dir }: InputValues = inputs
-		const board = jsonStringToBoard(boardjson);
 
+		const board = jsonStringToBoard(boardjson);
 		const markdownConfig: MarkdownContentList = [MarkdownContentType.mermaid, MarkdownContentType.json];
 
 		makeMarkdown({ board, filename, title, dir, markdownConfig });
 	},
 
 	async generateJson(inputs: InputValues & {
-		boardjson: string
+		boardjson: string,
 		filename: string,
 		title: string,
 		dir: string
 	}): Promise<void> {
 		const { boardjson, filename, title, dir }: InputValues = inputs
-		const board = jsonStringToBoard(boardjson);
 
+		const board = jsonStringToBoard(boardjson);
 		const markdownConfig: MarkdownContentList = [MarkdownContentType.json];
 
 		makeMarkdown({ board, filename, title, dir, markdownConfig });
 	},
 	async generateMermaid(inputs: InputValues & {
-		boardjson: string
+		boardjson: string,
 		filename: string,
 		title: string,
 		dir: string
 	}): Promise<void> {
 		const { boardjson, filename, title, dir }: InputValues = inputs
+
 		const board = jsonStringToBoard(boardjson);
 		const markdownConfig: MarkdownContentList = [MarkdownContentType.mermaid];
-		
+
 		makeMarkdown({ board, filename, title, dir, markdownConfig });
 	},
 });
@@ -58,7 +58,7 @@ export { MarkdownKit }
 export default MarkdownKit
 
 // Parse json and re-construct the original board + kits
-//TODO tidyup, move to util ??
+// this has to be done because NodeValues don't support Board type
 function jsonStringToBoard(jsonString: string): Board {
 	// parse json string 
 	const json = JSON.parse(jsonString);
@@ -95,8 +95,8 @@ function jsonStringToBoard(jsonString: string): Board {
 		const description = kit.description
 		const version = kit.version
 
-		const kitBuilderOptions: KitBuilderOptions = { url, title, description, version };
 		// functions of the kit don't matter, we just need to populate the kit field in the markdown
+		const kitBuilderOptions: KitBuilderOptions = { url, title, description, version };
 		const boardKit = new KitBuilder(kitBuilderOptions).build({});
 
 		board.addKit(boardKit);
