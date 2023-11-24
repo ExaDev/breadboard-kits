@@ -74,16 +74,10 @@ export const ListKit = new KitBuilder({
 	 * This method returns the modified list and the removed element.
 	 * @param inputs.list list the list the last element will be removed from.
 	 */
-	async pop(inputs: InputValues): Promise<
-		OutputValues &
-		(
-			| EmptyObject
-			| {
-				item: NodeValue;
-				list: NodeValue[];
-			}
-		)
-	> {
+	async pop(inputs: InputValues): Promise<OutputValues & (EmptyObject | {
+		item: NodeValue;
+		list: NodeValue[];
+	})> {
 		if (
 			!inputs.list ||
 			!Array.isArray(inputs.list) ||
