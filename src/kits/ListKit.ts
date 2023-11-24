@@ -25,7 +25,7 @@ export const ListKit = new KitBuilder({
 	 * @param inputs a set of lists or values to be concatenated into a new array
 	 * @returns a new array containing the combined values of the lists
 	 */
-	async concat(inputs: InputValues): Promise<ListInput> {
+	async concat(inputs: InputValues): Promise<Awaited<{ list: NodeValue }>> {
 		const list: NodeValue[] = [];
 		for (const input of Object.values(inputs)) {
 			if (Array.isArray(input)) {
