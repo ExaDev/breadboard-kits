@@ -23,11 +23,6 @@ export type BifurcatedList = OutputValues & {
 	after: NodeValue[];
 };
 
-export type ListConcatInput = InputValues & {
-	a: NodeValue[];
-	b: NodeValue[];
-};
-
 export type ListIndexInput = InputValues & List & Index;
 
 export type ListItemInput = InputValues & List & Item;

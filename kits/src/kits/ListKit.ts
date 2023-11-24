@@ -2,7 +2,6 @@ import { InputValues, NodeValue, OutputValues } from "@google-labs/breadboard";
 import { KitBuilder } from "@google-labs/breadboard/kits";
 import {
 	BifurcatedList,
-	ListConcatInput,
 	ListIndexInput,
 	ListInput,
 	ListItemInput,
