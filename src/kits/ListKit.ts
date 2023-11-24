@@ -27,12 +27,19 @@ export const ListKit = new KitBuilder({
 	/**
 	 * Combines lists together
 	 * This method returns a and b combined as a new array
-	 * @param inputs.a a list to combine
-	 * @param inputs.b a list to combine to the first list
+	 * @param inputs a set of lists or values to be concatenated into a new array
+	 * @returns a new array containing the combined values of the lists
 	 */
 	async concat(inputs: InputValues): Promise<ListInput> {
-		const { a, b }: ListConcatInput = inputs as ListConcatInput;
-		return Promise.resolve({ list: a.concat(b) });
+		const list: NodeValue[] = [];
+		for (const input of Object.values(inputs)) {
+			if (Array.isArray(input)) {
+				list.push(...input);
+			} else {
+				list.push(input);
+			}
+		}
+		return Promise.resolve({ list });
 	},
 	/**
 	 * Slices a list into two sections.
