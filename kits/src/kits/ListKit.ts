@@ -2,7 +2,6 @@ import { InputValues, NodeValue, OutputValues } from "@google-labs/breadboard";
 import { KitBuilder } from "@google-labs/breadboard/kits";
 import {
 	BifurcatedList,
-	ListConcatInput,
 	ListIndexInput,
 	ListInput,
 	ListItemInput,
@@ -22,12 +21,19 @@ export const ListKit = new KitBuilder({
 	/**
 	 * Combines lists together
 	 * This method returns a and b combined as a new array
-	 * @param inputs.a a list to combine
-	 * @param inputs.b a list to combine to the first list
+	 * @param inputs a set of lists or values to be concatenated into a new array
+	 * @returns a new array containing the combined values of the lists
 	 */
-	async concat(inputs: InputValues): Promise<ListInput> {
-		const { a, b }: ListConcatInput = inputs as ListConcatInput;
-		return Promise.resolve({ list: a.concat(b) });
+	async concat(inputs: InputValues): Promise<Awaited<{ list: NodeValue }>> {
+		const list: NodeValue[] = [];
+		for (const input of Object.values(inputs)) {
+			if (Array.isArray(input)) {
+				list.push(...input);
+			} else {
+				list.push(input);
+			}
+		}
+		return Promise.resolve({ list });
 	},
 	/**
 	 * Slices a list into two sections.
@@ -69,16 +75,10 @@ export const ListKit = new KitBuilder({
 	 * This method returns the modified list and the removed element.
 	 * @param inputs.list list the list the last element will be removed from.
 	 */
-	async pop(inputs: InputValues): Promise<
-		OutputValues &
-		(
-			| EmptyObject
-			| {
-				item: NodeValue;
-				list: NodeValue[];
-			}
-		)
-	> {
+	async pop(inputs: InputValues): Promise<OutputValues & (EmptyObject | {
+		item: NodeValue;
+		list: NodeValue[];
+	})> {
 		if (
 			!inputs.list ||
 			!Array.isArray(inputs.list) ||
