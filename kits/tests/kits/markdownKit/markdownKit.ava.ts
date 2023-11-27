@@ -1,12 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-// eslint-disable @typescript-eslint/no-unsafe-call
-
 import { Board } from "@google-labs/breadboard";
 import test from "ava";
-import { ListKit, MarkdownKit } from "../../src/index.js";
+import { ListKit, MarkdownKit } from "../../../src/index.js";
 
 test("markdownkit.generateCombinedMarkdown", async (t) => {
 	const board = new Board({
@@ -14,8 +8,6 @@ test("markdownkit.generateCombinedMarkdown", async (t) => {
 		description: "Exadev Markdown Kit Combined Test",
 		version: "0.0.1",
 	});
-
-	// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 	const markdownKit = board.addKit(MarkdownKit);
 
 	const input = board.input({
@@ -92,7 +84,6 @@ test("markdownkit.generateCombinedMarkdown", async (t) => {
 	// void function
 	t.is(true, true);
 });
-
 
 test("markdownkit.generateJson", async (t) => {
 	const board = new Board({
@@ -179,7 +170,6 @@ test("markdownkit.generateJson", async (t) => {
 	t.is(true, true);
 });
 
-
 test("markdownkit.generateMermaid", async (t) => {
 	const board = new Board({
 		title: "Markdown Kit Mermaid",
@@ -264,7 +254,6 @@ test("markdownkit.generateMermaid", async (t) => {
 	// void function
 	t.is(true, true);
 });
-
 
 // test markdown works when more than 1 kit is added to a board
 test("markdownkit.anotherBoard", async (t) => {
