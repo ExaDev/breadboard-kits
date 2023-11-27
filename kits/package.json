@@ -72,7 +72,7 @@
 	},
 	"scripts": {
 		"build": "tsc --pretty",
-		"build:publish": "npm run prebuild && npm run build -- --project tsconfig.publish.json",
+		"build:publish": "npm run prebuild && tsup --config ./tsup.config.ts",
 		"clean": "rimraf dist ; rimraf --glob './{src,tests}/**/*.{js,d.ts,d.ts.map}'",
 		"deploy": "npm version patch && npm publish",
 		"lint": "eslint ./src",
