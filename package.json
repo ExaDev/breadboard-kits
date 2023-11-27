@@ -2,7 +2,7 @@
 	"$schema": "https://json.schemastore.org/package",
 	"ava": {
 		"files": [
-			"tests/**/*.ava.ts"
+			"tests/**/**.ava.ts"
 		],
 		"typescript": {
 			"compile": false,
@@ -16,6 +16,7 @@
 		"@google-labs/breadboard": "^0.5.1",
 		"@google-labs/core-kit": "^0.0.1",
 		"@google-labs/llm-starter": "^0.2.1",
+		"@xenova/transformers": "^2.9.0",
 		"dotenv": "^16.3.1",
 		"jsonschema": "^1.4.1"
 	},
