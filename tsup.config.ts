@@ -11,7 +11,7 @@ export default defineConfig({
 	shims: true,
 	skipNodeModulesBundle: true,
 	sourcemap: true,
-	splitting: true,
+	splitting: false,
 	treeshake: true,
 	tsconfig: "tsconfig.publish.json",
 });
