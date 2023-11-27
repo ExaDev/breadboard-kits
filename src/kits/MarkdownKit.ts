@@ -8,7 +8,7 @@ import { Board, Edge } from "@google-labs/breadboard";
 import { makeMarkdown } from "../util/files/makeMarkdown.js"
 import { MarkdownContentType } from "../types/markdown.js";
 import { MarkdownContentList } from "../types/markdown.js";
-const MarkdownKit = new KitBuilder({
+export const MarkdownKit = new KitBuilder({
 	url: "npm:@exadev/breadboard-kits/markdownKit",
 }).build({
 	async generateCombinedMarkdown(inputs: InputValues & {
@@ -54,8 +54,7 @@ const MarkdownKit = new KitBuilder({
 });
 
 export type MarkdownKit = InstanceType<typeof MarkdownKit>;
-export { MarkdownKit }
-export default MarkdownKit
+export default MarkdownKit;
 
 // Parse json and re-construct the original board + kits
 // this has to be done because NodeValues don't support Board type
