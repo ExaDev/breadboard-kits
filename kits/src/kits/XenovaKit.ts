@@ -1,56 +1,41 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-assignment */
-import { InputValues, NodeValue, OutputValues, } from "@google-labs/breadboard";
+import { InputValues, NodeValue, OutputValues } from "@google-labs/breadboard";
 import { KitBuilder } from "@google-labs/breadboard/kits";
-import { GetModelsParams, ModelVariants, DEFAULT_MODEL, DEFAULT_TASK, Direction, Model, ModelWithConfig, FullModel, FullModelWithConfig } from "../types/xenova.js"
 import { pipeline } from "@xenova/transformers";
+import {
+	DEFAULT_MODEL,
+	DEFAULT_TASK,
+	Direction,
+	FullModel,
+	FullModelWithConfig,
+	GetModelsParams,
+	Model,
+	ModelVariants,
+	ModelWithConfig,
+	TransformerTask,
+} from "../types/xenova.js";
 
-export const XenovaKit = new KitBuilder({
-	url: "npm:@xenova/transformers",
-}).build({
-	async pipeline(
-		inputs: InputValues & {
-			input?: string;
-			model?: string;
-			task?: string;
-		}
-	): Promise<OutputValues | void> {
-		inputs.model = inputs.model ?? DEFAULT_MODEL;
-		inputs.task = inputs.task ?? DEFAULT_TASK;
-		if (!inputs.input) {
-			throw new Error("input required");
-		}
-		if (!inputs.model) {
-			throw new Error("model required");
-		}
-		if (!inputs.task) {
-			throw new Error("task required");
-		}
-
-		try {
-			const pipe = await pipeline(inputs.task, inputs.model);
-			const output = await pipe(inputs.input);
-			return {
-				...inputs,
-				output,
-			};
-		} catch (error) {
-			console.error("error", error);
-			return {
-				...inputs,
-				$error: error as NodeValue,
-			};
-		}
-	},
-	async getModels(
-		inputs: InputValues & GetModelsParams
-	): Promise<OutputValues & { models: ModelVariants[]; url: string; }> {
-		return await getModels(inputs);
-	},
-});
+export async function runPipeline(inputs: {
+	input?: string;
+	model?: string;
+	task?: TransformerTask;
+}): Promise<{
+		output: string;
+		input?: string;
+		model?: string;
+		task?: TransformerTask;
+	}> {
+	const pipe = await pipeline(inputs.task, inputs.model);
+	const output = await pipe(inputs.input);
+	return {
+		...inputs,
+		output,
+	};
+}
 
 export async function getModels(
 	params: GetModelsParams = {}
-): Promise<{ models: ModelVariants[]; url: string; }> {
+): Promise<{ models: ModelVariants[]; url: string }> {
 	let url = "https://huggingface.co/api/models";
 	const queryParams = new URLSearchParams();
 
@@ -90,5 +75,44 @@ export async function getModels(
 	};
 }
 
+export const XenovaKit = new KitBuilder({
+	url: "npm:@xenova/transformers",
+}).build({
+	async pipeline(
+		inputs: InputValues & {
+			input?: string;
+			model?: string;
+			task?: TransformerTask;
+		}
+	): Promise<OutputValues | void> {
+		inputs.model = inputs.model ?? DEFAULT_MODEL;
+		inputs.task = inputs.task ?? DEFAULT_TASK;
+		if (!inputs.input) {
+			throw new Error("input required");
+		}
+		if (!inputs.model) {
+			throw new Error("model required");
+		}
+		if (!inputs.task) {
+			throw new Error("task required");
+		}
+
+		try {
+			return await runPipeline(inputs);
+		} catch (error) {
+			console.error("error", error);
+			return {
+				...inputs,
+				$error: error as NodeValue,
+			};
+		}
+	},
+	async getModels(
+		inputs: InputValues & GetModelsParams
+	): Promise<OutputValues & { models: ModelVariants[]; url: string }> {
+		return await getModels(inputs);
+	},
+});
+
 export type XenovaKit = InstanceType<typeof XenovaKit>;
-export default XenovaKit
+export default XenovaKit;
