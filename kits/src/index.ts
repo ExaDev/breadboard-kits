@@ -16,3 +16,5 @@ export { ObjectKit } from "./kits/ObjectKit.js";
 export { StringKit } from "./kits/StringKit.js";
 export { MarkdownKit } from "./kits/MarkdownKit.js";
 export { CourseCrafterKit } from "./kits/courseCrafter/CourseCrafterKit.js";
+export { FilterKit } from "./kits/Filterkit.js"
+export { XenovaKit } from "./kits/XenovaKit.js"
