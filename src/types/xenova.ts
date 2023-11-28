@@ -1,31 +1,36 @@
 import { NodeValue } from "@google-labs/breadboard";
 
-type Task =
-	| "text-classification"
-	| "token-classification"
-	| "question-answering"
-	| "fill-mask"
-	| "summarization"
-	| "translation"
-	| "text2text-generation"
-	| "text-generation"
-	| "zero-shot-classification"
-	| "audio-classification"
-	| "automatic-speech-recognition"
-	| "text-to-audio"
-	| "image-to-text"
-	| "image-classification"
-	| "image-segmentation"
-	| "zero-shot-image-classification"
-	| "object-detection"
-	| "zero-shot-object-detection"
-	| "document-question-answering"
-	| "image-to-image"
-	| "depth-estimation"
-	| "feature-extraction";
+export const TransformerTask = {
+	textClassification: "text-classification",
+	tokenClassification: "token-classification",
+	questionAnswering: "question-answering",
+	fillMask: "fill-mask",
+	summarization: "summarization",
+	translation: "translation",
+	text2textGeneration: "text2text-generation",
+	textGeneration: "text-generation",
+	zeroShotClassification: "zero-shot-classification",
+	audioClassification: "audio-classification",
+	automaticSpeechRecognition: "automatic-speech-recognition",
+	textToAudio: "text-to-audio",
+	imageToText: "image-to-text",
+	imageClassification: "image-classification",
+	imageSegmentation: "image-segmentation",
+	zeroShotImageClassification: "zero-shot-image-classification",
+	objectDetection: "object-detection",
+	zeroShotObjectDetection: "zero-shot-object-detection",
+	documentQuestionAnswering: "document-question-answering",
+	imageToImage: "image-to-image",
+	depthEstimation: "depth-estimation",
+	featureExtraction: "feature-extraction",
+} as const;
 
-export const DEFAULT_MODEL = "Xenova/distilbert-base-uncased-finetuned-sst-2-english";
-export const DEFAULT_TASK: Task = "text-classification";
+export type TransformerTask =
+	(typeof TransformerTask)[keyof typeof TransformerTask];
+
+export const DEFAULT_MODEL =
+	"Xenova/distilbert-base-uncased-finetuned-sst-2-english";
+export const DEFAULT_TASK: TransformerTask = TransformerTask.textClassification;
 
 export const SummarisationModels = {
 	modelIds: [
@@ -49,11 +54,20 @@ export enum Direction {
 	DESCENDING = -1,
 }
 
+export const SortModels = {
+	downloads: "downloads",
+	createdAt: "createdAt",
+	updatedAt: "updatedAt",
+	author: "author",
+} as const;
+
+export type SortModels = (typeof SortModels)[keyof typeof SortModels];
+
 export type GetModelsParams = {
 	search?: string;
 	author?: string;
 	filter?: string;
-	sort?: "downloads" | "createdAt" | "updatedAt" | "author";
+	sort?: SortModels;
 	direction?: Direction | "ascending" | "descending";
 	limit?: number;
 	full?: boolean;
@@ -84,7 +98,6 @@ export type FullModel = Model & {
 export type Sibling = {
 	rfilename: string;
 };
-
 
 export type ModelWithConfig = Model & {
 	config: Config;
@@ -154,4 +167,8 @@ export type AutoMap = {
 };
 
 export type FullModelWithConfig = FullModel & ModelWithConfig;
-export type ModelVariants = Model | FullModel | ModelWithConfig | FullModelWithConfig;
+export type ModelVariants =
+	| Model
+	| FullModel
+	| ModelWithConfig
+	| FullModelWithConfig;
