@@ -267,3 +267,5 @@ tests/**/*.d.ts
 tests/**/*.js.map
 tests/**/*.js
 tests/**/*.md
+
+tests/**/**.json
