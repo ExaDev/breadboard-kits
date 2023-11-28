@@ -5,6 +5,7 @@
 		"declarationMap": true,
 		"esModuleInterop": true,
 		"isolatedModules": true,
+		"skipLibCheck": true,
 		"baseUrl": "./src",
 		"rootDir": ".",
 		"lib": [
