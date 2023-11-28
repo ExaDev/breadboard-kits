@@ -164,10 +164,10 @@ import {
 // })
 
 
-
+const TIMEOUT = 30_000  // 30 seconds;
 
 test("getModels fetches models from API", async (t) => {
-	t.timeout(10000);
+	t.timeout(TIMEOUT);
 	const params: GetModelsParams = {
 		sort: SortModels.downloads,
 		direction: Direction.DESCENDING,
@@ -188,14 +188,14 @@ test("getModels fetches models from API", async (t) => {
 	t.true(Array.isArray(result.models));
 
 	// Basic check, adjust according to actual expected output
-	t.deepEqual(result, { models: result.models, url: result.url });
+	t.deepEqual(result, {models: result.models, url: result.url});
 
 	t.true(result.models.length > 0);
 });
 
 // can get onnx model
 test("getModels fetches onnx models from API", async (t) => {
-	t.timeout(10000);
+	t.timeout(TIMEOUT);
 	const params: GetModelsParams = {
 		sort: SortModels.downloads,
 		direction: Direction.DESCENDING,
@@ -216,14 +216,14 @@ test("getModels fetches onnx models from API", async (t) => {
 	t.true(Array.isArray(result.models));
 
 	// Basic check, adjust according to actual expected output
-	t.deepEqual(result, { models: result.models, url: result.url });
+	t.deepEqual(result, {models: result.models, url: result.url});
 
 	t.true(result.models.length > 0);
 });
 
 // can get models with config
 test("getModels fetches models with config from API", async (t) => {
-	t.timeout(10000);
+	t.timeout(TIMEOUT);
 	const params: GetModelsParams = {
 		sort: SortModels.downloads,
 		direction: Direction.DESCENDING,
@@ -245,7 +245,7 @@ test("getModels fetches models with config from API", async (t) => {
 	t.true(Array.isArray(result.models));
 
 	// Basic check, adjust according to actual expected output
-	t.deepEqual(result, { models: result.models, url: result.url });
+	t.deepEqual(result, {models: result.models, url: result.url});
 
 	t.true(result.models.length > 0);
 
@@ -255,7 +255,7 @@ test("getModels fetches models with config from API", async (t) => {
 
 // can get full models
 test("getModels fetches full models from API", async (t) => {
-	t.timeout(10000);
+	t.timeout(TIMEOUT);
 	const params: GetModelsParams = {
 		sort: SortModels.downloads,
 		direction: Direction.DESCENDING,
@@ -277,7 +277,7 @@ test("getModels fetches full models from API", async (t) => {
 	t.true(Array.isArray(result.models));
 
 	// Basic check, adjust according to actual expected output
-	t.deepEqual(result, { models: result.models, url: result.url });
+	t.deepEqual(result, {models: result.models, url: result.url});
 
 	t.true(result.models.length > 0);
 
@@ -290,7 +290,7 @@ test("getModels fetches full models from API", async (t) => {
 });
 
 test("getModels fetches full models with config from API", async (t) => {
-	t.timeout(10000);
+	t.timeout(TIMEOUT);
 	const params: GetModelsParams = {
 		sort: SortModels.downloads,
 		direction: Direction.DESCENDING,
@@ -313,7 +313,7 @@ test("getModels fetches full models with config from API", async (t) => {
 	t.true(Array.isArray(result.models));
 
 	// Basic check, adjust according to actual expected output
-	t.deepEqual(result, { models: result.models, url: result.url });
+	t.deepEqual(result, {models: result.models, url: result.url});
 
 	t.true(result.models.length > 0);
 
@@ -328,7 +328,7 @@ test("getModels fetches full models with config from API", async (t) => {
 
 // get and test summarization model
 test("getModels fetches summarization models from API", async (t) => {
-	t.timeout(10000);
+	t.timeout(TIMEOUT);
 	const result = await getModels({
 		direction: Direction.DESCENDING,
 		filter: "transformers.js",
@@ -359,7 +359,7 @@ test("getModels fetches summarization models from API", async (t) => {
 
 // get and test text classification model
 test("getModels fetches text classification models from API", async (t) => {
-	t.timeout(10000);
+	t.timeout(TIMEOUT);
 	const result = await getModels({
 		sort: SortModels.downloads,
 		direction: Direction.DESCENDING,
@@ -391,7 +391,7 @@ test("getModels fetches text classification models from API", async (t) => {
 
 // SortModels.downloads Direction.DESCENDING works as expected
 test("getModels fetches models sorted by downloads", async (t) => {
-	t.timeout(10000);
+	t.timeout(TIMEOUT);
 	const result = await getModels({
 		sort: SortModels.downloads,
 		direction: Direction.DESCENDING,
@@ -408,7 +408,7 @@ test("getModels fetches models sorted by downloads", async (t) => {
 
 // SortModels.createdAt Direction.DESCENDING works as expected
 test("getModels fetches models sorted by createdAt", async (t) => {
-	t.timeout(10000);
+	t.timeout(TIMEOUT);
 	const result = await getModels({
 		sort: SortModels.createdAt,
 		direction: Direction.DESCENDING,
