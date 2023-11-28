@@ -5,6 +5,7 @@
 		"declarationMap": true,
 		"esModuleInterop": true,
 		"isolatedModules": true,
+		"skipLibCheck": true,
 		"baseUrl": "./src",
 		"rootDir": ".",
 		"lib": [
@@ -16,7 +17,8 @@
 		"target": "ES2022"
 	},
 	"exclude": [
-		"dist"
+		"dist",
+		"node_modules"
 	],
 	"include": [
 		"src/**/*",
