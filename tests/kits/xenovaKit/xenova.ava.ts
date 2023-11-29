@@ -164,7 +164,7 @@ import {
 // })
 
 
-const TIMEOUT = 30_000  // 30 seconds;
+const TIMEOUT = 50_000  // 50 seconds;
 
 test("getModels fetches models from API", async (t) => {
 	t.timeout(TIMEOUT);
