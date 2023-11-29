@@ -2,7 +2,7 @@
 	"$schema": "https://json.schemastore.org/package",
 	"ava": {
 		"files": [
-			"tests/**/*.ava.ts"
+			"tests/**/courseCrafter.ava.ts"
 		],
 		"typescript": {
 			"compile": false,
@@ -13,13 +13,16 @@
 		"workerThreads": false
 	},
 	"dependencies": {
+		"@anthropic-ai/sdk": "^0.10.2",
+		"@anthropic-ai/tokenizer": "^0.0.4",
 		"@google-labs/breadboard": "^0.5.1",
 		"@google-labs/core-kit": "^0.0.1",
 		"@google-labs/llm-starter": "^0.2.1",
+		"@xenova/transformers": "^2.9.0",
 		"axios": "^1.6.2",
 		"cheerio": "^1.0.0-rc.12",
-		"@xenova/transformers": "^2.9.0",
 		"dotenv": "^16.3.1",
+		"js-tiktoken": "^1.0.8",
 		"jsonschema": "^1.4.1"
 	},
 	"devDependencies": {

@@ -7,6 +7,7 @@ import ObjectKit from "./ObjectKit.js";
 import StringKit from "./StringKit.js";
 import MarkdownKit from "./MarkdownKit.js";
 import CourseCrafterKit  from "./courseCrafter/CourseCrafterKit.js";
+import ClaudeKit from "./ClaudeKit.js"
 export default {
 	ConfigKit,
 	HackerNewsAlgoliaKit,
@@ -16,5 +17,6 @@ export default {
 	ObjectKit,
 	StringKit,
 	MarkdownKit,
-	CourseCrafterKit
+	CourseCrafterKit,
+	ClaudeKit
 };

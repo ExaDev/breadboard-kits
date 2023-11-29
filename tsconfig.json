@@ -6,6 +6,7 @@
 		"esModuleInterop": true,
 		"isolatedModules": true,
 		"skipLibCheck": true,
+		"resolveJsonModule": true,
 		"baseUrl": "./src",
 		"rootDir": ".",
 		"lib": [
