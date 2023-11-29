@@ -32,10 +32,8 @@ export const CourseCrafterKit = new KitBuilder({
 		})
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 		const selector = cheerio.load(response.data)
-
-		console.log(`Extracting Content from: ${url}`)
-		// could provide these class names as param, so as long as we know the class names, we can extract anything
 		// hard to extract data from other blogs that don't follow the structure of https://developer.chrome.com/blog blogs
+		console.log(`Extracting Content from: ${url}`)
 		const title : NodeValue = selector(".flow-space-200>h1").text()
 		// blog body
 		const blog : NodeValue = selector(".center-images").text()
