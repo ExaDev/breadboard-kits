@@ -19,7 +19,7 @@ test("courseCrafterKit.getContent", async (t) => {
 				text: {
 					type: "string",
 					title: "Text",
-					description: "concat",
+					description: "urls",
 				},
 			},
 		},
@@ -53,9 +53,7 @@ test("courseCrafterKit.getContent", async (t) => {
 	})
 	blogContents.push({ url: blogURL3, title: result3["title"], blog: result3["blog"] })
 
-	// then maybe feed to this to xenova to get a summary and then we can find other related blogposts using this summary
-	// OR, we can gather all the blogs that we know are related, feed it all to xenova, to get summaries, and then 
-	// use some model to generate a course for us
+	// then maybe feed to this to xenova to get a summary
 	fs.writeFileSync("./tests/kits/courseCrafterKit/output.json", JSON.stringify(blogContents, null, 2));
 
 	t.is(true, true);
