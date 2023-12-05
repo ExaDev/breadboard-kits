@@ -39,6 +39,7 @@ export const StringKit = new KitBuilder({
 	) {
 		const template = inputs.template;
 		const parameters = parametersFromTemplate(template);
+		
 		if (!parameters.length) return { string: template };
 
 		const substitutes = parameters.reduce((acc, parameter) => {
@@ -48,7 +49,7 @@ export const StringKit = new KitBuilder({
 		}, {});
 
 		const string = substitute(template, substitutes);
-		// log.info(`Prompt: ${string}`);
+
 		return Promise.resolve({ string });
 	}
 });

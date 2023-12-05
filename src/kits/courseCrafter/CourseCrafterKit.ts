@@ -31,9 +31,10 @@ async function getBlogContent(url: string): Promise<Blog> {
 	const selector = cheerio.load(response.data)
 	// hard to extract data from other blogs that don't follow the structure of https://developer.chrome.com/blog blogs
 	console.log(`Extracting Content from: ${url}`)
-	const title : NodeValue = selector(".flow-space-200>h1").text()
+	const title : NodeValue = selector(".devsite-page-title").text()
 	// blog body
-	const blog : NodeValue = selector(".center-images").text()
+	// if this stops returning content, inspect css, the class names might have changed
+	const blog : NodeValue = selector(".devsite-article-body").text()
 
 	return Promise.resolve({ url, title, blog })
 }
@@ -49,8 +50,7 @@ export const CourseCrafterKit = new KitBuilder({
 		return getBlogContent(url)
 	},
 	// TODO refactor to allow multiple urls 
-	// use this if you want to wire results to xenova kit
-	// use getContent if you just want the blog contents
+
 	async getBlogContentForTask(
 		inputs: InputValues & {
 			url?: string;
