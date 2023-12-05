@@ -6,7 +6,7 @@ import claude from "@anthropic-ai/tokenizer/claude.json" assert { type: "json" }
 import { InputValues, OutputValues } from "@google-labs/breadboard";
 import { KitBuilder } from "@google-labs/breadboard/kits";
 import { Tiktoken, TiktokenBPE } from "js-tiktoken";
-import {ClaudeResponse, ClaudeParams} from "../types/claude.js";
+import { ClaudeResponse, ClaudeParams } from "../types/claude.js";
 
 
 export function countTokens(text: string): number {
@@ -67,7 +67,6 @@ export async function postClaudeCompletion({
 		"x-api-key": apiKey,
 	};
 
-	console.log("HEREEEE")
 
 	// Constructing the prompt
 	const prompt = `\n\nHuman: ${userQuestion}\n\nAssistant:`;
@@ -100,7 +99,7 @@ export async function postClaudeCompletion({
 		});
 
 		if (!response.ok)
-			throw new Error(`HTTP error! status: ${response.status}`);
+			throw new Error(`HTTP error! status: ${response.status}:${response.statusText}`);
 
 		return (await response.json()) as ClaudeResponse;
 	} catch (error) {
@@ -109,7 +108,5 @@ export async function postClaudeCompletion({
 	}
 }
 
-export type ClaudeKit= InstanceType<typeof ClaudeKit>;
+export type ClaudeKit = InstanceType<typeof ClaudeKit>;
 export default ClaudeKit
-
-
