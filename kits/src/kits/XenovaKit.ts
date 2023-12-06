@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-assignment */
 import { InputValues, NodeValue, OutputValues } from "@google-labs/breadboard";
 import { KitBuilder } from "@google-labs/breadboard/kits";
@@ -17,6 +18,13 @@ import {
 	summaryOutput,
 } from "../types/xenova.js";
 
+/**
+ * Pipeline which feeds data to LLM to carry out a certain task such as summarization
+ * @param input data to feed to the model
+ * @param model the model to use for a given task
+ * @param task  task to perform for the given model
+ * @returns results from LLM
+ */
 export async function runPipeline(inputs: {
 	input?: string;
 	model?: string;
@@ -35,6 +43,11 @@ export async function runPipeline(inputs: {
 	};
 }
 
+/**
+ * Retrieves huggingface models
+ * @param params 
+ * @returns huggingface models
+ */
 export async function getModels(
 	params: GetModelsParams = {}
 ): Promise<{ models: ModelVariants[]; url: string }> {
@@ -109,6 +122,16 @@ export const XenovaKit = new KitBuilder({
 			};
 		}
 	},
+	/**
+	 * Runs the LLM pipeline on multiple inputs 
+	 * 
+	 * TODO this can be optimized, the model is always the same, so we don't need to download the model for each input
+	 * @param inputs data to feed to the LLM
+	 * @param model the LLM model to use
+	 * @param task task for the LLM to perform
+	 * @returns results for each input from the LLM
+	 */
+	
 	async pipelineBulk (
 		inputs: InputValues & {
 			inputs?: string[];
@@ -132,8 +155,10 @@ export const XenovaKit = new KitBuilder({
 
 		for (const input of inputs.inputs) {
 			try {
-				const response = await runPipeline({input:input["blogContents"], model:inputs.model, task:inputs.task})
-				summaries.push({summary: response["output"]})
+				const response = await runPipeline({input:input, model:inputs.model, task:inputs.task})
+				// we want to extract the values out the json/dict because we want to be able to use .join during 
+				// template/prompt construction.
+				summaries.push(response["output"][0]["summary_text"])
 			} catch (error) {
 				console.error("error", error);
 				return {

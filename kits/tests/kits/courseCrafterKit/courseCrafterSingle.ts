@@ -11,10 +11,9 @@ import fs from "fs";
 import { Starter } from "@google-labs/llm-starter";
 import { config } from "dotenv";
 
-
 const TIMEOUT = 200_000
-// Board that extracts content for 1 blog post and outputs some code in md format
-// code tries to achieve the topic being discussed in the blogpost
+// single blog post
+// purposely removed .ava so it doesn't run with github pipeline, because this wont work without the api key in .env
 test("courseCrafterKit.Xenova.Claude", async (t) => {
 	t.timeout(TIMEOUT);
 	const board = new Board({
@@ -29,9 +28,7 @@ test("courseCrafterKit.Xenova.Claude", async (t) => {
 	const stringKit = board.addKit(StringKit);
 	const core = board.addKit(Core);
 	const starter = board.addKit(Starter);
-
 	config();
-
 
 	const input = board.input({
 		$id: "blogDetails",
@@ -76,39 +73,34 @@ test("courseCrafterKit.Xenova.Claude", async (t) => {
 		},
 	});
 
-	const getBlogContentForTask = courseCraftKit.getBlogContentForTask({ $id: "getBlogContents" })
-	const pipeline = xenovaKit.pipeline({ $id: "summaryLanguageModel" })
-	const output = board.output({ $id: "outputSummary" })
+	const getBlogContentForTask = courseCraftKit.getBlogContentForTask({ $id: "getBlogContents" });
+	const pipeline = xenovaKit.pipeline({ $id: "summaryLanguageModel" });
+	const output = board.output({ $id: "outputSummary" });
 
 	const instruction = "Based on this summary and original text, give me code sample on how to achieve the discussed topic. Output result in markdown format, do not include the summary text in the output: ";
-
 	const instructionTemplate = stringKit.template({
 		$id: "claudePromptConstructor",
-		template: [instruction, "{{summary}}", "the original text is the following: ", "{{blogContent}}"].join("/n"),
+		template: [instruction, "{{summary}}", "the original text is the following: ", "{{blogContent}}", ].join("/n"),
 	});
 
-
-	templateInput.wire("->template", instructionTemplate)
-	input.wire("->url", getBlogContentForTask)
-	taskDetails.wire("->model", getBlogContentForTask)
-	taskDetails.wire("->task", getBlogContentForTask)
+	templateInput.wire("->template", instructionTemplate);
+	input.wire("->url", getBlogContentForTask);
+	taskDetails.wire("->model", getBlogContentForTask);
+	taskDetails.wire("->task", getBlogContentForTask);
 
 	// wire blog content into xenova pipeline
-	getBlogContentForTask.wire("blogContent->input", pipeline)
-	getBlogContentForTask.wire("model->model", pipeline)
-	getBlogContentForTask.wire("task->task", pipeline)
+	getBlogContentForTask.wire("blogContent->input", pipeline);
+	getBlogContentForTask.wire("model->model", pipeline);
+	getBlogContentForTask.wire("task->task", pipeline);
 	// use passthrough to collect all outputs of previous nodes/kits
-	const allOutputs = core.passthrough({ $id: "outputCollector" })
+	const allOutputs = core.passthrough({ $id: "outputCollector" });
 
-	getBlogContentForTask.wire("blogContent->blogContent", instructionTemplate)
-	pipeline.wire("output->summary", instructionTemplate)
-
-	getBlogContentForTask.wire("blogContent->blogContent", allOutputs)
-	pipeline.wire("output->blogSummary", allOutputs)
-
+	getBlogContentForTask.wire("blogContent->blogContent", instructionTemplate);
+	pipeline.wire("output->summary", instructionTemplate);
+	getBlogContentForTask.wire("blogContent->blogContent", allOutputs);
+	pipeline.wire("output->blogSummary", allOutputs);
 
 	const secrets = starter.secrets(["CLAUDE_KEY"]);
-
 	const serverUrl = "https://api.anthropic.com/v1/complete";
 	const claudeParams = {
 		model: "claude-2",
@@ -120,27 +112,23 @@ test("courseCrafterKit.Xenova.Claude", async (t) => {
 		...claudeParams,
 	});
 
-	secrets.wire("CLAUDE_KEY->apiKey", claudeCompletion)
-
-	instructionTemplate.wire("string->userQuestion", claudeCompletion)
-
-	instructionTemplate.wire("string->userQuestion", allOutputs)
+	secrets.wire("CLAUDE_KEY->apiKey", claudeCompletion);
+	instructionTemplate.wire("string->userQuestion", claudeCompletion);
+	instructionTemplate.wire("string->userQuestion", allOutputs);
 	claudeCompletion.wire("completion->claudeResponse", allOutputs);
 	allOutputs.wire("*", output)
 
-
-	makeMarkdown({ board, filename: board.title, title: board.title, dir: "./tests/kits/courseCrafterKit", markdownConfig: [MarkdownContentType.mermaid, MarkdownContentType.json] })
-
+	makeMarkdown({ board, filename: board.title, title: board.title, dir: "./tests/kits/courseCrafterKit", markdownConfig: [MarkdownContentType.mermaid, MarkdownContentType.json] });
 
 	const blogURL = "https://developer.chrome.com/blog/introducing-scheduler-yield-origin-trial/"
 	const result = await board.runOnce({
 		url: blogURL,
 		model: "Xenova/distilbart-cnn-6-6",
 		task: "summarization",
-	})
+	});
 
-	const outputBuffer = []
-	outputBuffer.push({ url: blogURL, ...result })
+	const outputBuffer = [];
+	outputBuffer.push({ url: blogURL, ...result });
 	// write all outputs into 1 file, summarising the whole process
 	fs.writeFileSync("./tests/kits/courseCrafterKit/blog_summary.json", JSON.stringify(outputBuffer, null, 2));
 	// this prompt returns text in markdown format
