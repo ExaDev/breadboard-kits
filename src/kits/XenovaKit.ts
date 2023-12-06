@@ -13,6 +13,8 @@ import {
 	ModelVariants,
 	ModelWithConfig,
 	TransformerTask,
+	pipelineBulkOutput,
+	summaryOutput,
 } from "../types/xenova.js";
 
 export async function runPipeline(inputs: {
@@ -106,6 +108,42 @@ export const XenovaKit = new KitBuilder({
 				$error: error as NodeValue,
 			};
 		}
+	},
+	async pipelineBulk (
+		inputs: InputValues & {
+			inputs?: string[];
+			model?: string;
+			task?: TransformerTask;
+		}
+	): Promise<OutputValues | void | pipelineBulkOutput> {
+		inputs.model = inputs.model ?? DEFAULT_MODEL;
+		inputs.task = inputs.task ?? DEFAULT_TASK;
+		if (!inputs.inputs) {
+			throw new Error("input required");
+		}
+		if (!inputs.model) {
+			throw new Error("model required");
+		}
+		if (!inputs.task) {
+			throw new Error("task required");
+		}
+
+		const summaries: summaryOutput[] = []
+
+		for (const input of inputs.inputs) {
+			try {
+				const response = await runPipeline({input:input["blogContents"], model:inputs.model, task:inputs.task})
+				summaries.push({summary: response["output"]})
+			} catch (error) {
+				console.error("error", error);
+				return {
+					...inputs,
+					$error: error as NodeValue,
+				};
+			}
+		}
+
+		return Promise.resolve({summaries})
 	},
 	async getModels(
 		inputs: InputValues & GetModelsParams
