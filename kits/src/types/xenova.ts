@@ -1,4 +1,5 @@
 import { NodeValue } from "@google-labs/breadboard";
+import { pipeline } from "stream";
 
 export const TransformerTask = {
 	textClassification: "text-classification",
@@ -165,6 +166,16 @@ export type AutoMap = {
 	AutoModelForTokenClassification?: string;
 	AutoModelForMaskedLM?: string;
 };
+
+export type summaryOutput = {
+	summary: NodeValue;
+}
+
+export type summaryList = {
+	summaries: summaryOutput[];
+};
+
+export type pipelineBulkOutput = summaryList
 
 export type FullModelWithConfig = FullModel & ModelWithConfig;
 export type ModelVariants =

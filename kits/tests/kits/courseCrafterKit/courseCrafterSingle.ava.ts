@@ -13,10 +13,8 @@ import { config } from "dotenv";
 
 
 const TIMEOUT = 200_000
-// grabs a blog post from chrome developer blogs
-// gets a summary of the post using xenova and then asks claude to 
-// produce a code snippet using the summary + original text (RAG - https://www.promptingguide.ai/techniques/rag)
-// TODO change to use secrets
+// Board that extracts content for 1 blog post and outputs some code in md format
+// code tries to achieve the topic being discussed in the blogpost
 test("courseCrafterKit.Xenova.Claude", async (t) => {
 	t.timeout(TIMEOUT);
 	const board = new Board({
@@ -34,7 +32,7 @@ test("courseCrafterKit.Xenova.Claude", async (t) => {
 
 	config();
 
-	
+
 	const input = board.input({
 		$id: "blogDetails",
 		schema: {
@@ -125,7 +123,7 @@ test("courseCrafterKit.Xenova.Claude", async (t) => {
 	secrets.wire("CLAUDE_KEY->apiKey", claudeCompletion)
 
 	instructionTemplate.wire("string->userQuestion", claudeCompletion)
-	
+
 	instructionTemplate.wire("string->userQuestion", allOutputs)
 	claudeCompletion.wire("completion->claudeResponse", allOutputs);
 	allOutputs.wire("*", output)
