@@ -35,6 +35,7 @@
 		"js-tiktoken": "^1.0.8",
 		"jsonschema": "^1.4.1"
 	},
+	"description": "Breadboard Kits to be used with the Google Labs [Breadboard](https://github.com/breadboard-ai/breadboard/) project. Initially for use with [GoogleChromeLabs/breadboard-samples](https://github.com/GoogleChromeLabs/breadboard-samples/)",
 	"devDependencies": {
 		"@ava/typescript": "^4.1.0",
 		"@types/node": "^20.10.4",
