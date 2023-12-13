@@ -1,9 +1,9 @@
 import { Board } from "@google-labs/breadboard";
 import test from "ava";
-import CourseCrafterKit from "../../../src/kits/courseCrafter/CourseCrafterKit.js"
+import CourseCrafterKit from "../../../src/kits/courseCrafter/CourseCrafterKit.js";
 import XenovaKit from "../../../src/kits/XenovaKit.js";
 import { ClaudeKit } from "../../../src/kits/ClaudeKit.js";
-import { StringKit } from "../../../src/kits/StringKit.js"
+import { StringKit } from "../../../src/kits/StringKit.js";
 import Core from "@google-labs/core-kit";
 import { MarkdownContentType } from "../../../src/types/markdown.js";
 import makeMarkdown from "../../../src/util/files/makeMarkdown.js";
@@ -11,7 +11,7 @@ import fs from "fs";
 import { Starter } from "@google-labs/llm-starter";
 import { config } from "dotenv";
 
-const TIMEOUT = 200_000
+const TIMEOUT = 200_000;
 // single blog post
 // purposely removed .ava so it doesn't run with github pipeline, because this wont work without the api key in .env
 test("courseCrafterKit.Xenova.Claude", async (t) => {
@@ -58,7 +58,6 @@ test("courseCrafterKit.Xenova.Claude", async (t) => {
 		},
 	});
 
-
 	const taskDetails = board.input({
 		$id: "taskDetails",
 		schema: {
@@ -73,14 +72,22 @@ test("courseCrafterKit.Xenova.Claude", async (t) => {
 		},
 	});
 
-	const getBlogContentForTask = courseCraftKit.getBlogContentForTask({ $id: "getBlogContents" });
+	const getBlogContentForTask = courseCraftKit.getBlogContentForTask({
+		$id: "getBlogContents",
+	});
 	const pipeline = xenovaKit.pipeline({ $id: "summaryLanguageModel" });
 	const output = board.output({ $id: "outputSummary" });
 
-	const instruction = "Based on this summary and original text, give me code sample on how to achieve the discussed topic. Output result in markdown format, do not include the summary text in the output: ";
+	const instruction =
+		"Based on this summary and original text, give me code sample on how to achieve the discussed topic. Output result in markdown format, do not include the summary text in the output: ";
 	const instructionTemplate = stringKit.template({
 		$id: "claudePromptConstructor",
-		template: [instruction, "{{summary}}", "the original text is the following: ", "{{blogContent}}", ].join("/n"),
+		template: [
+			instruction,
+			"{{summary}}",
+			"the original text is the following: ",
+			"{{blogContent}}",
+		].join("/n"),
 	});
 
 	templateInput.wire("->template", instructionTemplate);
@@ -116,11 +123,18 @@ test("courseCrafterKit.Xenova.Claude", async (t) => {
 	instructionTemplate.wire("string->userQuestion", claudeCompletion);
 	instructionTemplate.wire("string->userQuestion", allOutputs);
 	claudeCompletion.wire("completion->claudeResponse", allOutputs);
-	allOutputs.wire("*", output)
+	allOutputs.wire("*", output);
 
-	makeMarkdown({ board, filename: board.title, title: board.title, dir: "./tests/kits/courseCrafterKit", markdownConfig: [MarkdownContentType.mermaid, MarkdownContentType.json] });
+	makeMarkdown({
+		board,
+		filename: board.title,
+		title: board.title,
+		dir: "./tests/kits/courseCrafterKit",
+		markdownConfig: [MarkdownContentType.mermaid, MarkdownContentType.json],
+	});
 
-	const blogURL = "https://developer.chrome.com/blog/introducing-scheduler-yield-origin-trial/"
+	const blogURL =
+		"https://developer.chrome.com/blog/introducing-scheduler-yield-origin-trial/";
 	const result = await board.runOnce({
 		url: blogURL,
 		model: "Xenova/distilbart-cnn-6-6",
@@ -130,9 +144,15 @@ test("courseCrafterKit.Xenova.Claude", async (t) => {
 	const outputBuffer = [];
 	outputBuffer.push({ url: blogURL, ...result });
 	// write all outputs into 1 file, summarising the whole process
-	fs.writeFileSync("./tests/kits/courseCrafterKit/blog_summary.json", JSON.stringify(outputBuffer, null, 2));
+	fs.writeFileSync(
+		"./tests/kits/courseCrafterKit/blog_summary.json",
+		JSON.stringify(outputBuffer, null, 2)
+	);
 	// this prompt returns text in markdown format
-	fs.writeFileSync("./tests/kits/courseCrafterKit/code.md", result["claudeResponse"] as string);
+	fs.writeFileSync(
+		"./tests/kits/courseCrafterKit/code.md",
+		result["claudeResponse"] as string
+	);
 
 	t.is(true, true);
 });

@@ -1,17 +1,16 @@
 import { Board } from "@google-labs/breadboard";
 import test from "ava";
-import CourseCrafterKit from "../../../src/kits/courseCrafter/CourseCrafterKit.js"
+import CourseCrafterKit from "../../../src/kits/courseCrafter/CourseCrafterKit.js";
 import XenovaKit from "../../../src/kits/XenovaKit.js";
 import { ClaudeKit } from "../../../src/kits/ClaudeKit.js";
-import { StringKit } from "../../../src/kits/StringKit.js"
+import { StringKit } from "../../../src/kits/StringKit.js";
 import { MarkdownContentType } from "../../../src/types/markdown.js";
 import makeMarkdown from "../../../src/util/files/makeMarkdown.js";
 import fs from "fs";
 import { Starter } from "@google-labs/llm-starter";
 import { config } from "dotenv";
 
-
-const TIMEOUT = 200_000
+const TIMEOUT = 200_000;
 // Bulk blog posts
 // purposely removed .ava so it doesn't run with github pipeline, because this wont work without the api key in .env
 test("courseCrafterKit.getContent.Bulk", async (t) => {
@@ -71,13 +70,18 @@ test("courseCrafterKit.getContent.Bulk", async (t) => {
 		},
 	});
 
-	const getContent = courseCraftKit.getBlogsContent({ $id: "getBlogsContent" });
+	const getContent = courseCraftKit.getBlogsContent({
+		$id: "getBlogsContent",
+	});
 	const output = board.output({ $id: "outputSummary" });
 	const pipeline = xenovaKit.pipelineBulk({ $id: "summaryLanguageModel" });
 
-	const blogURL = "https://developer.chrome.com/blog/introducing-scheduler-yield-origin-trial/"
-	const blogURL2 = "https://developer.chrome.com/blog/automatic-picture-in-picture/"
-	const blogURL3 = "https://developer.chrome.com/blog/third-party-cookie-deprecation-trial/"
+	const blogURL =
+		"https://developer.chrome.com/blog/introducing-scheduler-yield-origin-trial/";
+	const blogURL2 =
+		"https://developer.chrome.com/blog/automatic-picture-in-picture/";
+	const blogURL3 =
+		"https://developer.chrome.com/blog/third-party-cookie-deprecation-trial/";
 	const urls = [blogURL, blogURL2, blogURL3];
 
 	input.wire("->list", getContent);
@@ -86,7 +90,13 @@ test("courseCrafterKit.getContent.Bulk", async (t) => {
 	getContent.wire("blogOutput->inputs", pipeline);
 	pipeline.wire("*", output);
 	// construct a promp for claude
-	const prompt = ["Based these summaries of blog posts:", "{{summaries}}", "and the original text: ", "{{blogContents}}", "can you outline topics discussed in each blog? For each blog give me code sample on how to achieve the discussed topic. Output result in markdown format, do not include the summary text in the output. Separate discussed topics in bullet points."].join("/n");
+	const prompt = [
+		"Based these summaries of blog posts:",
+		"{{summaries}}",
+		"and the original text: ",
+		"{{blogContents}}",
+		"can you outline topics discussed in each blog? For each blog give me code sample on how to achieve the discussed topic. Output result in markdown format, do not include the summary text in the output. Separate discussed topics in bullet points.",
+	].join("/n");
 	const instructionTemplate = stringKit.template({
 		$id: "claudePromptConstructor",
 		template: prompt,
@@ -119,12 +129,29 @@ test("courseCrafterKit.getContent.Bulk", async (t) => {
 	});
 
 	const outputBuffer = [];
-	outputBuffer.push({urls: urls, summaries: result["summaries"], prompt: prompt, claude_response: result["completion"] });
+	outputBuffer.push({
+		urls: urls,
+		summaries: result["summaries"],
+		prompt: prompt,
+		claude_response: result["completion"],
+	});
 	// output results, produce mermaid diagram
-	fs.writeFileSync("./tests/kits/courseCrafterKit/blog_bulk.json", JSON.stringify(outputBuffer, null, 2));
-	fs.writeFileSync("./tests/kits/courseCrafterKit/bulk_code.md", result["completion"] as string);
+	fs.writeFileSync(
+		"./tests/kits/courseCrafterKit/blog_bulk.json",
+		JSON.stringify(outputBuffer, null, 2)
+	);
+	fs.writeFileSync(
+		"./tests/kits/courseCrafterKit/bulk_code.md",
+		result["completion"] as string
+	);
 
-	makeMarkdown({ board, filename: board.title, title: board.title, dir: "./tests/kits/courseCrafterKit", markdownConfig: [MarkdownContentType.mermaid, MarkdownContentType.json] });
+	makeMarkdown({
+		board,
+		filename: board.title,
+		title: board.title,
+		dir: "./tests/kits/courseCrafterKit",
+		markdownConfig: [MarkdownContentType.mermaid, MarkdownContentType.json],
+	});
 
 	t.is(true, true);
 });
