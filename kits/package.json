@@ -117,5 +117,17 @@
 		"node-version": "node_version=$(asdf nodejs resolve 20 --latest-available) && echo $node_version && asdf install nodejs $node_version && asdf local nodejs $node_version"
 	},
 	"type": "module",
-	"version": "0.9.0"
+	"version": "0.9.0",
+	"license": "Apache-2.0",
+	"bugs": {
+		"url": "https://github.com/ExaDev-io/breadboard-kits/issues/new"
+	},
+	"contributors": [
+		{
+			"name": "Sourcepulp Ltd dba ExaDev",
+			"url": "https://exadev.io",
+			"email": "contact@exadev.io"
+		}
+	],
+	"homepage": "https://github.com/ExaDev-io/breadboard-kits#readme"
 }
