@@ -1,17 +1,5 @@
 {
 	"$schema": "https://json.schemastore.org/package",
-	"ava": {
-		"extensions": {
-			"ts": "module"
-		},
-		"files": [
-			"tests/**/*.ava.ts"
-		],
-		"nodeArguments": [
-			"--import=tsx"
-		],
-		"workerThreads": false
-	},
 	"bugs": {
 		"url": "https://github.com/ExaDev-io/breadboard-kits/issues/new"
 	},
