@@ -4,13 +4,13 @@
 		"files": [
 			"tests/**/*.ava.ts"
 		],
-		"typescript": {
-			"compile": false,
-			"rewritePaths": {
-				"./": "dist/"
-			}
+		"workerThreads": false,
+		"extensions": {
+			"ts": "module"
 		},
-		"workerThreads": false
+		"nodeArguments": [
+			"--import=tsx"
+		]
 	},
 	"dependencies": {
 		"@anthropic-ai/sdk": "^0.10.2",
