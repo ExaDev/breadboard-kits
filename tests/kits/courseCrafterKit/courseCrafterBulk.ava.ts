@@ -96,7 +96,7 @@ test("courseCrafterKit.getContent.Bulk", async (t) => {
 	getContent.wire("blogOutput->blogContents", instructionTemplate);
 	pipeline.wire("summaries->summaries", instructionTemplate);
 
-	const secrets = starter.secrets(["CLAUDE_KEY"]);
+	const secrets = starter.secrets({ keys: ["CLAUDE_KEY"] });
 	const serverUrl = "https://api.anthropic.com/v1/complete";
 	const claudeParams = {
 		model: "claude-2",
