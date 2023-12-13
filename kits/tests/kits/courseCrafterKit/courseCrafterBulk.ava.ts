@@ -142,7 +142,7 @@ test("courseCrafterKit.getContent.Bulk", async (t) => {
 	);
 	fs.writeFileSync(
 		"./tests/kits/courseCrafterKit/bulk_code.md",
-		result["completion"] as string
+		result.completion.toString()
 	);
 
 	makeMarkdown({
