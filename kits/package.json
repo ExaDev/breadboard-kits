@@ -125,7 +125,6 @@
 		"prepack": "npm run build:publish",
 		"prepublishOnly": "npm run test",
 		"pretest": "npm run clean",
-		"preversion": "npm run build && npm run test",
 		"start": "chmod +x ./src/index.ts && ./src/index.ts",
 		"test": "npx -y madge --circular --warning src/ --extensions ts && ava --serial"
 	},
