@@ -1,17 +1,27 @@
 {
 	"$schema": "https://json.schemastore.org/package",
 	"ava": {
-		"files": [
-			"tests/**/*.ava.ts"
-		],
-		"workerThreads": false,
 		"extensions": {
 			"ts": "module"
 		},
+		"files": [
+			"tests/**/*.ava.ts"
+		],
 		"nodeArguments": [
 			"--import=tsx"
-		]
+		],
+		"workerThreads": false
 	},
+	"bugs": {
+		"url": "https://github.com/ExaDev-io/breadboard-kits/issues/new"
+	},
+	"contributors": [
+		{
+			"email": "contact@exadev.io",
+			"name": "Sourcepulp Ltd dba ExaDev",
+			"url": "https://exadev.io"
+		}
+	],
 	"dependencies": {
 		"@anthropic-ai/sdk": "^0.10.2",
 		"@anthropic-ai/tokenizer": "^0.0.4",
@@ -90,6 +100,8 @@
 	"files": [
 		"dist"
 	],
+	"homepage": "https://github.com/ExaDev-io/breadboard-kits#readme",
+	"license": "Apache-2.0",
 	"name": "@exadev/breadboard-kits",
 	"packageManager": "yarn@4.0.1",
 	"publishConfig": {
@@ -106,28 +118,16 @@
 		"deploy": "npm version patch && npm publish",
 		"lint": "eslint ./src",
 		"lint:fix": "npm run lint -- --fix",
+		"node-version": "node_version=$(asdf nodejs resolve 20 --latest-available) && echo $node_version && asdf install nodejs $node_version && asdf local nodejs $node_version",
 		"postpublish": "git push",
 		"prebuild": "npm run clean",
 		"prepack": "npm run build:publish",
 		"prepublishOnly": "npm run test",
+		"pretest": "npm run clean",
 		"preversion": "npm run build && npm run test",
 		"start": "chmod +x ./src/index.ts && ./src/index.ts",
-		"pretest": "npm run clean",
-		"test": "npx -y madge --circular --warning src/ --extensions ts && ava --serial",
-		"node-version": "node_version=$(asdf nodejs resolve 20 --latest-available) && echo $node_version && asdf install nodejs $node_version && asdf local nodejs $node_version"
+		"test": "npx -y madge --circular --warning src/ --extensions ts && ava --serial"
 	},
 	"type": "module",
-	"version": "0.9.0",
-	"license": "Apache-2.0",
-	"bugs": {
-		"url": "https://github.com/ExaDev-io/breadboard-kits/issues/new"
-	},
-	"contributors": [
-		{
-			"name": "Sourcepulp Ltd dba ExaDev",
-			"url": "https://exadev.io",
-			"email": "contact@exadev.io"
-		}
-	],
-	"homepage": "https://github.com/ExaDev-io/breadboard-kits#readme"
+	"version": "0.9.0"
 }
