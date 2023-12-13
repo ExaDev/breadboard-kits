@@ -100,7 +100,7 @@ test("courseCrafterKit.Xenova.Claude", async (t) => {
 	getBlogContentForTask.wire("blogContent->blogContent", allOutputs);
 	pipeline.wire("output->blogSummary", allOutputs);
 
-	const secrets = starter.secrets(["CLAUDE_KEY"]);
+	const secrets = starter.secrets({ keys: ["CLAUDE_KEY"] });
 	const serverUrl = "https://api.anthropic.com/v1/complete";
 	const claudeParams = {
 		model: "claude-2",
