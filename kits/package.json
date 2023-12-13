@@ -112,6 +112,7 @@
 		"prepublishOnly": "npm run test",
 		"preversion": "npm run build && npm run test",
 		"start": "chmod +x ./src/index.ts && ./src/index.ts",
+		"pretest": "npm run clean",
 		"test": "npx -y madge --circular --warning src/ --extensions ts && ava",
 		"node-version": "node_version=$(asdf nodejs resolve 20 --latest-available) && echo $node_version && asdf install nodejs $node_version && asdf local nodejs $node_version"
 	},
