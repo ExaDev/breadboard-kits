@@ -151,7 +151,7 @@ test("courseCrafterKit.Xenova.Claude", async (t) => {
 	// this prompt returns text in markdown format
 	fs.writeFileSync(
 		"./tests/kits/courseCrafterKit/code.md",
-		result["claudeResponse"] as string
+		result["claudeResponse"].toString()
 	);
 
 	t.is(true, true);
