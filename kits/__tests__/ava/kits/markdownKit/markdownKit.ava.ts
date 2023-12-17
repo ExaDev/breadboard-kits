@@ -1,6 +1,6 @@
 import { Board } from "@google-labs/breadboard";
 import test from "ava";
-import { ListKit, MarkdownKit } from "../../../src/index.js";
+import { ListKit, MarkdownKit } from "../../../../src/index.js";
 
 test("markdownkit.generateCombinedMarkdown", async (t) => {
 	const board = new Board({
@@ -78,7 +78,7 @@ test("markdownkit.generateCombinedMarkdown", async (t) => {
 		boardjson: boardjson,
 		filename: board.title,
 		title: board.title,
-		dir: "./tests/kits/markdownKit"
+		dir: "./tests/kits/markdownKit",
 	});
 
 	// void function
@@ -151,7 +151,7 @@ test("markdownkit.generateJson", async (t) => {
 		},
 	});
 
-	const generateJson = markdownKit.generateJson();
+	const generateJson: MarkdownKit = markdownKit.generateJson();
 	input.wire("->boardjson", generateJson);
 	input2.wire("->filename", generateJson);
 	input3.wire("->title", generateJson);
@@ -163,7 +163,7 @@ test("markdownkit.generateJson", async (t) => {
 		boardjson: boardjson,
 		filename: board.title,
 		title: board.title,
-		dir: "./tests/kits/markdownKit"
+		dir: "./tests/kits/markdownKit",
 	});
 
 	// void function
@@ -248,7 +248,7 @@ test("markdownkit.generateMermaid", async (t) => {
 		boardjson: boardjson,
 		filename: board.title,
 		title: board.title,
-		dir: "./tests/kits/markdownKit"
+		dir: "./tests/kits/markdownKit",
 	});
 
 	// void function
@@ -292,7 +292,6 @@ test("markdownkit.anotherBoard", async (t) => {
 	});
 
 	t.deepEqual(result["list"], ["hello", "John"]);
-
 
 	const input1 = board.input({
 		$id: "board",
@@ -362,6 +361,6 @@ test("markdownkit.anotherBoard", async (t) => {
 		boardjson: boardjson,
 		filename: board.title,
 		title: board.title,
-		dir: "./tests/kits/markdownKit"
+		dir: "./tests/kits/markdownKit",
 	});
 });

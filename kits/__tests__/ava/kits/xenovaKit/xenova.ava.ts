@@ -1,11 +1,11 @@
 import test from "ava";
-import { getModels, runPipeline } from "../../../src/kits/XenovaKit.js";
+import { getModels, runPipeline } from "../../../../src/kits/XenovaKit.js";
 import {
 	Direction,
 	GetModelsParams,
 	SortModels,
 	TransformerTask,
-} from "../../../src/types/xenova.js";
+} from "../../../../src/types/xenova.js";
 
 //
 // test("xenova.Test", async (t) => {

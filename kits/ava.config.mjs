@@ -5,7 +5,7 @@ const config = {
   extensions: {
     ts: "module",
   },
-  files: ["tests/**/*.ava.ts"],
+  files: ["__tests__/ava/**/*.ava.ts"],
   nodeArguments: ["--import=tsx"],
   workerThreads: false,
 };

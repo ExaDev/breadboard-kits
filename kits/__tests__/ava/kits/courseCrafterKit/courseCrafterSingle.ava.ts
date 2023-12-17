@@ -1,15 +1,15 @@
 import { Board } from "@google-labs/breadboard";
-import test from "ava";
-import CourseCrafterKit from "../../../src/kits/courseCrafter/CourseCrafterKit.js";
-import XenovaKit from "../../../src/kits/XenovaKit.js";
-import { ClaudeKit } from "../../../src/kits/ClaudeKit.js";
-import { StringKit } from "../../../src/kits/StringKit.js";
 import Core from "@google-labs/core-kit";
-import { MarkdownContentType } from "../../../src/types/markdown.js";
-import makeMarkdown from "../../../src/util/files/makeMarkdown.js";
-import fs from "fs";
 import { Starter } from "@google-labs/llm-starter";
+import test from "ava";
 import { config } from "dotenv";
+import fs from "fs";
+import { ClaudeKit } from "../../../../src/kits/ClaudeKit.js";
+import { StringKit } from "../../../../src/kits/StringKit.js";
+import XenovaKit from "../../../../src/kits/XenovaKit.js";
+import CourseCrafterKit from "../../../../src/kits/courseCrafter/CourseCrafterKit.js";
+import { MarkdownContentType } from "../../../../src/types/markdown.js";
+import makeMarkdown from "../../../../src/util/files/makeMarkdown.js";
 
 const TIMEOUT = 200_000;
 // single blog post
@@ -22,10 +22,10 @@ test("courseCrafterKit.Xenova.Claude", async (t) => {
 		version: "0.0.1",
 	});
 
-	const courseCraftKit = board.addKit(CourseCrafterKit);
-	const xenovaKit = board.addKit(XenovaKit);
-	const claudeKit = board.addKit(ClaudeKit);
-	const stringKit = board.addKit(StringKit);
+	const courseCraftKit: CourseCrafterKit = board.addKit(CourseCrafterKit);
+	const xenovaKit: XenovaKit = board.addKit(XenovaKit);
+	const claudeKit: ClaudeKit = board.addKit(ClaudeKit);
+	const stringKit: StringKit = board.addKit(StringKit);
 	const core = board.addKit(Core);
 	const starter = board.addKit(Starter);
 	config();
@@ -80,7 +80,7 @@ test("courseCrafterKit.Xenova.Claude", async (t) => {
 
 	const instruction =
 		"Based on this summary and original text, give me code sample on how to achieve the discussed topic. Output result in markdown format, do not include the summary text in the output: ";
-	const instructionTemplate = stringKit.template({
+	const instructionTemplate: StringKit = stringKit.template({
 		$id: "claudePromptConstructor",
 		template: [
 			instruction,
@@ -127,8 +127,8 @@ test("courseCrafterKit.Xenova.Claude", async (t) => {
 
 	makeMarkdown({
 		board,
-		filename: board.title,
-		title: board.title,
+		filename: board.title!,
+		title: board.title!,
 		dir: "./tests/kits/courseCrafterKit",
 		markdownConfig: [MarkdownContentType.mermaid, MarkdownContentType.json],
 	});
