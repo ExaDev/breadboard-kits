@@ -125,7 +125,7 @@
 		"prepublishOnly": "npm run test",
 		"pretest": "npm run clean",
 		"start": "chmod +x ./src/index.ts && ./src/index.ts",
-		"test": "npx -y madge --circular --warning src/ --extensions ts && ava --serial"
+		"test": "npx -y madge --circular --warning src/ --extensions ts && jest && ava --serial"
 	},
 	"type": "module",
 	"version": "0.9.1"
