@@ -1,6 +1,6 @@
 import { Board } from "@google-labs/breadboard";
 import test from "ava";
-import ListKit from "../../../src/kits/ListKit.js";
+import ListKit from "../../../../src/kits/ListKit.js";
 
 test("listkit.concat", async (t) => {
 	const board = new Board({
@@ -77,7 +77,7 @@ test("listkit.concat can combine 3 arrays", async (t) => {
 	});
 
 	t.deepEqual(result["list"], ["hello", "John", "Doe"]);
-})
+});
 
 test("listkit.concat can combine an array and a string", async (t) => {
 	const board = new Board({
@@ -115,4 +115,4 @@ test("listkit.concat can combine an array and a string", async (t) => {
 	});
 
 	t.deepEqual(result["list"], ["hello", "John"]);
-})
+});

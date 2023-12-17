@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Board } from "@google-labs/breadboard";
 import test from "ava";
-import ListKit from "../src/kits/ListKit.js";
+import ListKit from "../../src/kits/ListKit.js";
 test("iterator", async (t) => {
 	const board: Board = new Board();
 	const listKit = board.addKit(ListKit);
@@ -31,8 +31,7 @@ test("iterator", async (t) => {
 	const arrayLength = testArray.length;
 
 	const accumulatedResults = [];
-	for await (const result of board.run({
-	})) {
+	for await (const result of board.run({})) {
 		if (result.type === "input") {
 			result.inputs = {
 				list: testArray,

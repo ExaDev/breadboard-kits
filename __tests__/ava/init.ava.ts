@@ -1,6 +1,6 @@
 import { Board } from "@google-labs/breadboard";
 import test from "ava";
-import ListKit from "../src/kits/ListKit.js";
+import ListKit from "../../src/kits/ListKit.js";
 
 // eslint-disable-next-line @typescript-eslint/require-await
 test("addKit", async (t) => {
