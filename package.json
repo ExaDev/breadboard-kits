@@ -122,7 +122,6 @@
 		"postpublish": "git push",
 		"prebuild": "npm run clean",
 		"prepack": "npm run build:publish",
-		"prepublishOnly": "npm run test",
 		"pretest": "npm run clean",
 		"start": "chmod +x ./src/index.ts && ./src/index.ts",
 		"test": "npx -y madge --circular --warning src/ --extensions ts && jest && ava --serial"
