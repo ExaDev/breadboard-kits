@@ -73,12 +73,12 @@ export async function search(
 	if (page) {
 		url.searchParams.set("page", page.toString());
 	}
-	const response = await fetch(url.toString());
+	const response = await fetch(url.href);
 	const { hits } = (await response.json()) as unknown as {
 		hits: PostItem[];
 	};
 	return Promise.resolve({
-		algoliaUrl: url.toString(),
+		algoliaUrl: url.href,
 		hits: inputs.limit ? hits.slice(0, inputs.limit) : hits,
 	});
 }
