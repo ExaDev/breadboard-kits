@@ -95,7 +95,6 @@
 	"homepage": "https://github.com/ExaDev-io/breadboard-kits#readme",
 	"license": "Apache-2.0",
 	"name": "@exadev/breadboard-kits",
-	"packageManager": "yarn@4.0.1",
 	"publishConfig": {
 		"access": "public"
 	},
@@ -105,19 +104,18 @@
 	},
 	"scripts": {
 		"build": "tsc --pretty",
-		"build:publish": "npm run prebuild && tsup --config ./tsup.config.ts",
+		"build:publish": "rimraf dist ; rimraf --glob './{src,tests}/**/*.{js,d.ts,d.ts.map}' ; tsup --config ./tsup.config.ts",
 		"clean": "rimraf dist ; rimraf --glob './{src,tests}/**/*.{js,d.ts,d.ts.map}'",
 		"deploy": "npm version patch && npm publish",
 		"lint": "eslint ./src",
 		"lint:fix": "npm run lint -- --fix",
 		"node-version": "node_version=$(asdf nodejs resolve 20 --latest-available) && echo $node_version && asdf install nodejs $node_version && asdf local nodejs $node_version",
 		"postpublish": "git push",
-		"prebuild": "npm run clean",
 		"prepack": "npm run build:publish",
 		"pretest": "npm run clean",
 		"start": "chmod +x ./src/index.ts && ./src/index.ts",
 		"test": "npx -y madge --circular --warning src/ --extensions ts && jest && ava --serial"
 	},
 	"type": "module",
-	"version": "0.10.0"
+	"version": "0.10.1"
 }
