@@ -26,17 +26,20 @@ import {
  * @returns results from LLM
  */
 export async function runPipeline(inputs: {
+	input?: any;
+	model?: string;
+	task?: TransformerTask;
+	options?: any;
+}): Promise<{
+	output: any;
 	input?: string;
 	model?: string;
 	task?: TransformerTask;
-}): Promise<{
-		output: string;
-		input?: string;
-		model?: string;
-		task?: TransformerTask;
-	}> {
+}> {
 	const pipe = await pipeline(inputs.task, inputs.model);
-	const output = await pipe(inputs.input);
+	// get type of args for pipe
+
+	const output = await pipe(inputs.input, inputs.options);
 	return {
 		...inputs,
 		output,
@@ -45,7 +48,7 @@ export async function runPipeline(inputs: {
 
 /**
  * Retrieves huggingface models
- * @param params 
+ * @param params
  * @returns huggingface models
  */
 export async function getModels(
@@ -123,16 +126,16 @@ export const XenovaKit = new KitBuilder({
 		}
 	},
 	/**
-	 * Runs the LLM pipeline on multiple inputs 
-	 * 
+	 * Runs the LLM pipeline on multiple inputs
+	 *
 	 * TODO this can be optimized, the model is always the same, so we don't need to download the model for each input
 	 * @param inputs data to feed to the LLM
 	 * @param model the LLM model to use
 	 * @param task task for the LLM to perform
 	 * @returns results for each input from the LLM
 	 */
-	
-	async pipelineBulk (
+
+	async pipelineBulk(
 		inputs: InputValues & {
 			inputs?: string[];
 			model?: string;
@@ -151,14 +154,18 @@ export const XenovaKit = new KitBuilder({
 			throw new Error("task required");
 		}
 
-		const summaries: summaryOutput[] = []
+		const summaries: summaryOutput[] = [];
 
 		for (const input of inputs.inputs) {
 			try {
-				const response = await runPipeline({input:input, model:inputs.model, task:inputs.task})
-				// we want to extract the values out the json/dict because we want to be able to use .join during 
+				const response = await runPipeline({
+					input: input,
+					model: inputs.model,
+					task: inputs.task,
+				});
+				// we want to extract the values out the json/dict because we want to be able to use .join during
 				// template/prompt construction.
-				summaries.push(response["output"][0]["summary_text"])
+				summaries.push(response["output"][0]["summary_text"]);
 			} catch (error) {
 				console.error("error", error);
 				return {
@@ -168,7 +175,7 @@ export const XenovaKit = new KitBuilder({
 			}
 		}
 
-		return Promise.resolve({summaries})
+		return Promise.resolve({ summaries });
 	},
 	async getModels(
 		inputs: InputValues & GetModelsParams
